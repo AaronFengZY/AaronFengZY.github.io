@@ -64,7 +64,7 @@ About me
         <strong>Vision Computing Group</strong><br/>
         2024.02 - 2024.05, Research Intern<br/>
         Research Advisor: <a href="https://yudeng.github.io/" style="color:#DAA520; text-decoration:none;">Yu Deng</a><br/>
-        Academic Advisor: <a href="https://jlyang.org/" style="color:#DAA520; text-decoration:none;">Jiaolong Yang</a>
+        Academic Advisor: <a href="https://jlyang.org/" style="color:#DAA520; text-decoration:none;">Jiaolong Yang</a><br/>
         Research Topic: 3D vision, VLA, Embodied Ai, foucs on upper robot body, dual-dexterous hand
     </div>
 </div> 
