@@ -59,6 +59,15 @@ About me
 </div>-->
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <img src="/images/msr.png" alt="microsoft research Logo" width="180" style="margin-right: 20px;"/>
+    <div>
+        <strong>Vision Computing Group</strong><br/>
+        2024.01 - 2024.06 <br/>
+        Research Advisor: Prof. <a href="https://stupidzz.github.io/" style="color:#DAA520; text-decoration:none;">Zheng Zhang</a><br/>
+    </div>
+</div> 
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
     <img src="/images/jisuanke_logo.png" alt="jisuanke Logo" width="180" style="margin-right: 20px;"/>
     <div>
         <strong>Ji suan ke</strong><br/>
