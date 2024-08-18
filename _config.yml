@@ -20,7 +20,7 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "/AaronFengZY.github.io/images/fzy-photo.jpg"
+  avatar           : "fzy-photo.jpg"
   name             : "ZhiYuan Feng"
   location         : "Beijing"
   employer         : "TsingHua University"
