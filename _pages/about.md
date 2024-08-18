@@ -14,7 +14,7 @@ About me
 
 ## Experience
 
-<div style="display: flex; align-items: center; margin-bottom: 20px;">
+<!-- <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <img src="https://example.com/ucberkeley-logo.png" alt="UC Berkeley Logo" width="60" style="margin-right: 20px;"/>
     <div>
         <strong>University of California, Berkeley</strong><br/>
@@ -67,16 +67,15 @@ About me
         Research Advisor: Prof. <a href="https://www.example.com/he-wang" style="color:#DAA520; text-decoration:none;">He Wang</a><br/>
         Academic Advisor: Prof. <a href="https://www.example.com/baoquan-chen" style="color:#DAA520; text-decoration:none;">Baoquan Chen</a>
     </div>
-</div>
+</div> -->
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
-    <img src="https://example.com/pku-logo.png" alt="Peking University Logo" width="60" style="margin-right: 20px;"/>
+    <img src="/images/xjtu_logo.png" alt="Peking University Logo" width="60" style="margin-right: 20px;"/>
     <div>
-        <strong>Peking University (PKU)</strong><br/>
+        <strong>Xi'an Jiaotong University (XJTU)</strong><br/>
         2020.09 - 2024.07<br/>
-        <em>Bachelor of Science with Honors, Turing Class</em><br/>
-        GPA ranking (Application Season GPA): 1/95<br/>
-        Research Advisor: Prof. <a href="https://www.example.com/he-wang" style="color:#DAA520; text-decoration:none;">He Wang</a>
+        <em>Bachelor of Computer Science with Honors, Qian Xuesen College</em><br/>
+        Research Advisor: Prof. <a href="https://gr.xjtu.edu.cn/en/web/shibin/home" style="color:#DAA520; text-decoration:none;">Shi Bin</a>
     </div>
 </div>
 
