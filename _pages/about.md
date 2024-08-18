@@ -70,7 +70,7 @@ About me
 </div> -->
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
-    <img src="/images/xjtu_logo.png" alt="Peking University Logo" width="120" style="margin-right: 20px;"/>
+    <img src="/images/xjtu_logo.png" alt="Peking University Logo" width="140" style="margin-right: 20px;"/>
     <div>
         <strong>Xi'an Jiaotong University (XJTU)</strong><br/>
         2020.09 - 2024.07<br/>
