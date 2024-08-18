@@ -1,13 +1,14 @@
 ---
 permalink: /
-title: "Academic Pages for Zhiyuan Feng"
+title: "ZhiYuan Feng | Aaron Charlie"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-I am an incoming PhD student at [TsingHua University](https://www.tsinghua.edu.cn/), supervised by [Baining Guo](https://www.microsoft.com/en-us/research/people/bainguo/). Previously, I received my Bachelor's degree in Computer Science and Technology from the [Qian Xuesen College](http://bjb.xjtu.edu.cn/) at [Xi'an Jiaotong University](https://www.xjtu.edu.cn/). During my undergraduate studies, I had the privilege of collaborating with Professors Shibin and Qinghua Zheng, and I was fortunate to be a visiting student under Professor Weihua.
+<p>I am an incoming PhD student at <a href="https://www.tsinghua.edu.cn/" style="color:gold;">TsingHua University</a>, supervised by <a href="https://www.microsoft.com/en-us/research/people/bainguo/" style="color:gold;">Baining Guo</a>. Previously, I received my Bachelor's degree in Computer Science and Technology from the <a href="http://bjb.xjtu.edu.cn/" style="color:gold;">Qian Xuesen College</a> at <a href="https://www.xjtu.edu.cn/" style="color:gold;">Xi'an Jiaotong University</a>. During my undergraduate studies, I had the privilege of collaborating with Prof. <a href="https://gr.xjtu.edu.cn/en/web/shibin/home" style="color:gold;">Bin Shi</a> and <a href="https://www.tongji.edu.cn/info/1122/35385.htm" style="color:gold;">Qinghua Zheng</a>, and I was fortunate to be a visiting student under Prof. <a href="https://www.public.asu.edu/~hwei27/" style="color:gold;">Hua Wei</a>.</p>
+
 
 A data-driven personal website
 ======
