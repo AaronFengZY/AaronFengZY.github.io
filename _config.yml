@@ -7,7 +7,7 @@
 # server process.
 
 # Basic Site Settings
-title                    : "Your Name / Site Title"
+title                    : "Aaron Charlie"
 title_separator          : "-"
 name                     : &name "Your Name"
 description              : &description "personal description"
@@ -23,12 +23,11 @@ author:
   avatar           : "fzy-photo.jpg"
   name             : "ZhiYuan Feng"
   location         : "Beijing"
-  employer         : "TsingHua University"
   email            : "fengzy24@mails.tsinghua.edu.cn" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  googlescholar    : "https://scholar.google.com/citations?user=4HaLG0oAAAAJ&hl=zh-CN"
   impactstory      : # URL
   orcid            : #"http://orcid.org/yourorcidurl"
   semantic         : # URL
@@ -38,7 +37,7 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "academicpages"
+  github           : "https://github.com/AaronFengZY"
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
