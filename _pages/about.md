@@ -59,6 +59,15 @@ About me
 </div>-->
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <img src="/images/jisuanke_logo.png" alt="jisuanke Logo" width="180" style="margin-right: 20px;"/>
+    <div>
+        <strong>Ji suan ke</strong><br/>
+        2024.02 - now<br/>
+        <em>Lecturer in Informatics Competition</em><br/>
+    </div>
+</div> 
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
     <img src="/images/asu_logo.png" alt="ASU Logo" width="180" style="margin-right: 20px;"/>
     <div>
         <strong>Data Mining and Reinforcement Learning (DaRL) Group</strong><br/>
