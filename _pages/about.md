@@ -111,7 +111,7 @@ About me
 ## Selected Awards and Honors
 
 - **2024** Outstanding graduates
-- **2023** China Mobile Outstanding Scholarship (5 in a year)
+- **2023** China Mobile Outstanding Scholarship (**5 in a year**)
 - **2023** <a href="http://www.ef.xjtu.edu.cn/info/1026/7399.htm" style="color:#DAA520; text-decoration:none;">JieShan scholarship</a>
 - **2022** National Scholarship (Highest Honor for undergraduates in China)
 - **2021** National Scholarship (Highest Honor for undergraduates in China)
