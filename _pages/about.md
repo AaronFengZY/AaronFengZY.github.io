@@ -1,13 +1,16 @@
 ---
 permalink: /
-title: "ZhiYuan Feng | Aaron Charlie"
+title: "ZhiYuan Feng (Aaron Charlie)"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-<p>I am an incoming PhD student at <a href="https://www.tsinghua.edu.cn/" style="color:gold;">TsingHua University</a>, supervised by <a href="https://www.microsoft.com/en-us/research/people/bainguo/" style="color:gold;">Baining Guo</a>. Previously, I received my Bachelor's degree in Computer Science and Technology from the <a href="http://bjb.xjtu.edu.cn/" style="color:gold;">Qian Xuesen College</a> at <a href="https://www.xjtu.edu.cn/" style="color:gold;">Xi'an Jiaotong University</a>. During my undergraduate studies, I had the privilege of collaborating with Prof. <a href="https://gr.xjtu.edu.cn/en/web/shibin/home" style="color:gold;">Bin Shi</a> and <a href="https://www.tongji.edu.cn/info/1122/35385.htm" style="color:gold;">Qinghua Zheng</a>, and I was fortunate to be a visiting student under Prof. <a href="https://www.public.asu.edu/~hwei27/" style="color:gold;">Hua Wei</a>.</p>
+<p>I am an incoming PhD student at <a href="https://www.tsinghua.edu.cn/" style="color:gold; text-decoration:none;">TsingHua University</a>, supervised by <a href="https://www.microsoft.com/en-us/research/people/bainguo/" style="color:gold; text-decoration:none;">Baining Guo</a>. Previously, I received my Bachelor's degree in Computer Science and Technology from the <a href="http://bjb.xjtu.edu.cn/" style="color:gold; text-decoration:none;">Qian Xuesen College</a> at <a href="https://www.xjtu.edu.cn/" style="color:gold; text-decoration:none;">Xi'an Jiaotong University</a>. During my undergraduate studies, I had the privilege of collaborating with Prof. <a href="https://gr.xjtu.edu.cn/en/web/shibin/home" style="color:gold; text-decoration:none;">Bin Shi</a> and <a href="https://www.tongji.edu.cn/info/1122/35385.htm" style="color:gold; text-decoration:none;">Qinghua Zheng</a>, and I was fortunate to be a visiting student under Prof. <a href="https://www.public.asu.edu/~hwei27/" style="color:gold; text-decoration:none;">Hua Wei</a>.</p>
+
+
+
 
 
 A data-driven personal website
