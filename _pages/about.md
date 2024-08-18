@@ -61,7 +61,7 @@ About me
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <img src="/images/asu_logo.png" alt="ASU Logo" width="180" style="margin-right: 20px;"/>
     <div>
-        <strong>Visual Computing and Learning Lab (VCL)</strong><br/>
+        <strong>Data Mining and Reinforcement Learning (DaRL) Group</strong><br/>
         2022.06 - 2023.03<br/>
         <em>Summer Research Intern</em><br/>
         Research Advisor: Prof. <a href="https://www.public.asu.edu/~hwei27/" style="color:#DAA520; text-decoration:none;">Hua Wei</a>
@@ -71,7 +71,7 @@ About me
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <img src="/images/xjtu_logo.png" alt="Xi'an Jiaotong University Logo" width="180" style="margin-right: 20px;"/>
     <div>
-        <strong>Xi'an Jiaotong University (XJTU)</strong><br/>
+        <strong>Key Laboratory of Big Data Knowledge Engineering in Shaanxi Province</strong><br/>
         2022.01 - 2023.06<br/>
         <em>Research Intern</em><br/>
         Research Advisor: Prof. <a href="https://gr.xjtu.edu.cn/en/web/shibin/home" style="color:#DAA520; text-decoration:none;">Shi Bin</a><br/>
@@ -94,7 +94,7 @@ About me
 
 - **2024** Outstanding graduates
 - **2023** China Mobile Outstanding Scholarship (5 in a year)
-- **2022** <a href="http://www.ef.xjtu.edu.cn/info/1026/7399.htm" style="color:#DAA520; text-decoration:none;">JieShan scholarship</a>
+- **2023** <a href="http://www.ef.xjtu.edu.cn/info/1026/7399.htm" style="color:#DAA520; text-decoration:none;">JieShan scholarship</a>
 - **2022** National Scholarship (Highest Honor for undergraduates in China)
 - **2021** National Scholarship (Highest Honor for undergraduates in China)
 - **2021** Excellent Volunteer of the 14th National Games of the People's Republic of China
