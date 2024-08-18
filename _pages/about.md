@@ -12,7 +12,7 @@ About me
 
 <p>I am an incoming PhD student at <a href="https://www.tsinghua.edu.cn/" style="color:#DAA520; text-decoration:none;">TsingHua University</a>, supervised by <a href="https://www.microsoft.com/en-us/research/people/bainguo/" style="color:#DAA520; text-decoration:none;">Baining Guo</a>. Previously, I received my Bachelor's degree in Computer Science and Technology from the <a href="http://bjb.xjtu.edu.cn/" style="color:#DAA520; text-decoration:none;">Qian Xuesen College</a> at <a href="https://www.xjtu.edu.cn/" style="color:#DAA520; text-decoration:none;">Xi'an Jiaotong University</a>. During my undergraduate studies, I had the privilege of collaborating with Prof. <a href="https://gr.xjtu.edu.cn/en/web/shibin/home" style="color:#DAA520; text-decoration:none;">Bin Shi</a> and <a href="https://www.tongji.edu.cn/info/1122/35385.htm" style="color:#DAA520; text-decoration:none;">Qinghua Zheng</a>, and I was fortunate to be a visiting student under Prof. <a href="https://www.public.asu.edu/~hwei27/" style="color:#DAA520; text-decoration:none;">Hua Wei</a>.</p>
 
-## Experience
+## Experiences
 
 <!-- <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <img src="https://example.com/ucberkeley-logo.png" alt="UC Berkeley Logo" width="60" style="margin-right: 20px;"/>
@@ -59,16 +59,17 @@ About me
 </div>-->
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
-    <img src="/images/msr.png" alt="microsoft research Logo" width="180" style="margin-right: 20px;"/>
+    <img src="/images/msr.png" alt="microsoft research Logo" width="120" style="margin-right: 20px;"/>
     <div>
         <strong>Vision Computing Group</strong><br/>
-        2024.01 - 2024.06 <br/>
+        2024.02 - 2024.05, Research Intern<br/>
         Research Advisor: Prof. <a href="https://stupidzz.github.io/" style="color:#DAA520; text-decoration:none;">Zheng Zhang</a><br/>
+        Research Topic: Work on LLM for mathematical reasoning
     </div>
 </div> 
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
-    <img src="/images/jisuanke_logo.png" alt="jisuanke Logo" width="180" style="margin-right: 20px;"/>
+    <img src="/images/jisuanke_logo.png" alt="jisuanke Logo" width="120" style="margin-right: 20px;"/>
     <div>
         <strong>Ji suan ke</strong><br/>
         2024.02 - now<br/>
@@ -77,32 +78,32 @@ About me
 </div> 
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
-    <img src="/images/asu_logo.png" alt="ASU Logo" width="180" style="margin-right: 20px;"/>
+    <img src="/images/asu_logo.png" alt="ASU Logo" width="120" style="margin-right: 20px;"/>
     <div>
         <strong>Data Mining and Reinforcement Learning (DaRL) Group</strong><br/>
-        2022.06 - 2023.03<br/>
-        <em>Summer Research Intern</em><br/>
+        2022.06 - 2023.03, Research Intern<br/>
         Research Advisor: Prof. <a href="https://www.public.asu.edu/~hwei27/" style="color:#DAA520; text-decoration:none;">Hua Wei</a>
     </div>
 </div> 
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
-    <img src="/images/xjtu_logo.png" alt="Xi'an Jiaotong University Logo" width="180" style="margin-right: 20px;"/>
+    <img src="/images/xjtu_logo.png" alt="Xi'an Jiaotong University Logo" width="120" style="margin-right: 20px;"/>
     <div>
         <strong>Key Laboratory of Big Data Knowledge Engineering in Shaanxi Province</strong><br/>
-        2022.01 - 2023.06<br/>
-        <em>Research Intern</em><br/>
+        2022.01 - 2023.06, Research Intern<br/>
         Research Advisor: Prof. <a href="https://gr.xjtu.edu.cn/en/web/shibin/home" style="color:#DAA520; text-decoration:none;">Shi Bin</a><br/>
         Academic Advisor: Prof. <a href="https://www.tongji.edu.cn/info/1122/35385.htm" style="color:#DAA520; text-decoration:none;">Qinghua Zheng</a>
     </div>
 </div>
 
+## Education
+
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
-    <img src="/images/qianxuesen_logo.png" alt="Xi'an Jiaotong University Logo" width="180" style="margin-right: 20px;"/>
+    <img src="/images/xjtu_logo.png" alt="Xi'an Jiaotong University Logo" width="120" style="margin-right: 20px;"/>
     <div>
         <strong>Xi'an Jiaotong University (XJTU)</strong><br/>
         2020.09 - 2024.07<br/>
-        <em>Bachelor of Computer Science with Honors, Qian Xuesen College</em><br/>
+        Bachelor of Computer Science with Honors, <a href="http://bjb.xjtu.edu.cn/" style="color:#DAA520; text-decoration:none;">Qian Xuesen College</a><br/>
     </div>
 </div>
 
