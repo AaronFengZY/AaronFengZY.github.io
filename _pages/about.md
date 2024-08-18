@@ -56,26 +56,35 @@ About me
         Research Advisor: Dr. <a href="https://www.example.com/siyuan-huang" style="color:#DAA520; text-decoration:none;">Siyuan Huang</a><br/>
         Academic Advisor: Prof. <a href="https://www.example.com/song-chun-zhu" style="color:#DAA520; text-decoration:none;">Song-Chun Zhu</a>
     </div>
+</div>-->
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <img src="/images/asu_logo.png" alt="ASU Logo" width="180" style="margin-right: 20px;"/>
+    <div>
+        <strong>Visual Computing and Learning Lab (VCL)</strong><br/>
+        2022.06 - 2023.03<br/>
+        <em>Summer Research Intern</em><br/>
+        Research Advisor: Prof. <a href="https://www.public.asu.edu/~hwei27/" style="color:#DAA520; text-decoration:none;">Hua Wei</a>
+    </div>
+</div> 
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <img src="/images/xjtu_logo.png" alt="Xi'an Jiaotong University Logo" width="180" style="margin-right: 20px;"/>
+    <div>
+        <strong>Xi'an Jiaotong University (XJTU)</strong><br/>
+        2022.01 - 2023.06<br/>
+        <em>Research Intern</em><br/>
+        Research Advisor: Prof. <a href="https://gr.xjtu.edu.cn/en/web/shibin/home" style="color:#DAA520; text-decoration:none;">Shi Bin</a><br/>
+        Academic Advisor: Prof. <a href="https://www.tongji.edu.cn/info/1122/35385.htm" style="color:#DAA520; text-decoration:none;">Qinghua Zheng</a>
+    </div>
 </div>
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
-    <img src="https://example.com/vcl-logo.png" alt="VCL Logo" width="60" style="margin-right: 20px;"/>
-    <div>
-        <strong>Visual Computing and Learning Lab (VCL)</strong><br/>
-        2022.6 - 2022.9<br/>
-        <em>Summer Research Intern</em><br/>
-        Research Advisor: Prof. <a href="https://www.example.com/he-wang" style="color:#DAA520; text-decoration:none;">He Wang</a><br/>
-        Academic Advisor: Prof. <a href="https://www.example.com/baoquan-chen" style="color:#DAA520; text-decoration:none;">Baoquan Chen</a>
-    </div>
-</div> -->
-
-<div style="display: flex; align-items: center; margin-bottom: 20px;">
-    <img src="/images/xjtu_logo.png" alt="Peking University Logo" width="180" style="margin-right: 20px;"/>
+    <img src="/images/qianxuesen_logo.png" alt="Xi'an Jiaotong University Logo" width="180" style="margin-right: 20px;"/>
     <div>
         <strong>Xi'an Jiaotong University (XJTU)</strong><br/>
         2020.09 - 2024.07<br/>
         <em>Bachelor of Computer Science with Honors, Qian Xuesen College</em><br/>
-        Research Advisor: Prof. <a href="https://gr.xjtu.edu.cn/en/web/shibin/home" style="color:#DAA520; text-decoration:none;">Shi Bin</a>
     </div>
 </div>
 
@@ -89,4 +98,7 @@ About me
 - **2022** National Scholarship (Highest Honor for undergraduates in China)
 - **2021** National Scholarship (Highest Honor for undergraduates in China)
 - **2021** Excellent Volunteer of the 14th National Games of the People's Republic of China
+- **2018** Gold medal of Asia-Pacific Informatics Olympiad, APIO
+- **2018** First Prize of Chinese Olympiad in Informatics
+- **2017** First Prize of Chinese Olympiad in Informatics
 

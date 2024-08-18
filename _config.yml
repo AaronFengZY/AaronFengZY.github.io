@@ -7,7 +7,6 @@
 # server process.
 
 # Basic Site Settings
-locale                   : "en-US"
 title                    : "Your Name / Site Title"
 title_separator          : "-"
 name                     : &name "Your Name"
@@ -26,9 +25,9 @@ author:
   pronouns         : # example: "she/her"  
   bio              : "Short biography for the left-hand sidebar"
   location         : "Earth"
-  employer         : "Red Brick University"
+  employer         : "TsingHua University"
   uri              : # URL
-  email            : "none@example.org" 
+  email            : "fengzy24@mails.tsinghua.edu.cn" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
@@ -36,7 +35,6 @@ author:
   impactstory      : # URL
   orcid            : "http://orcid.org/yourorcidurl"
   semantic         : # URL
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   researchgate     : # URL
 
   # Repositories and software development
