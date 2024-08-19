@@ -97,6 +97,7 @@ About me
         <strong>Data Mining and Reinforcement Learning (DaRL) Group</strong><br/>
         2022.06 - 2023.03, Research Intern<br/>
         Research Advisor: Prof. <a href="https://www.public.asu.edu/~hwei27/" style="color:#DAA520; text-decoration:none;">Hua Wei</a>
+        Research Topic: Spatio-temporal Forecasting
     </div>
 </div> 
 
@@ -107,6 +108,7 @@ About me
         2022.01 - 2023.06, Research Intern<br/>
         Research Advisor: Prof. <a href="https://gr.xjtu.edu.cn/en/web/shibin/home" style="color:#DAA520; text-decoration:none;">Shi Bin</a><br/>
         Academic Advisor: Prof. <a href="https://www.tongji.edu.cn/info/1122/35385.htm" style="color:#DAA520; text-decoration:none;">Qinghua Zheng</a>
+        Research Topic: Graph Neural Network, Privacy Preservation
     </div>
 </div>
 
