@@ -126,7 +126,7 @@ About me
     <div>
         <strong>Xi'an Jiaotong University (XJTU)</strong><br/>
         2020.09 - 2024.07<br/>
-        Bachelor of Computer Science with Honors, <a href="http://bjb.xjtu.edu.cn/" style="color:#DAA520; text-decoration:none;">Qian Xuesen College</a><br/>
+        B.E in Computer Science and Technology with Honors, <a href="http://bjb.xjtu.edu.cn/" style="color:#DAA520; text-decoration:none;">Qian Xuesen College</a><br/>
     </div>
 </div>
 
