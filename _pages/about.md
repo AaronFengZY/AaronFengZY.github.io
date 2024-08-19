@@ -87,7 +87,7 @@ About me
     <div>
         <strong>Ji Suan Ke</strong><br/>
         2024.02 - now<br/>
-        <em>Lecturer in Informatics Competition</em><br/>
+        Lecturer in Informatics Competition<br/>
     </div>
 </div> 
 
@@ -97,7 +97,7 @@ About me
         <strong>Data Mining and Reinforcement Learning (DaRL) Group</strong><br/>
         2022.06 - 2023.03, Research Intern<br/>
         Research Advisor: Prof. <a href="https://www.public.asu.edu/~hwei27/" style="color:#DAA520; text-decoration:none;">Hua Wei</a>
-        Research Topic: Spatio-temporal Forecasting
+        Research Topic: Spatio-Temporal Forecasting
     </div>
 </div> 
 
