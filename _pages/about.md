@@ -113,6 +113,15 @@ About me
 ## Education
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <img src="/images/tsinghua.png" alt="Tsing Hua University Logo" width="120" style="margin-right: 20px;"/>
+    <div>
+        <strong>TsingHua University (THU)</strong><br/>
+        2024.08 - now <br/>
+        Ph.D. in Computer Science and Technology, <a href="https://www.ias.tsinghua.edu.cn/" style="color:#DAA520; text-decoration:none;">Institute for Advanced Study</a><br/>
+    </div>
+</div>
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
     <img src="/images/xjtu_logo.png" alt="Xi'an Jiaotong University Logo" width="120" style="margin-right: 20px;"/>
     <div>
         <strong>Xi'an Jiaotong University (XJTU)</strong><br/>
