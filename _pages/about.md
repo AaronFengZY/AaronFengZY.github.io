@@ -16,6 +16,7 @@ redirect_from:
 My name is **ZhiYuan (Aaron) Feng**, and I am a Ph.D. candidate in Computer Science at Tsinghua University, where I am advised by Professor [Baining Guo](https://www.microsoft.com/en-us/research/people/bainguo/). I received my Bachelor's degree in Computer Science from the Qian Xuesen Honors College at Xi'an Jiaotong University. My current research interests include Embodied AI, Computer Vision, and Spatial Intelligence.
 
 Outside of research, I enjoy staying active through swimming, fitness, and tennis. I also have a passion for photography. In the future, I look forward to learning how to ski and hope to travel to Japan and Hawaii.
+
 ---
 
 ## Research Experience
