@@ -38,6 +38,7 @@ Outside of research, I enjoy staying active through swimming, fitness, and tenni
 ## Honors & Services
 
 * Reviewer, ICLR 2026 (International Conference on Learning Representations) `2026`  
+* "Stars of Tomorrow" Internship `2024`  
 * China Mobile Outstanding Scholarship `2023`  
 * National Scholarship `2021, 2022`  
 * The 12th Asia and Pacific Informatics Olympiad (Gold Medal) `2018`  
