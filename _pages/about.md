@@ -13,7 +13,7 @@ redirect_from:
 ## About Me
 
 
-My name is **ZhiYuan (Aaron) Feng**, and I am a Ph.D. candidate in Computer Science at Tsinghua University, where I am advised by Professor [Baining Guo](https://www.microsoft.com/en-us/research/people/bainguo/). I received my Bachelor's degree in Computer Science from the Qian Xuesen Honors College at Xi'an Jiaotong University. My current research interests include Embodied AI, Computer Vision, and Spatial Intelligence.
+My name is **ZhiYuan (Aaron) Feng**, and I am a Ph.D. candidate in Computer Science at Tsinghua University, where I am advised by Professor [Baining Guo](https://www.microsoft.com/en-us/research/people/bainguo/). I received my Bachelor's degree in Computer Science from the Qian Xuesen Honors College at Xi'an Jiaotong University. My current research interests include robotics and multimodal models.
 
 Outside of research, I enjoy staying active through swimming, fitness, and tennis. I also have a passion for photography. In the future, I look forward to learning how to ski and hope to travel to Japan and Hawaii.
 
@@ -38,9 +38,10 @@ Outside of research, I enjoy staying active through swimming, fitness, and tenni
 ## Honors & Services
 
 * Reviewer, ICLR 2026 (International Conference on Learning Representations) `2026`  
-* "Stars of Tomorrow" Internship `2024`  
+* Microsoft "Stars of Tomorrow" Internship `2024`  
 * China Mobile Outstanding Scholarship `2023`  
-* National Scholarship `2021, 2022`  
+* National Scholarship `2021`  
+* National Scholarship `2022`  
 * The 12th Asia and Pacific Informatics Olympiad (Gold Medal) `2018`  
 * NOIP (First Prize) `2017, 2018`
 
