@@ -1,7 +1,6 @@
 ---
 permalink: /
 # title: "Academic Pages is a ready-to-fork GitHub Pages template for academic personal websites"
-title: "Welcome！！"
 author_profile: true
 redirect_from: 
   - /about/
@@ -12,10 +11,11 @@ redirect_from:
 
 ## About Me
 
+ZhiYuan (Aaron) Feng is a Ph.D. candidate in Computer Science at the Institute for Advanced Study, Tsinghua University, where he is advised by Professor Baining Guo. He received his Bachelor's degree in Computer Science from the Qian Xuesen Honors College, Xi'an Jiaotong University.
 
-My name is **ZhiYuan (Aaron) Feng**, and I am a Ph.D. candidate in Computer Science at Tsinghua University, where I am advised by Professor [Baining Guo](https://www.microsoft.com/en-us/research/people/bainguo/). I received my Bachelor's degree in Computer Science from the Qian Xuesen Honors College at Xi'an Jiaotong University. My current research interests include robotics and multimodal models.
+His research interests lie at the intersection of robotics and multimodal intelligence, with a focus on embodied AI, spatial reasoning, and vision-language models for robotic understanding.
 
-Outside of research, I enjoy staying active through swimming, fitness, and tennis. I also have a passion for photography. In the future, I look forward to learning how to ski and hope to travel to Japan and Hawaii.
+Outside of research, he enjoys swimming, fitness, and tennis, and has a strong passion for photography. In the future, he hopes to learn skiing and travel to Japan and Hawaii.
 
 ---
 
