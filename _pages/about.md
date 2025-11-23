@@ -28,6 +28,17 @@ Outside of research, he enjoys swimming, fitness, and tennis, and has a strong p
   </div>
 </div>
 
+<div style="display: flex; align-items: flex-start; margin-bottom: 1em;">
+  <div style="margin-right: 20px; flex-shrink: 0;">
+    <img src="/images/xjtu_logo.png" alt="Xi'an Jiaotong University Logo" style="width: 80px; height: auto;">
+  </div>
+  <div style="flex: 1;">
+    <strong>Xi'an Jiaotong University</strong> Xi'an<br>
+    Bachelor of Computer Science, Qian Xuesen Honors College <code>2020 - 2024</code><br>
+    <em>Advisor: Bin Shi, Qinghua Zheng</em>
+  </div>
+</div>
+
 ---
 
 ## Research Experience
