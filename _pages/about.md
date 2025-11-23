@@ -21,10 +21,15 @@ Outside of research, he enjoys swimming, fitness, and tennis, and has a strong p
   <div style="margin-right: 20px; flex-shrink: 0;">
     <img src="/images/Tsinghua_University_Logo.svg" alt="Tsinghua University Logo" style="width: 80px; height: auto;">
   </div>
-  <div style="flex: 1;">
-    <strong>Tsinghua University</strong> Beijing<br>
-    Ph.D of Computer Science <code>2024 -</code><br>
-    <em>Advisor: <a href="https://www.microsoft.com/en-us/research/people/bainguo/">Baining Guo</a> (IEEE&ACM Fellow)</em>
+  <div style="flex: 1; display: flex; justify-content: space-between; align-items: flex-start;">
+    <div>
+      <strong>Tsinghua University</strong> Beijing<br>
+      Ph.D of Computer Science<br>
+      <em>Advisor: <a href="https://www.microsoft.com/en-us/research/people/bainguo/">Baining Guo</a> (IEEE&ACM Fellow)</em>
+    </div>
+    <div style="text-align: right; margin-left: 20px; flex-shrink: 0;">
+      <code>2024 -</code>
+    </div>
   </div>
 </div>
 
@@ -32,10 +37,16 @@ Outside of research, he enjoys swimming, fitness, and tennis, and has a strong p
   <div style="margin-right: 20px; flex-shrink: 0;">
     <img src="/images/xjtu_logo.png" alt="Xi'an Jiaotong University Logo" style="width: 80px; height: auto;">
   </div>
-  <div style="flex: 1;">
-    <strong>Xi'an Jiaotong University</strong> Xi'an<br>
-    Bachelor of Computer Science, Qian Xuesen Honors College <code>2020 - 2024</code><br>
-    <em>Advisor: Bin Shi, Qinghua Zheng</em>
+  <div style="flex: 1; display: flex; justify-content: space-between; align-items: flex-start;">
+    <div>
+      <strong>Xi'an Jiaotong University</strong> Xi'an<br>
+      Bachelor of Computer Science<br>
+      Qian Xuesen Honors College<br>
+      <em>Advisor: Bin Shi, Qinghua Zheng</em>
+    </div>
+    <div style="text-align: right; margin-left: 20px; flex-shrink: 0;">
+      <code>2020 - 2024</code>
+    </div>
   </div>
 </div>
 
