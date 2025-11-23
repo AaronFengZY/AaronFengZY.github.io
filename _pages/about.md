@@ -15,6 +15,21 @@ Outside of research, he enjoys swimming, fitness, and tennis, and has a strong p
 
 ---
 
+## Education Experience
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 1em;">
+  <div style="margin-right: 20px; flex-shrink: 0;">
+    <img src="/images/Tsinghua_University_Logo.svg" alt="Tsinghua University Logo" style="width: 80px; height: auto;">
+  </div>
+  <div style="flex: 1;">
+    <strong>Tsinghua University</strong> Beijing<br>
+    Ph.D of Computer Science <code>2024 -</code><br>
+    <em>Advisor: <a href="https://www.microsoft.com/en-us/research/people/bainguo/">Baining Guo</a> (IEEE&ACM Fellow)</em>
+  </div>
+</div>
+
+---
+
 ## Research Experience
 
 * **Microsoft Research Asia** `(Jul 2024 - Present)`
