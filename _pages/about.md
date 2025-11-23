@@ -34,12 +34,14 @@ Outside of research, he enjoys swimming, fitness, and tennis, and has a strong p
 ## Honors & Services
 
 * Reviewer, ICLR 2026 (International Conference on Learning Representations) `2026`  
+* Reviewer, CVPR 2026 (Computer Vision and Pattern Recognition) `2026`  
+* Reviewer, ICRA 2026 (IEEE International Conference on Robotics and Automation) `2026`  
 * Microsoft "Stars of Tomorrow" Internship `2024`  
 * China Mobile Outstanding Scholarship `2023`  
 * National Scholarship `2021`  
 * National Scholarship `2022`  
 * The 12th Asia and Pacific Informatics Olympiad (Gold Medal) `2018`  
-* NOIP (First Prize) `2017, 2018`
+* National Olympiad in Informatics in Provinces (First Prize) `2017, 2018`
 
 
 
