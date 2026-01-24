@@ -9,7 +9,7 @@ redirect_from:
 
 ZhiYuan (Aaron) Feng is a Ph.D. candidate in Computer Science at the Institute for Advanced Study, Tsinghua University, where he is advised by Professor [Baining Guo](https://www.microsoft.com/en-us/research/people/bainguo/). He received his Bachelor's degree in Computer Science from the Qian Xuesen Honors College, Xi'an Jiaotong University.
 
-His research interests lie at the intersection of robotics and multimodal intelligence, with a focus on embodied AI, spatial reasoning, and vision-language models for robotic understanding.
+He works on robotics, multimodal learning, and reinforcement learning, with a focus on embodied AI and vision-language(-action) models for robotic understanding and decision-making.
 
 Outside of research, he enjoys swimming, fitness, and tennis, and has a strong passion for photography. In the future, he hopes to learn skiing and travel to Japan and Hawaii.
 
@@ -71,8 +71,9 @@ Outside of research, he enjoys swimming, fitness, and tennis, and has a strong p
 ## Honors & Services
 
 * IEEE Student Member
-* Reviewer, ICLR 2026 (International Conference on Learning Representations) `2026`  
+* Reviewer, ECCV 2026 (European Conference on Computer Vision) `2026`  
 * Reviewer, CVPR 2026 (Computer Vision and Pattern Recognition) `2026`  
+* Reviewer, ICLR 2026 (International Conference on Learning Representations) `2026`  
 * Reviewer, ICRA 2026 (IEEE International Conference on Robotics and Automation) `2026`  
 * Microsoft "Stars of Tomorrow" Internship `2024`  
 * China Mobile Outstanding Scholarship `2023`  
