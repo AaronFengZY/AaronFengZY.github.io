@@ -76,6 +76,7 @@ Outside of research, he enjoys swimming, fitness, and tennis, and has a strong p
 * Reviewer, ICLR 2026 (International Conference on Learning Representations) `2026`  
 * Reviewer, ICRA 2026 (IEEE International Conference on Robotics and Automation) `2026`  
 * Microsoft "Stars of Tomorrow" Internship `2024`  
+* Outstanding Bachelor Graduate `2024`
 * China Mobile Outstanding Scholarship `2023`  
 * National Scholarship `2021`  
 * National Scholarship `2022`  
