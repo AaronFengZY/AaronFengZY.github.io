@@ -13,6 +13,10 @@ He works on robotics, multimodal learning, and reinforcement learning, with a fo
 
 Outside of research, he enjoys swimming, fitness, and tennis, and has a strong passion for photography. In the future, he hopes to learn skiing and travel to Japan and Hawaii.
 
+<div style="text-align: center; margin: 2em 0;">
+  <a href="/files/Aaron_Feng_CV.pdf" class="btn btn--primary" style="display: inline-block; padding: 0.75em 1.5em; text-decoration: none; border-radius: 4px; background-color: #007bff; color: white; font-weight: bold;">📄 Download CV</a>
+</div>
+
 ---
 
 ## Education Experience
