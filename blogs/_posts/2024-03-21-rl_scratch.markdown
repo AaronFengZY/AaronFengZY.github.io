@@ -21,7 +21,7 @@ mathjax: false
 
 ## Reinforcement Learning From Scratch
 
-By [Jiayi Ni](https://rochelleni.github.io/), [Yiran Geng](https://gengyiran.github.io/), [Yitao Liang](https://scholar.google.com/citations?user=KVzR1XEAAAAJ&hl=en) (continually updating ...)
+By [Jiayi Ni](https://rochelleni.github.io/), [ZhiYuan(Aaron) Feng 冯志远](https://gengyiran.github.io/), [Yitao Liang](https://scholar.google.com/citations?user=KVzR1XEAAAAJ&hl=en) (continually updating ...)
 
 ### Overview
 

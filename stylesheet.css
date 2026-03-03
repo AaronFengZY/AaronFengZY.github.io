@@ -64,7 +64,7 @@
 }
 
 a {
-  color: #f49300;
+  color: #b388ff;
   text-decoration: none;
 }
 b {
@@ -78,7 +78,7 @@ c {
 
 a:focus,
 a:hover {
-  color: #6e3519;
+  color: #7e57c2;
   text-decoration: none;
 }
 
@@ -97,6 +97,47 @@ p,
 a {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
+}
+
+p.intro-text {
+  font-size: 17px;
+}
+
+p.intro-text a {
+  font-size: 17px;
+}
+
+p.contact-links,
+p.contact-links a {
+  font-size: 17px;
+}
+
+.education-entry {
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.education-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.education-head strong {
+  font-size: 17px;
+}
+
+.education-date {
+  font-size: 16px;
+}
+
+.education-degree {
+  margin-bottom: 2px;
+}
+
+.education-degree strong {
+  font-size: 16px;
 }
 
 
@@ -138,7 +179,7 @@ abs {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
   color:
-  	#EB6400;
+	#b388ff;
 }
 .one {
   width: 160px;
