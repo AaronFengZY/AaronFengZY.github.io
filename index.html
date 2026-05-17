@@ -3,7 +3,20 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>ZhiYuan(Aaron) Feng   |  冯志远</title>
   <meta name="author" content="ZhiYuan(Aaron) Feng">
+  <meta name="description" content="Zhiyuan (Aaron) Feng — Ph.D. candidate at Tsinghua University working on embodied AI, vision-language-action models, and spatial reasoning.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Open Graph / Social cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ZhiYuan (Aaron) Feng | 冯志远">
+  <meta property="og:description" content="Ph.D. candidate at Tsinghua University. Embodied AI · Vision-Language-Action · Spatial Reasoning.">
+  <meta property="og:image" content="images/my/profile.png">
+  <meta property="og:url" content="https://aaronfengzy.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZhiYuan (Aaron) Feng | 冯志远">
+  <meta name="twitter:description" content="Ph.D. candidate at Tsinghua University. Embodied AI · Vision-Language-Action · Spatial Reasoning.">
+  <meta name="twitter:image" content="images/my/profile.png">
+
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<link rel="icon" type="image/svg+xml" href="images/experience/thu_logo.svg">
   <script>
@@ -17,10 +30,21 @@
   </script>
 </head>
 <body>
+  <nav class="topnav">
+    <div class="topnav-inner">
+      <a href="#about" class="topnav-brand">Aaron Feng</a>
+      <div class="topnav-links">
+        <a href="#about">About</a>
+        <a href="#papers">Papers</a>
+        <a href="#experience">Experience</a>
+        <a href="#honors">Honors</a>
+      </div>
+    </div>
+  </nav>
   <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr style="padding:0px">
       <td style="padding:0px">
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <table id="about" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr style="padding:0px">
             <td style="padding:2.5%;width:68%;vertical-align:middle">
               <p style="text-align:center">
@@ -48,7 +72,7 @@
           </tr>
         </tbody></table>
 
-        <table class="papers" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <table id="papers" class="papers" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <heading>Selected Papers</heading>
           <br>
 
@@ -69,7 +93,7 @@
               <a href="https://huggingface.co/datasets/AaronFengZY24/MV_Robobench" target="_blank">Data</a> /
               <a href="https://recorder-v3.slideslive.com/?share=108384&s=743b85c9-f80a-4b16-95a1-9adf5596843f" target="_blank">SlideLive</a>
               <br>
-              <em><strong>ICLR 2026</strong></em> 🔥🔥🔥
+              <em class="venue venue-top"><strong>ICLR 2026</strong></em> 🔥🔥🔥
               <br>
               Cited by <a href="https://dreamzero0.github.io/" target="_blank">DreamZero</a> 🌟🌟🌟
               <p></p>
@@ -91,7 +115,7 @@
               <a href="https://www.techrxiv.org/doi/full/10.36227/techrxiv.177126525.54038135" target="_blank">Paper</a> /
               <a href="https://aaronfengzy.github.io/HumanCentricToVLA-Survey/" target="_blank">Webpage</a>
               <br>
-              <em><strong>IJCAI 2026 Survey Track</strong></em> 🔥🔥🔥
+              <em class="venue venue-workshop"><strong>IJCAI 2026 Survey Track</strong></em> 🔥🔥🔥
               <p></p>
               <p>We survey how to turn abundant human videos into actionable supervision for VLA models, organizing methods into four categories and outlining key challenges for reliable real-world transfer.</p>
             </td>
@@ -110,7 +134,7 @@
               <br>
               <a href="https://arxiv.org/abs/2602.07625" target="_blank">Paper</a>
               <br>
-              <em><strong>ICML 2026</strong></em> 🔥🔥🔥
+              <em class="venue venue-top"><strong>ICML 2026</strong></em> 🔥🔥🔥
               <p></p>
               <p>We propose AD-MIR, a two-stage framework that decodes advertising intent by first constructing a structured multimodal database via semantic retrieval and keyword matching, then reasoning over it with an iterative, evidence-grounded inquiry loop that mimics marketing expertise, achieving state-of-the-art on AdsQA.</p>
             </td>
@@ -129,7 +153,7 @@
               <br>
               <a href="https://arxiv.org/abs/2511.19528" target="_blank">Paper</a>
               <br>
-              <em><strong>arXiv 2025</strong></em>
+              <em class="venue venue-arxiv"><strong>arXiv 2025</strong></em>
               <p></p>
               <p>We propose DLR, an information-theoretic multi-pattern RL framework that generates diverse, high-success manipulation trajectories for scalable VLA pretraining, improving transfer and showing better data-scaling than standard single-pattern RL.</p>
             </td>
@@ -149,7 +173,7 @@
               <a href="https://arxiv.org/pdf/2605.10434" target="_blank">Paper</a> /
               <a href="https://huggingface.co/datasets/WorldReasonBench/WorldRewardBench" target="_blank">Dataset</a>
               <br>
-              <em><strong>arXiv 2025</strong></em>
+              <em class="venue venue-arxiv"><strong>arXiv 2025</strong></em>
               <p></p>
               <p>We introduce WorldReasonBench, a human-aligned benchmark that stress-tests video generators as future world-state predictors across four dimensions—World Knowledge, Human Centric, Logic Reasoning, and Information-Based reasoning—covering diverse tasks from physical dynamics and cultural understanding to spatial geometry and quantitative math.</p>
             </td>
@@ -168,7 +192,7 @@
               <br>
               <a href="https://arxiv.org/abs/2509.19752" target="_blank">Paper</a>
               <br>
-              <em><strong>arXiv 2025</strong></em>
+              <em class="venue venue-arxiv"><strong>arXiv 2025</strong></em>
               <p></p>
               <p>We propose a diffusion policy optimization method that uses RL to autonomously generate smooth, low-variance long-horizon manipulation trajectories, enabling VLA training that outperforms models trained on human or Gaussian RL demonstrations on LIBERO.</p>
             </td>
@@ -189,7 +213,7 @@
               <a href="https://microsoft.github.io/HiSpatial/" target="_blank">Webpage</a> /
               <a href="https://github.com/microsoft/HiSpatial" target="_blank">Code</a>
               <br>
-              <em><strong>CVPR 2026</strong></em> 🔥🔥🔥
+              <em class="venue venue-top"><strong>CVPR 2026</strong></em> 🔥🔥🔥
               <p></p>
               <p>We propose a hierarchical framework that decomposes 3D spatial understanding in VLMs into four progressive levels, and build an automated pipeline over ~5M images to generate 3D spatial VQA data for fine-tuning, achieving state-of-the-art on multiple spatial reasoning benchmarks.</p>
             </td>
@@ -201,7 +225,7 @@
             </td>
             <td style="padding:20px;width:70%;vertical-align:middle">
               <a href="https://arxiv.org/abs/2510.21571" target="_blank">
-                <papertitle>Scalable vision-language-action model pretraining for robotic manipulation with real-life human activity videos</papertitle>
+                <papertitle>VITRA: Scalable vision-language-action model pretraining for robotic manipulation with real-life human activity videos</papertitle>
               </a>
               <br>
               <a:focus>Qixiu Li, Yu Deng, Yaobo Liang, Lin Luo, Lei Zhou, Chengtang Yao, Lingqi Zeng, <strong>Zhiyuan Feng</strong>, Huizhi Liang, Sicheng Xu, Yizhong Zhang, Xi Chen, Hao Chen, Lily Sun, Dong Chen, Jiaolong Yang, Baining Guo</a:focus>
@@ -210,7 +234,7 @@
               <a href="https://microsoft.github.io/VITRA/" target="_blank">Webpage</a> /
               <a href="https://github.com/microsoft/VITRA/" target="_blank">Code</a>
               <br>
-              <em><strong>ICRA 2026</strong></em> 🔥🔥🔥
+              <em class="venue venue-top"><strong>ICRA 2026</strong></em> 🔥🔥🔥
               <p></p>
               <p>We propose VITRA, a novel approach for pretraining Vision-Language-Action (VLA) models for robotic manipulation using large-scale, unscripted, real-world videos of human hand activities.</p>
               <p><strong>My contribution:</strong> I focus on the data processing pipeline, leveraging <a href="https://hawor-project.github.io/" target="_blank">HaWoR</a> to reconstruct 3D hand poses from human-centric videos.</p>
@@ -231,7 +255,7 @@
               <a href="https://arxiv.org/pdf/2506.03922" target="_blank">Paper</a> /
               <a href="https://github.com/Zhaolu-K/HSSBench" target="_blank">Code</a>
               <br>
-              <em><strong>ICLR 2026</strong></em>
+              <em class="venue venue-top"><strong>ICLR 2026</strong></em>
               <p></p>
               <p>HSSBench is a multilingual (UN six languages) benchmark of 13,000+ expert-curated samples designed to evaluate MLLMs’ cross-disciplinary, concept-to-vision reasoning in Humanities and Social Sciences, revealing clear gaps even in state-of-the-art models.</p>
             </td>
@@ -250,9 +274,9 @@
               <br>
               <a href="https://arxiv.org/abs/2506.07584" target="_blank">Paper</a>
               <br>
-              <em><strong>NIPS 2025</strong></em>
+              <em class="venue venue-top"><strong>NIPS 2025</strong></em>
               <br>
-              <em><strong><span style="color:red;">AI4X-AC 2026 Oral</span></strong></em>
+              <em class="venue venue-oral"><strong><span style="color:#fff;">AI4X-AC 2026 Oral</span></strong></em>
               <p></p>
               <p>We introduce MIRA, a medical time-series foundation model pretrained on 454B+ time points that handles irregular sampling and missingness to deliver stronger zero-shot and fine-tuned forecasting across datasets and tasks.</p>
             </td>
@@ -272,7 +296,7 @@
               <a href="https://arxiv.org/pdf/2503.12779" target="_blank">Paper</a> /
               <a href="https://wang-haoxiao.github.io/TransDiff/" target="_blank">Webpage</a>
               <br>
-              <em><strong>ICRA 2025</strong></em>
+              <em class="venue venue-top"><strong>ICRA 2025</strong></em>
               <p></p>
               <p>We propose TransDiff, a diffusion-based single-view RGB-D depth completion method for accurate grasping of transparent objects.</p>
             </td>
@@ -291,7 +315,7 @@
               <br>
               <a href="https://www.aimspress.com/aimspress-data/era/2023/4/PDF/era-31-04-115.pdf" target="_blank">Paper</a>
               <br>
-              <em><strong>CIKM 2024 Workshop</strong></em>
+              <em class="venue venue-workshop"><strong>CIKM 2024 Workshop</strong></em>
               <p></p>
               <p>We integrate evidential deep learning into DCRNN to provide sampling-free uncertainty quantification for spatiotemporal traffic forecasting, achieving improved predictive intervals measured by MIS.</p>
             </td>
@@ -400,7 +424,7 @@
     
         </tbody></table>
 
-        <table width="100%" align="center" border="0" cellpadding="10"><tbody>
+        <table id="experience" width="100%" align="center" border="0" cellpadding="10"><tbody>
           <br>
               <heading>Education Experience</heading>
           <br>
@@ -460,7 +484,7 @@
           </tr>
         </tbody></table>
 
-        <table style="width:90%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <table id="honors" style="width:90%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr>
             <br>
             <heading>Honors &amp; Services</heading>
