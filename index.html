@@ -193,28 +193,9 @@
               <a href="https://arxiv.org/pdf/2605.10434" target="_blank">Paper</a> /
               <a href="https://huggingface.co/datasets/WorldReasonBench/WorldRewardBench" target="_blank">Dataset</a>
               <br>
-              <em class="venue venue-arxiv"><strong>arXiv 2025</strong></em>
+              <em class="venue venue-arxiv"><strong>arXiv 2026</strong></em>
               <p></p>
               <p>We introduce WorldReasonBench, a human-aligned benchmark that stress-tests video generators as future world-state predictors across four dimensions—World Knowledge, Human Centric, Logic Reasoning, and Information-Based reasoning—covering diverse tasks from physical dynamics and cultural understanding to spatial geometry and quantitative math.</p>
-            </td>
-          </tr>
-
-          <tr>
-            <td style="padding:20px;width:30%;vertical-align:middle">
-              <img src='images/publish/beyond.png' width="220">
-            </td>
-            <td style="padding:20px;width:70%;vertical-align:middle">
-              <a href="https://arxiv.org/abs/2509.19752" target="_blank">
-                <papertitle>Beyond human demonstrations: Diffusion-based reinforcement learning to generate data for vla training</papertitle>
-              </a>
-              <br>
-              <a:focus>Rushuai Yang, Hangxing Wei, Ran Zhang, <strong>Zhiyuan Feng</strong>, Xiaoyu Chen, Tong Li, Chuheng Zhang, Li Zhao, Jiang Bian, Xiu Su, Yi Chen</a:focus>
-              <br>
-              <a href="https://arxiv.org/abs/2509.19752" target="_blank">Paper</a>
-              <br>
-              <em class="venue venue-arxiv"><strong>arXiv 2025</strong></em>
-              <p></p>
-              <p>We propose a diffusion policy optimization method that uses RL to autonomously generate smooth, low-variance long-horizon manipulation trajectories, enabling VLA training that outperforms models trained on human or Gaussian RL demonstrations on LIBERO.</p>
             </td>
           </tr>
 
@@ -258,6 +239,45 @@
               <p></p>
               <p>We propose VITRA, a novel approach for pretraining Vision-Language-Action (VLA) models for robotic manipulation using large-scale, unscripted, real-world videos of human hand activities.</p>
               <p><strong>My contribution:</strong> I focus on the data processing pipeline, leveraging <a href="https://hawor-project.github.io/" target="_blank">HaWoR</a> to reconstruct 3D hand poses from human-centric videos.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:30%;vertical-align:middle">
+              <img src='images/publish/beyond.png' width="220">
+            </td>
+            <td style="padding:20px;width:70%;vertical-align:middle">
+              <a href="https://arxiv.org/abs/2509.19752" target="_blank">
+                <papertitle>Beyond human demonstrations: Diffusion-based reinforcement learning to generate data for vla training</papertitle>
+              </a>
+              <br>
+              <a:focus>Rushuai Yang, Hangxing Wei, Ran Zhang, <strong>Zhiyuan Feng</strong>, Xiaoyu Chen, Tong Li, Chuheng Zhang, Li Zhao, Jiang Bian, Xiu Su, Yi Chen</a:focus>
+              <br>
+              <a href="https://arxiv.org/abs/2509.19752" target="_blank">Paper</a>
+              <br>
+              <em class="venue venue-arxiv"><strong>arXiv 2025</strong></em>
+              <p></p>
+              <p>We propose a diffusion policy optimization method that uses RL to autonomously generate smooth, low-variance long-horizon manipulation trajectories, enabling VLA training that outperforms models trained on human or Gaussian RL demonstrations on LIBERO.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:30%;vertical-align:middle">
+              <img src='images/publish/himoevla.png' width="220">
+            </td>
+            <td style="padding:20px;width:70%;vertical-align:middle">
+              <a href="https://arxiv.org/pdf/2512.05693" target="_blank">
+                <papertitle>HiMoE-VLA: Hierarchical Mixture-of-Experts for Generalist Vision-Language-Action Policies</papertitle>
+              </a>
+              <br>
+              <a:focus>Zhiying Du, Bei Liu, Yaobo Liang, Yichao Shen, Haidong Cao, Xiangyu Zheng, <strong>Zhiyuan Feng</strong>, Zuxuan Wu, Jiaolong Yang, Yu-Gang Jiang</a:focus>
+              <br>
+              <a href="https://arxiv.org/pdf/2512.05693" target="_blank">Paper</a> /
+              <a href="https://github.com/ZhiyingDu/HiMoE-VLA" target="_blank">Code</a>
+              <br>
+              <em class="venue venue-arxiv"><strong>arXiv 2025</strong></em>
+              <p></p>
+              <p>We propose <strong>HiMoE-VLA</strong>, a vision-language-action framework that tackles cross-embodiment heterogeneity via a Hierarchical Mixture-of-Experts action module, adaptively handling diverse action spaces, sensor configurations, and control frequencies to deliver consistent gains and robust generalization across simulation benchmarks and real-world robotic platforms.</p>
             </td>
           </tr>
 
@@ -541,5 +561,48 @@
       </td>
     </tr>
   </table>
+
+  <script>
+    // Click-to-zoom lightbox for paper thumbnails
+    (function () {
+      var imgs = document.querySelectorAll('table.papers img');
+      if (!imgs.length) return;
+
+      var overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
+      overlay.innerHTML = '<span class="lightbox-close" aria-label="Close">&times;</span><img alt="">';
+      document.body.appendChild(overlay);
+
+      var bigImg = overlay.querySelector('img');
+
+      function open(src) {
+        bigImg.src = src;
+        overlay.style.display = 'flex';
+        requestAnimationFrame(function () { overlay.classList.add('visible'); });
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        overlay.classList.remove('visible');
+        document.body.style.overflow = '';
+        setTimeout(function () {
+          overlay.style.display = 'none';
+          bigImg.src = '';
+        }, 200);
+      }
+
+      overlay.style.display = 'none';
+      overlay.addEventListener('click', close);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') close();
+      });
+
+      imgs.forEach(function (img) {
+        img.addEventListener('click', function (e) {
+          e.preventDefault();
+          open(img.getAttribute('src'));
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
