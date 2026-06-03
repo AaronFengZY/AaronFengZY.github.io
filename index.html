@@ -19,6 +19,26 @@
 
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<link rel="icon" type="image/svg+xml" href="images/experience/thu_logo.svg">
+
+  <!-- Modern font stack: Inter (body) + Fraunces (display) + Noto Sans SC (Chinese) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script>
+    // Apply saved theme as early as possible to avoid a flash of the wrong theme.
+    (function () {
+      var valid = { light: 1, sepia: 1, blue: 1, dark: 1 };
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = (saved && valid[saved]) ? saved : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
   <script>
     var _hmt = _hmt || [];
     (function() {
@@ -41,6 +61,14 @@
       </div>
     </div>
   </nav>
+
+  <!-- Floating background-color switcher -->
+  <div id="theme-switcher" class="theme-switcher" role="radiogroup" aria-label="Background color">
+    <button type="button" class="swatch swatch-light" data-theme-value="light" role="radio" aria-label="Light background" title="Light"></button>
+    <button type="button" class="swatch swatch-sepia" data-theme-value="sepia" role="radio" aria-label="Sepia background" title="Sepia"></button>
+    <button type="button" class="swatch swatch-blue" data-theme-value="blue" role="radio" aria-label="Blue background" title="Blue"></button>
+    <button type="button" class="swatch swatch-dark" data-theme-value="dark" role="radio" aria-label="Dark background" title="Dark"></button>
+  </div>
   <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr style="padding:0px">
       <td style="padding:0px">
@@ -78,6 +106,26 @@
 
           <tr>
             <td style="padding:20px;width:30%;vertical-align:middle">
+              <img src='images/publish/TaskGround.png' width="220">
+            </td>
+            <td style="padding:20px;width:70%;vertical-align:middle">
+              <a href="https://arxiv.org/abs/2605.18109" target="_blank">
+                <papertitle>TaskGround: Ground-Infer-Execute for Full-Scene Household Reasoning</papertitle>
+              </a>
+              <br>
+              <a:focus><strong>Zhiyuan Feng</strong>, <a href="https://yudeng.github.io/" target="_blank">Yu Deng</a>, Ruichuan An, Zhenhua Liu, Qixiu Li, Keming Wu, Zhiying Du, Weijie Wang, Haoxiao Wang, Shuang Chen, Sicheng Xu, Yaobo Liang, <span class="corresponding"><a href="https://jlyang.org/" target="_blank">Jiaolong Yang</a><sup>✉</sup></span>, <a href="https://www.microsoft.com/en-us/research/people/bainguo/" target="_blank">Baining Guo</a></a:focus>
+              <br>
+              <a href="https://arxiv.org/abs/2605.18109" target="_blank">Paper</a> /
+              <a href="https://aaronfengzy.github.io/TaskGround/" target="_blank">Webpage</a>
+              <br>
+              <em class="venue venue-arxiv"><strong>arXiv 2026</strong></em>
+              <p></p>
+              <p>We formalize <strong>full-scene household reasoning</strong>, where an agent must infer executable task structure from a complete household scene and a situated request. We propose <strong>TaskGround</strong>, a training-free Ground-Infer-Execute framework that grounds the scene into compact task-relevant slices before producing skill-level action sequences. On our new <strong>FullHome</strong> benchmark (400 human-validated household tasks), TaskGround substantially boosts success rates across proprietary and open-weight models, making Qwen3.5-9B competitive with GPT-5 while cutting input-token cost by up to 18×.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/Mvrobobench.png' width="220">
             </td>
             <td style="padding:20px;width:70%;vertical-align:middle">
@@ -85,13 +133,13 @@
                 <papertitle>Seeing across views: Benchmarking spatial reasoning of vision-language models in robotic scenes</papertitle>
               </a>
               <br>
-              <a:focus><strong>Zhiyuan Feng</strong>, Zhaolu Kang, Qijie Wang, Zhiying Du, Jiongrui Yan, Shubin Shi, Chengbo Yuan, Huizhi Liang, Yu Deng, Qixiu Li, Rushuai Yang, Arctanx An, Leqi Zheng, Weijie Wang, Shawn Chen, Sicheng Xu, Yaobo Liang, <span class="corresponding">Jiaolong Yang<sup>✉</sup></span>, Baining Guo</a:focus>
+              <a:focus><strong>Zhiyuan Feng</strong>, Zhaolu Kang, Qijie Wang, Zhiying Du, Jiongrui Yan, Shubin Shi, Chengbo Yuan, Huizhi Liang, <a href="https://yudeng.github.io/" target="_blank">Yu Deng</a>, Qixiu Li, Rushuai Yang, Arctanx An, Leqi Zheng, Weijie Wang, Shawn Chen, Sicheng Xu, Yaobo Liang, <span class="corresponding"><a href="https://jlyang.org/" target="_blank">Jiaolong Yang</a><sup>✉</sup></span>, <a href="https://www.microsoft.com/en-us/research/people/bainguo/" target="_blank">Baining Guo</a></a:focus>
               <br>
               <a href="https://arxiv.org/abs/2510.19400" target="_blank">Paper</a> /
               <a href="https://aaronfengzy.github.io/MV-RoboBench-Webpage/" target="_blank">Webpage</a> /
               <a href="https://github.com/microsoft/MV-RoboBench?tab=readme-ov-file" target="_blank">Code</a> /
               <a href="https://huggingface.co/datasets/AaronFengZY24/MV_Robobench" target="_blank">Data</a> /
-              <a href="https://recorder-v3.slideslive.com/?share=108384&s=743b85c9-f80a-4b16-95a1-9adf5596843f" target="_blank">SlideLive</a>
+              <a href="https://slideslive.com/39060994/seeing-across-views-benchmarking-spatial-reasoning-of-visionlanguage-models-in-robotic-scenes?ref=search-presentations" target="_blank">SlideLive</a>
               <br>
               <em class="venue venue-top"><strong>ICLR 2026</strong></em> 🔥🔥🔥
               <br>
@@ -110,7 +158,7 @@
                 <papertitle>From Human Videos to Robot Manipulation: A Survey on Scalable Vision-Language-Action Learning with Human-Centric Data</papertitle>
               </a>
               <br>
-              <a:focus><strong>Zhiyuan Feng</strong>, Qixiu Li, Huizhi Liang, Rushuai Yang, Yichao Shen, Zhiying Du, Zhaowei Zhang, <span class="corresponding">Yu Deng<sup>✉</sup></span>, Li Zhao, Hao Zhao, Zongqing Lu, Oier Mees, Marc Pollefeys, <span class="corresponding">Jiaolong Yang<sup>✉</sup></span>, Baining Guo</a:focus>
+              <a:focus><strong>Zhiyuan Feng</strong>, Qixiu Li, Huizhi Liang, Rushuai Yang, Yichao Shen, Zhiying Du, Zhaowei Zhang, <span class="corresponding"><a href="https://yudeng.github.io/" target="_blank">Yu Deng</a><sup>✉</sup></span>, Li Zhao, Hao Zhao, Zongqing Lu, Oier Mees, Marc Pollefeys, <span class="corresponding"><a href="https://jlyang.org/" target="_blank">Jiaolong Yang</a><sup>✉</sup></span>, <a href="https://www.microsoft.com/en-us/research/people/bainguo/" target="_blank">Baining Guo</a></a:focus>
               <br>
               <a href="https://www.techrxiv.org/doi/full/10.36227/techrxiv.177126525.54038135" target="_blank">Paper</a> /
               <a href="https://aaronfengzy.github.io/HumanCentricToVLA-Survey/" target="_blank">Webpage</a>
@@ -118,26 +166,6 @@
               <em class="venue venue-workshop"><strong>IJCAI 2026 Survey Track</strong></em> 🔥🔥🔥
               <p></p>
               <p>We survey how to turn abundant human videos into actionable supervision for VLA models, organizing methods into four categories and outlining key challenges for reliable real-world transfer.</p>
-            </td>
-          </tr>
-
-          <tr>
-            <td style="padding:20px;width:30%;vertical-align:middle">
-              <img src='images/publish/TaskGround.png' width="220">
-            </td>
-            <td style="padding:20px;width:70%;vertical-align:middle">
-              <a href="https://arxiv.org/abs/2605.18109" target="_blank">
-                <papertitle>TaskGround: Ground-Infer-Execute for Full-Scene Household Reasoning</papertitle>
-              </a>
-              <br>
-              <a:focus><strong>Zhiyuan Feng</strong>, Yu Deng, Ruichuan An, Zhenhua Liu, Qixiu Li, Keming Wu, Zhiying Du, Weijie Wang, Haoxiao Wang, Shuang Chen, Sicheng Xu, Yaobo Liang, <span class="corresponding">Jiaolong Yang<sup>✉</sup></span>, Baining Guo</a:focus>
-              <br>
-              <a href="https://arxiv.org/abs/2605.18109" target="_blank">Paper</a> /
-              <a href="https://aaronfengzy.github.io/TaskGround/" target="_blank">Webpage</a>
-              <br>
-              <em class="venue venue-arxiv"><strong>arXiv 2026</strong></em>
-              <p></p>
-              <p>We formalize <strong>full-scene household reasoning</strong>, where an agent must infer executable task structure from a complete household scene and a situated request. We propose <strong>TaskGround</strong>, a training-free Ground-Infer-Execute framework that grounds the scene into compact task-relevant slices before producing skill-level action sequences. On our new <strong>FullHome</strong> benchmark (400 human-validated household tasks), TaskGround substantially boosts success rates across proprietary and open-weight models, making Qwen3.5-9B competitive with GPT-5 while cutting input-token cost by up to 18×.</p>
             </td>
           </tr>
 
@@ -208,7 +236,7 @@
                 <papertitle>HiSpatial: Taming Hierarchical 3D Spatial Understanding in Vision-Language Models</papertitle>
               </a>
               <br>
-              <a:focus>Huizhi Liang, Yichao Shen, Yu Deng, Sicheng Xu, <strong>Zhiyuan Feng</strong>, Tong Zhang, Yaobo Liang, Jiaolong Yang</a:focus>
+              <a:focus>Huizhi Liang, Yichao Shen, <a href="https://yudeng.github.io/" target="_blank">Yu Deng</a>, Sicheng Xu, <strong>Zhiyuan Feng</strong>, Tong Zhang, Yaobo Liang, <a href="https://jlyang.org/" target="_blank">Jiaolong Yang</a></a:focus>
               <br>
               <a href="https://arxiv.org/pdf/2603.25411" target="_blank">Paper</a> /
               <a href="https://microsoft.github.io/HiSpatial/" target="_blank">Webpage</a> /
@@ -229,7 +257,7 @@
                 <papertitle>VITRA: Scalable vision-language-action model pretraining for robotic manipulation with real-life human activity videos</papertitle>
               </a>
               <br>
-              <a:focus>Qixiu Li, Yu Deng, Yaobo Liang, Lin Luo, Lei Zhou, Chengtang Yao, Lingqi Zeng, <strong>Zhiyuan Feng</strong>, Huizhi Liang, Sicheng Xu, Yizhong Zhang, Xi Chen, Hao Chen, Lily Sun, Dong Chen, Jiaolong Yang, Baining Guo</a:focus>
+              <a:focus>Qixiu Li, <a href="https://yudeng.github.io/" target="_blank">Yu Deng</a>, Yaobo Liang, Lin Luo, Lei Zhou, Chengtang Yao, Lingqi Zeng, <strong>Zhiyuan Feng</strong>, Huizhi Liang, Sicheng Xu, Yizhong Zhang, Xi Chen, Hao Chen, Lily Sun, Dong Chen, <a href="https://jlyang.org/" target="_blank">Jiaolong Yang</a>, <a href="https://www.microsoft.com/en-us/research/people/bainguo/" target="_blank">Baining Guo</a></a:focus>
               <br>
               <a href="https://arxiv.org/abs/2510.21571" target="_blank">Paper</a> /
               <a href="https://microsoft.github.io/VITRA/" target="_blank">Webpage</a> /
@@ -270,7 +298,7 @@
                 <papertitle>HiMoE-VLA: Hierarchical Mixture-of-Experts for Generalist Vision-Language-Action Policies</papertitle>
               </a>
               <br>
-              <a:focus>Zhiying Du, Bei Liu, Yaobo Liang, Yichao Shen, Haidong Cao, Xiangyu Zheng, <strong>Zhiyuan Feng</strong>, Zuxuan Wu, Jiaolong Yang, Yu-Gang Jiang</a:focus>
+              <a:focus>Zhiying Du, Bei Liu, Yaobo Liang, Yichao Shen, Haidong Cao, Xiangyu Zheng, <strong>Zhiyuan Feng</strong>, Zuxuan Wu, <a href="https://jlyang.org/" target="_blank">Jiaolong Yang</a>, Yu-Gang Jiang</a:focus>
               <br>
               <a href="https://arxiv.org/pdf/2512.05693" target="_blank">Paper</a> /
               <a href="https://github.com/ZhiyingDu/HiMoE-VLA" target="_blank">Code</a>
@@ -600,6 +628,42 @@
         img.addEventListener('click', function (e) {
           e.preventDefault();
           open(img.getAttribute('src'));
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    // Background-color (theme) switcher
+    (function () {
+      var switcher = document.getElementById('theme-switcher');
+      if (!switcher) return;
+
+      var swatches = switcher.querySelectorAll('.swatch');
+      var valid = { light: 1, sepia: 1, blue: 1, dark: 1 };
+
+      function currentTheme() {
+        var t = document.documentElement.getAttribute('data-theme');
+        return valid[t] ? t : 'light';
+      }
+
+      function applyTheme(theme) {
+        if (!valid[theme]) theme = 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        swatches.forEach(function (s) {
+          var on = s.getAttribute('data-theme-value') === theme;
+          s.classList.toggle('is-active', on);
+          s.setAttribute('aria-checked', on ? 'true' : 'false');
+        });
+      }
+
+      applyTheme(currentTheme());
+
+      swatches.forEach(function (s) {
+        s.addEventListener('click', function () {
+          var theme = s.getAttribute('data-theme-value');
+          applyTheme(theme);
+          try { localStorage.setItem('theme', theme); } catch (e) {}
         });
       });
     })();

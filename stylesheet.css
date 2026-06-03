@@ -315,6 +315,21 @@ table.papers a\:focus {
   line-height: 1.55;
 }
 
+/* Inline author links: keep the author color, just make it clickable */
+table.papers a\:focus > a,
+table.papers .corresponding a {
+  color: inherit;
+  text-decoration: none;
+  transition: text-decoration-color 0.15s ease;
+}
+table.papers a\:focus > a:hover,
+table.papers .corresponding a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  color: inherit;
+}
+
 /* Section heading: a bit more breathing room */
 heading {
   display: inline-block;
@@ -605,4 +620,582 @@ table.papers a\:focus strong {
   .news-body {
     font-size: 14px;
   }
+}
+
+/* ===================================================== */
+/* =====        Floating theme switcher (pill)      ===== */
+/* ===================================================== */
+.theme-switcher {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1100;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #e5dcf3;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(90, 58, 163, 0.18),
+              0 1px 2px rgba(0, 0, 0, 0.05);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  transition: background-color 0.25s ease, border-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+.theme-switcher .swatch {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+              border-color 0.15s ease;
+}
+.theme-switcher .swatch:hover {
+  transform: scale(1.12);
+}
+.theme-switcher .swatch:focus-visible {
+  box-shadow: 0 0 0 3px rgba(126, 87, 194, 0.45);
+}
+.theme-switcher .swatch.is-active {
+  border-color: #5a3aa3;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #7e57c2;
+}
+
+/* Swatch colors (preview the actual theme background) */
+.theme-switcher .swatch-light { background: #ffffff; }
+.theme-switcher .swatch-sepia { background: #f4ecd8; }
+.theme-switcher .swatch-blue  { background: #d9e4f5; }
+.theme-switcher .swatch-dark  { background: #14151c; border-color: rgba(255,255,255,0.2); }
+
+/* Pill appearance per-theme */
+[data-theme="sepia"] .theme-switcher {
+  background: rgba(252, 246, 232, 0.92);
+  border-color: #e6d8b5;
+}
+[data-theme="blue"] .theme-switcher {
+  background: rgba(238, 244, 253, 0.92);
+  border-color: #c9d6ec;
+}
+[data-theme="dark"] .theme-switcher {
+  background: rgba(28, 29, 40, 0.92);
+  border-color: #2a2638;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55),
+              0 1px 2px rgba(0, 0, 0, 0.4);
+}
+[data-theme="dark"] .theme-switcher .swatch.is-active {
+  box-shadow: 0 0 0 2px #14151c, 0 0 0 4px #cbb2ff;
+}
+
+@media (max-width: 720px) {
+  .theme-switcher {
+    right: 10px;
+    bottom: 10px;
+    padding: 5px 8px;
+    gap: 6px;
+  }
+  .theme-switcher .swatch {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ===================================================== */
+/* =====              Sepia theme overrides          ===== */
+/* ===================================================== */
+[data-theme="sepia"] body {
+  background-color: #f4ecd8;
+  color: #4b3a22;
+}
+[data-theme="sepia"] body,
+[data-theme="sepia"] td,
+[data-theme="sepia"] th,
+[data-theme="sepia"] tr,
+[data-theme="sepia"] p,
+[data-theme="sepia"] div,
+[data-theme="sepia"] span,
+[data-theme="sepia"] li {
+  color: #4b3a22;
+}
+[data-theme="sepia"] name { color: #3a2c14; }
+[data-theme="sepia"] a { color: #8a5a18; }
+[data-theme="sepia"] a:focus,
+[data-theme="sepia"] a:hover { color: #b8702a; }
+[data-theme="sepia"] .corresponding { color: #a35a00; }
+
+[data-theme="sepia"] .topnav {
+  background: rgba(244, 236, 216, 0.92);
+  border-bottom: 1px solid #e2d4ab;
+}
+[data-theme="sepia"] .topnav-brand { color: #6b4a18; }
+[data-theme="sepia"] .topnav-links a { color: #5d4623; }
+[data-theme="sepia"] .topnav-links a:hover { color: #b8702a; }
+[data-theme="sepia"] .topnav-links a::after { background: #b8702a; }
+
+[data-theme="sepia"] heading,
+[data-theme="sepia"] heading2 { color: #3a2c14; }
+
+[data-theme="sepia"] table.papers tr:hover td { background-color: #efe4c4; }
+[data-theme="sepia"] table.papers td { border-bottom: 1px solid #e2d4ab; }
+[data-theme="sepia"] table.papers p { color: #4b3a22; }
+[data-theme="sepia"] table.papers p strong { color: #6b4a18; }
+[data-theme="sepia"] table.papers a\:focus { color: #4b3a22; }
+
+[data-theme="sepia"] .news-card {
+  background: #fbf5e2;
+  border-color: #e2d4ab;
+}
+[data-theme="sepia"] .news-card:hover { border-color: #c9b277; }
+[data-theme="sepia"] .news-body,
+[data-theme="sepia"] .news-body p { color: #4b3a22; }
+[data-theme="sepia"] .news-body strong { color: #3a2c14; }
+[data-theme="sepia"] .news-body a { color: #8a5a18; }
+
+[data-theme="sepia"] tr:hover > .education-entry { background-color: #efe4c4; }
+
+/* ===================================================== */
+/* =====               Blue theme overrides          ===== */
+/* ===================================================== */
+[data-theme="blue"] body {
+  background-color: #eaf0fa;
+  color: #1f2a44;
+}
+[data-theme="blue"] body,
+[data-theme="blue"] td,
+[data-theme="blue"] th,
+[data-theme="blue"] tr,
+[data-theme="blue"] p,
+[data-theme="blue"] div,
+[data-theme="blue"] span,
+[data-theme="blue"] li {
+  color: #1f2a44;
+}
+[data-theme="blue"] name { color: #142039; }
+[data-theme="blue"] a { color: #2a5fae; }
+[data-theme="blue"] a:focus,
+[data-theme="blue"] a:hover { color: #1f4ea1; }
+[data-theme="blue"] .corresponding { color: #a35a00; }
+
+[data-theme="blue"] .topnav {
+  background: rgba(234, 240, 250, 0.92);
+  border-bottom: 1px solid #c9d6ec;
+}
+[data-theme="blue"] .topnav-brand { color: #1f4ea1; }
+[data-theme="blue"] .topnav-links a { color: #3a4866; }
+[data-theme="blue"] .topnav-links a:hover { color: #1f4ea1; }
+[data-theme="blue"] .topnav-links a::after { background: #1f4ea1; }
+
+[data-theme="blue"] heading,
+[data-theme="blue"] heading2 { color: #142039; }
+
+[data-theme="blue"] table.papers tr:hover td { background-color: #dde6f5; }
+[data-theme="blue"] table.papers td { border-bottom: 1px solid #cfdaef; }
+[data-theme="blue"] table.papers p { color: #1f2a44; }
+[data-theme="blue"] table.papers p strong { color: #1f4ea1; }
+[data-theme="blue"] table.papers a\:focus { color: #1f2a44; }
+
+[data-theme="blue"] .news-card {
+  background: #f3f7fd;
+  border-color: #cfdaef;
+}
+[data-theme="blue"] .news-card:hover { border-color: #a9bee0; }
+[data-theme="blue"] .news-body,
+[data-theme="blue"] .news-body p { color: #1f2a44; }
+[data-theme="blue"] .news-body strong { color: #142039; }
+[data-theme="blue"] .news-body a { color: #2a5fae; }
+
+[data-theme="blue"] tr:hover > .education-entry { background-color: #dde6f5; }
+
+/* ===================================================== */
+/* =====              Dark theme overrides          ===== */
+/* ===================================================== */
+[data-theme="dark"] body {
+  background-color: #14151c;
+  color: #d8d4e4;
+}
+
+[data-theme="dark"] body,
+[data-theme="dark"] td,
+[data-theme="dark"] th,
+[data-theme="dark"] tr,
+[data-theme="dark"] p,
+[data-theme="dark"] div,
+[data-theme="dark"] span,
+[data-theme="dark"] li {
+  color: #d8d4e4;
+}
+
+[data-theme="dark"] name {
+  color: #f1ecff;
+}
+
+[data-theme="dark"] a {
+  color: #cbb2ff;
+}
+[data-theme="dark"] a:focus,
+[data-theme="dark"] a:hover {
+  color: #fba524;
+}
+
+[data-theme="dark"] b {
+  color: #ff6b6b;
+}
+[data-theme="dark"] c {
+  color: #d8d4e4;
+}
+
+/* Corresponding author tag in dark */
+[data-theme="dark"] .corresponding {
+  color: #ffb24a;
+}
+
+/* Top nav */
+[data-theme="dark"] .topnav {
+  background: rgba(20, 21, 28, 0.85);
+  border-bottom: 1px solid #2a2638;
+}
+[data-theme="dark"] .topnav-brand {
+  color: #cbb2ff;
+}
+[data-theme="dark"] .topnav-links a {
+  color: #b8b2c8;
+}
+[data-theme="dark"] .topnav-links a:hover {
+  color: #fba524;
+}
+[data-theme="dark"] .topnav-links a::after {
+  background: #fba524;
+}
+
+/* Headings */
+[data-theme="dark"] heading,
+[data-theme="dark"] heading2 {
+  color: #f1ecff;
+}
+
+/* Papers table */
+[data-theme="dark"] table.papers tr:hover td {
+  background-color: #1c1d28;
+}
+[data-theme="dark"] table.papers td {
+  border-bottom: 1px solid #26222f;
+}
+[data-theme="dark"] table.papers img {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+  background: #1a1a24;
+}
+[data-theme="dark"] table.papers tr:hover img {
+  box-shadow: 0 4px 14px rgba(179, 136, 255, 0.25);
+}
+[data-theme="dark"] table.papers p {
+  color: #c5c0d4;
+}
+[data-theme="dark"] table.papers p strong {
+  color: #cbb2ff;
+}
+[data-theme="dark"] table.papers a\:focus {
+  color: #c5c0d4;
+}
+[data-theme="dark"] table.papers a\:focus strong {
+  background: linear-gradient(120deg, rgba(251, 165, 36, 0.28) 0%, rgba(179, 136, 255, 0.28) 100%);
+  color: #ffffff;
+}
+
+/* Generic venue pill */
+[data-theme="dark"] table.papers em strong {
+  background: #2a2640;
+  color: #d6c7ff;
+}
+/* Venue tiers */
+[data-theme="dark"] table.papers em.venue-top strong {
+  background: #3a2a13;
+  color: #ffc97a;
+  border-color: #6a4a1d;
+}
+[data-theme="dark"] table.papers em.venue-workshop strong {
+  background: #15243d;
+  color: #9ec1ff;
+  border-color: #28406e;
+}
+[data-theme="dark"] table.papers em.venue-arxiv strong {
+  background: #232532;
+  color: #c5c0d4;
+  border-color: #3a3848;
+}
+[data-theme="dark"] table.papers em.venue-oral strong {
+  background: #8a1f1f;
+  color: #fff;
+  border-color: #b82a2a;
+}
+
+/* Education / Research entries */
+[data-theme="dark"] tr:hover > .education-entry {
+  background-color: #1c1d28;
+}
+
+/* News cards */
+[data-theme="dark"] .news-card {
+  background: #1b1c27;
+  border-color: #2a2638;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+[data-theme="dark"] .news-card:hover {
+  border-color: #4a3d75;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+[data-theme="dark"] .news-body,
+[data-theme="dark"] .news-body p {
+  color: #d8d4e4;
+}
+[data-theme="dark"] .news-body strong {
+  color: #f1ecff;
+}
+[data-theme="dark"] .news-body a {
+  color: #cbb2ff;
+}
+
+/* Event-type chips (darker, more legible) */
+[data-theme="dark"] .tag-accept {
+  background: #3a2a13;
+  color: #ffc97a;
+  border-color: #6a4a1d;
+}
+[data-theme="dark"] .tag-award {
+  background: #3a1622;
+  color: #ff9bb4;
+  border-color: #6e2640;
+}
+[data-theme="dark"] .tag-release {
+  background: #15243d;
+  color: #9ec1ff;
+  border-color: #28406e;
+}
+[data-theme="dark"] .tag-milestone {
+  background: #261c46;
+  color: #d6c7ff;
+  border-color: #463778;
+}
+
+/* Yellow / highlight backgrounds */
+[data-theme="dark"] span.highlight,
+[data-theme="dark"] .yellow-background {
+  background-color: #3a3416;
+  color: #ffe9a8;
+}
+
+/* Lightbox image background tweak (keeps thumbnails crisp on dark) */
+[data-theme="dark"] .lightbox-overlay img {
+  background: #1a1a24;
+}
+
+/* Smooth transition between themes */
+body,
+.news-card,
+.topnav,
+.theme-switcher,
+.theme-switcher .swatch,
+table.papers em strong,
+.news-tag {
+  transition: background-color 0.25s ease, color 0.25s ease,
+              border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ===================================================== */
+/* =====      Decorative page background layers     ===== */
+/* ===================================================== */
+
+/* Body becomes its own stacking context so negative-z pseudo-elements
+   sit behind the content but in front of the body's background color. */
+body {
+  position: relative;
+  isolation: isolate;
+  overflow-x: hidden;
+}
+
+/* Soft colored glow blobs (per-theme) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60vw 55vh at 8% -5%,  rgba(179, 136, 255, 0.28), transparent 60%),
+    radial-gradient(55vw 50vh at 100% 12%, rgba(251, 165, 36, 0.18), transparent 65%),
+    radial-gradient(70vw 65vh at 50% 110%, rgba(126, 87, 194, 0.16), transparent 65%);
+  transition: background 0.4s ease, opacity 0.4s ease;
+}
+
+/* Subtle dot-grid pattern overlay (per-theme) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(90, 58, 163, 0.10) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: 0 0;
+  opacity: 0.55;
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 55%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 55%, transparent 100%);
+  transition: background-image 0.4s ease, opacity 0.4s ease;
+}
+
+/* --- Sepia background --- */
+[data-theme="sepia"] body::before {
+  background:
+    radial-gradient(60vw 55vh at 8% -5%,  rgba(193, 138, 60, 0.28), transparent 60%),
+    radial-gradient(55vw 50vh at 100% 12%, rgba(225, 178, 90, 0.22), transparent 65%),
+    radial-gradient(70vw 65vh at 50% 110%, rgba(150, 100, 40, 0.16), transparent 65%);
+}
+[data-theme="sepia"] body::after {
+  background-image: radial-gradient(rgba(120, 80, 30, 0.12) 1px, transparent 1px);
+}
+
+/* --- Blue background --- */
+[data-theme="blue"] body::before {
+  background:
+    radial-gradient(60vw 55vh at 8% -5%,  rgba(80, 130, 220, 0.26), transparent 60%),
+    radial-gradient(55vw 50vh at 100% 12%, rgba(120, 200, 255, 0.20), transparent 65%),
+    radial-gradient(70vw 65vh at 50% 110%, rgba(60, 95, 175, 0.16), transparent 65%);
+}
+[data-theme="blue"] body::after {
+  background-image: radial-gradient(rgba(40, 70, 140, 0.12) 1px, transparent 1px);
+}
+
+/* --- Dark background --- */
+[data-theme="dark"] body::before {
+  background:
+    radial-gradient(55vw 50vh at 8% -5%,  rgba(126, 87, 194, 0.35), transparent 60%),
+    radial-gradient(50vw 45vh at 100% 12%, rgba(251, 165, 36, 0.15), transparent 65%),
+    radial-gradient(65vw 60vh at 50% 110%, rgba(80, 50, 160, 0.30), transparent 65%);
+}
+[data-theme="dark"] body::after {
+  background-image: radial-gradient(rgba(200, 180, 255, 0.10) 1px, transparent 1px);
+  opacity: 0.45;
+}
+
+/* On very small screens, calm the pattern down */
+@media (max-width: 720px) {
+  body::after {
+    background-size: 18px 18px;
+    opacity: 0.4;
+  }
+}
+
+/* Respect users who prefer reduced motion / less decoration */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after {
+    transition: none;
+  }
+}
+
+/* ===================================================== */
+/* =====              Typography upgrade            ===== */
+/* ===================================================== */
+:root {
+  --font-sans: 'Inter', 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', Helvetica, Arial, sans-serif;
+  --font-serif: 'Fraunces', 'Newsreader', 'Source Serif Pro', Georgia,
+                'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+}
+
+/* Apply Inter everywhere body text appears */
+body,
+td, th, tr,
+p, a, strong, em, b, c,
+li, ul, ol,
+div, span,
+button, input, select, textarea,
+.education-entry, .education-date, .education-degree,
+.news-body, .news-month, .news-year, .news-tag,
+.topnav-links a, .topnav-brand,
+papertitle, abs {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11", "cv02";
+}
+
+/* Slightly more breathable body text */
+body, p, td, li, .education-entry {
+  letter-spacing: 0.005em;
+  line-height: 1.6;
+}
+
+/* Display serif for the name + section headings */
+name,
+heading,
+heading2 {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  letter-spacing: -0.012em;
+  font-feature-settings: "ss01", "ss02";
+}
+
+name {
+  font-weight: 600;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+}
+
+heading,
+heading2 {
+  font-weight: 600;
+}
+
+/* Paper titles: keep sans, but tighter and bolder */
+papertitle {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  line-height: 1.45;
+}
+
+/* Top nav refinement */
+.topnav-brand {
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  font-size: 16px;
+}
+.topnav-links a {
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+/* Intro paragraphs: tighter, more compact reading rhythm */
+p.intro-text,
+p.intro-text a {
+  font-size: 15.5px;
+  letter-spacing: 0.001em;
+  line-height: 1.4;
+}
+p.intro-text {
+  margin: 4px 0;
+}
+p.intro-text + p.intro-text {
+  margin-top: 4px;
+}
+
+/* Contact links: a touch more refined spacing */
+p.contact-links,
+p.contact-links a {
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+/* Venue pills: tabular spacing for crisper appearance */
+table.papers em.venue strong,
+.news-tag {
+  font-feature-settings: "tnum", "ss01";
+  letter-spacing: 0.4px;
 }
