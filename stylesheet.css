@@ -219,6 +219,84 @@ span.highlight {
 /* ===== Light polish (keep purple + orange accent) ===== */
 
 /* Selected Papers table */
+.publication-filters {
+  --filter-text: #555;
+  --filter-accent: #5a3aa3;
+  --filter-border: #e5dcf3;
+  --filter-background: #f3edff;
+  --filter-muted: #666;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 20px 12px;
+  max-width: calc(100vw - 56px);
+}
+
+.publication-filters[hidden],
+table.papers tr[hidden] {
+  display: none;
+}
+
+.publication-filters button {
+  border: 1px solid var(--filter-border);
+  border-radius: 999px;
+  padding: 5px 10px;
+  background: transparent;
+  color: var(--filter-text);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.publication-filters button:hover,
+.publication-filters button[aria-pressed="true"] {
+  background: var(--filter-background);
+  border-color: var(--filter-accent);
+  color: var(--filter-accent);
+}
+
+.publication-filters button:focus-visible {
+  outline: 2px solid var(--filter-accent);
+  outline-offset: 2px;
+}
+
+.publication-filters .publication-count {
+  margin-left: auto;
+  color: var(--filter-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+[data-theme="sepia"] .publication-filters {
+  --filter-text: #5d4623;
+  --filter-accent: #8a5a18;
+  --filter-border: #e2d4ab;
+  --filter-background: #efe4c4;
+  --filter-muted: #6b563c;
+}
+
+[data-theme="blue"] .publication-filters {
+  --filter-text: #3a4866;
+  --filter-accent: #1f4ea1;
+  --filter-border: #c9d6ec;
+  --filter-background: #dde6f5;
+  --filter-muted: #52627a;
+}
+
+[data-theme="dark"] .publication-filters {
+  --filter-text: #b8b2c8;
+  --filter-accent: #cbb2ff;
+  --filter-border: #4a3d75;
+  --filter-background: #261c46;
+  --filter-muted: #b8b2c8;
+}
+
+table.papers {
+  --first-author-bg: rgba(179, 136, 255, 0.045);
+  --first-author-accent: rgba(179, 136, 255, 0.45);
+}
 table.papers tr {
   transition: background-color 0.2s ease;
 }
@@ -230,6 +308,14 @@ table.papers td {
 }
 table.papers tbody > tr:last-child td {
   border-bottom: none;
+}
+
+/* Let existing hover styles override the subtle first-author tint. */
+table.papers tr:where(.first-author-paper) > td {
+  background-color: var(--first-author-bg);
+}
+table.papers tr.first-author-paper > td:first-child {
+  box-shadow: inset 2px 0 0 var(--first-author-accent);
 }
 
 /* Paper thumbnails */
@@ -358,6 +444,14 @@ ul li {
 /* ===== A-suite: nav + news + venue tiers + name highlight ===== */
 
 /* Sticky top nav */
+:root {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
 .topnav {
   position: sticky;
   top: 0;
@@ -385,6 +479,88 @@ ul li {
   color: #5a3aa3;
   letter-spacing: 0.3px;
 }
+.topnav-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.mode-toggle {
+  --mode-color: #5a3aa3;
+  --mode-border: #e5dcf3;
+  --mode-hover: #f3edff;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid var(--mode-border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--mode-color);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.mode-toggle[hidden] {
+  display: none;
+}
+
+.mode-toggle:hover {
+  background: var(--mode-hover);
+}
+
+.mode-toggle:focus-visible {
+  outline: 2px solid var(--mode-color);
+  outline-offset: 2px;
+}
+
+.mode-toggle .mode-label {
+  color: inherit;
+}
+
+.mode-icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mode-icon-night,
+.mode-toggle[aria-pressed="true"] .mode-icon-day {
+  display: none;
+}
+
+.mode-toggle[aria-pressed="true"] .mode-icon-night {
+  display: block;
+}
+
+[data-theme="sepia"] .mode-toggle {
+  --mode-color: #6b4a18;
+  --mode-border: #e2d4ab;
+  --mode-hover: #efe4c4;
+}
+
+[data-theme="blue"] .mode-toggle {
+  --mode-color: #1f4ea1;
+  --mode-border: #c9d6ec;
+  --mode-hover: #dde6f5;
+}
+
+[data-theme="dark"] .mode-toggle {
+  --mode-color: #cbb2ff;
+  --mode-border: #4a3d75;
+  --mode-hover: #261c46;
+}
+
 .topnav-links {
   display: flex;
   gap: 18px;
@@ -425,19 +601,25 @@ ul li {
 
 /* News section — card timeline */
 .news-section {
+  box-sizing: border-box;
+  max-width: 100vw;
   padding: 8px 24px 8px;
   margin: 18px 0 8px;
 }
 .news-section heading {
-  margin-bottom: 14px;
+  margin-bottom: 6px;
 }
 .news-feed {
   list-style: none;
   padding-left: 0;
-  margin: 14px 0 0;
+  margin: 6px 0 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+.news-date {
+  margin-right: 8px;
+  white-space: nowrap;
 }
 .news-card {
   display: flex;
@@ -598,13 +780,28 @@ table.papers a\:focus strong {
 /* Mobile tweaks */
 @media (max-width: 720px) {
   .topnav-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     padding: 8px 12px;
+    gap: 8px 12px;
+  }
+  .topnav-actions {
+    display: contents;
+  }
+  .mode-toggle {
+    grid-column: 2;
+    grid-row: 1;
   }
   .topnav-links {
-    gap: 12px;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    gap: 10px;
   }
   .topnav-links a {
     font-size: 13px;
+  }
+  #about, #news, #papers, #experience, #honors {
+    scroll-margin-top: 112px;
   }
   .news-card {
     padding: 10px 12px;
@@ -740,6 +937,10 @@ table.papers a\:focus strong {
 [data-theme="sepia"] heading,
 [data-theme="sepia"] heading2 { color: #3a2c14; }
 
+[data-theme="sepia"] table.papers {
+  --first-author-bg: rgba(138, 90, 24, 0.035);
+  --first-author-accent: rgba(138, 90, 24, 0.42);
+}
 [data-theme="sepia"] table.papers tr:hover td { background-color: #efe4c4; }
 [data-theme="sepia"] table.papers td { border-bottom: 1px solid #e2d4ab; }
 [data-theme="sepia"] table.papers p { color: #4b3a22; }
@@ -793,6 +994,10 @@ table.papers a\:focus strong {
 [data-theme="blue"] heading,
 [data-theme="blue"] heading2 { color: #142039; }
 
+[data-theme="blue"] table.papers {
+  --first-author-bg: rgba(42, 95, 174, 0.045);
+  --first-author-accent: rgba(42, 95, 174, 0.4);
+}
 [data-theme="blue"] table.papers tr:hover td { background-color: #dde6f5; }
 [data-theme="blue"] table.papers td { border-bottom: 1px solid #cfdaef; }
 [data-theme="blue"] table.papers p { color: #1f2a44; }
@@ -879,6 +1084,10 @@ table.papers a\:focus strong {
 }
 
 /* Papers table */
+[data-theme="dark"] table.papers {
+  --first-author-bg: rgba(203, 178, 255, 0.04);
+  --first-author-accent: rgba(203, 178, 255, 0.42);
+}
 [data-theme="dark"] table.papers tr:hover td {
   background-color: #1c1d28;
 }
@@ -1147,6 +1356,14 @@ name {
   letter-spacing: -0.02em;
 }
 
+.name-cn {
+  font-family: 'Ma Shan Zheng', 'Kaiti SC', 'STKaiti', 'KaiTi', serif;
+  font-size: 0.9em;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
 heading,
 heading2 {
   font-weight: 600;
@@ -1185,12 +1402,89 @@ p.intro-text {
 p.intro-text + p.intro-text {
   margin-top: 4px;
 }
+p.intro-text strong {
+  font-size: inherit;
+}
 
 /* Contact links: a touch more refined spacing */
 p.contact-links,
 p.contact-links a {
   font-weight: 500;
   letter-spacing: 0.2px;
+}
+
+/* Let the introduction flow back to full width below the portrait. */
+.about-intro {
+  display: flow-root;
+  box-sizing: border-box;
+  max-width: calc(100vw - 16px);
+  padding: 8px 20px 16px;
+}
+
+#about .profile-heading {
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+
+#about .name-local {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+#about .name-local,
+#about .name-divider {
+  font-family: inherit;
+  color: inherit;
+}
+
+#about .profile-photo {
+  float: right;
+  width: 180px;
+  margin: 0 0 12px 24px;
+}
+
+#about .profile-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#about .research-direction {
+  margin: 8px 0;
+  padding-left: 28px;
+  text-indent: -28px;
+}
+
+#about .research-index {
+  display: inline-block;
+  width: 28px;
+  text-indent: 0;
+}
+
+@media (max-width: 720px) {
+  .about-intro {
+    padding: 8px 16px 16px;
+  }
+
+  #about .profile-heading name {
+    font-size: clamp(24px, 6.5vw, 28px);
+  }
+
+  #about .name-divider {
+    display: none;
+  }
+
+  #about .profile-photo {
+    width: 120px;
+    margin-left: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  #about .profile-photo {
+    width: 96px;
+    margin-left: 14px;
+  }
 }
 
 /* Venue pills: tabular spacing for crisper appearance */

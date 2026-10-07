@@ -20,23 +20,26 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<link rel="icon" type="image/svg+xml" href="images/experience/thu_logo.svg">
 
-  <!-- Modern font stack: Inter (body) + Fraunces (display) + Noto Sans SC (Chinese) -->
+  <!-- Modern font stack: Inter (body) + Fraunces (display) + Noto Sans SC (Chinese body) + Ma Shan Zheng (Chinese name) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&amp;text=%E5%86%AF%E5%BF%97%E8%BF%9C&amp;display=swap" rel="stylesheet">
 
   <script>
     // Apply saved theme as early as possible to avoid a flash of the wrong theme.
     (function () {
       var valid = { light: 1, sepia: 1, blue: 1, dark: 1 };
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = prefersDark ? 'dark' : 'light';
       try {
         var saved = localStorage.getItem('theme');
-        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = (saved && valid[saved]) ? saved : (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
+        if (saved && valid[saved]) theme = saved;
       } catch (e) {
-        document.documentElement.setAttribute('data-theme', 'light');
+        if (e.name !== 'SecurityError') throw e;
+        console.warn('Saved theme preference is unavailable; using the system preference.', e);
       }
+      document.documentElement.setAttribute('data-theme', theme);
     })();
   </script>
   <script>
@@ -53,11 +56,24 @@
   <nav class="topnav">
     <div class="topnav-inner">
       <a href="#about" class="topnav-brand">Aaron Feng</a>
-      <div class="topnav-links">
-        <a href="#about">About</a>
-        <a href="#papers">Papers</a>
-        <a href="#experience">Experience</a>
-        <a href="#honors">Honors</a>
+      <div class="topnav-actions">
+        <div class="topnav-links">
+          <a href="#about">About</a>
+          <a href="#news">News</a>
+          <a href="#papers">Papers</a>
+          <a href="#experience">Experience</a>
+          <a href="#honors">Honors</a>
+        </div>
+        <button id="mode-toggle" class="mode-toggle" type="button" aria-label="Night mode" aria-pressed="false" title="Switch to night mode" hidden>
+          <svg class="mode-icon mode-icon-day" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"></path>
+          </svg>
+          <svg class="mode-icon mode-icon-night" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"></path>
+          </svg>
+          <span class="mode-label">Day</span>
+        </button>
       </div>
     </div>
   </nav>
@@ -72,39 +88,99 @@
   <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr style="padding:0px">
       <td style="padding:0px">
-        <table id="about" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:68%;vertical-align:middle">
-              <p style="text-align:center">
-                <name>ZhiYuan(Aaron) Feng &nbsp | &nbsp 冯志远</name>
-              </p>
-              <p class="intro-text">
-              I am a Ph.D. candidate in Computer Science at the <a href="https://www.ias.tsinghua.edu.cn/en/" target="_blank">Institute for Advanced Study</a>, <a href="https://www.tsinghua.edu.cn/en/" target="_blank">Tsinghua University</a>, advised by Prof. <a href="https://www.microsoft.com/en-us/research/people/bainguo/" target="_blank">Baining Guo</a>. I received my B.S. in Computer Science from the <a href="https://bjb.xjtu.edu.cn/" target="_blank">Qian Xuesen Honors College</a> at <a href="https://en.xjtu.edu.cn/" target="_blank">Xi’an Jiaotong University</a>.
-            </p>
-              <p class="intro-text">
-              My research focuses on embodied AI, spatial reasoning, and multimodal large language models, especially vision-language-action systems for robotic perception, understanding, and decision-making. I am interested in building intelligent agents that can reason about complex physical environments and assist people in real-world scenarios.
-            </p>
-              <p class="contact-links" style="text-align:center">
+        <section id="about" class="about-intro" aria-label="About">
+          <p class="profile-heading" style="text-align:center">
+            <name>ZhiYuan(Aaron) Feng <span class="name-local"><span class="name-divider">&nbsp | &nbsp </span><span class="name-cn" lang="zh-CN">冯志远</span></span></name>
+          </p>
+          <a class="profile-photo" href="images/my/profile.png">
+            <img alt="profile photo" src="images/my/profile.png" class="hoverZoomLink">
+          </a>
+          <p class="intro-text">
+              I am a third-year Ph.D. candidate in Computer Science at the <a href="https://www.ias.tsinghua.edu.cn/en/" target="_blank">Institute for Advanced Study</a>, <a href="https://www.tsinghua.edu.cn/en/" target="_blank">Tsinghua University</a>, advised by Prof. <a href="https://www.microsoft.com/en-us/research/people/bainguo/" target="_blank">Baining Guo</a>. I received my B.S. in Computer Science from the <a href="https://bjb.xjtu.edu.cn/" target="_blank">Qian Xuesen Honors College</a> at <a href="https://en.xjtu.edu.cn/" target="_blank">Xi’an Jiaotong University</a>.
+          </p>
+          <p class="intro-text">
+            My research explores three complementary directions toward embodied intelligence:
+          </p>
+          <p class="intro-text research-direction">
+            <span class="research-index">(i) </span><strong>Agent harnesses:</strong> Designing systems that organize task-relevant context and connect grounded reasoning, planning, and execution to translate high-level goals into executable actions.
+          </p>
+          <p class="intro-text research-direction">
+            <span class="research-index">(ii) </span><strong>Foundation models:</strong> Developing multimodal and vision-language-action models through scalable pretraining and post-training, with a focus on multimodal understanding, spatial reasoning, action learning, and generalization across tasks and environments.
+          </p>
+          <p class="intro-text research-direction">
+            <span class="research-index">(iii) </span><strong>Benchmarks and evaluation:</strong> Building benchmarks to evaluate multimodal understanding, spatial reasoning, and embodied capabilities, identifying capability gaps and guiding improvements in models and agents.
+          </p>
+          <p class="intro-text">
+            My goal is to build intelligent agents that understand complex physical environments and act reliably to assist people in real-world scenarios.
+          </p>
+          <p class="contact-links" style="text-align:center">
                 <a href="mailto:fengzy24@mails.tsinghua.edu.cn">Email</a> &nbsp/&nbsp
                 <a href="https://scholar.google.com/citations?user=4HaLG0oAAAAJ&hl=zh-CN">Google Scholar</a> &nbsp/&nbsp
                 <a href="images/my/xhs.jpg" target="_blank">RedBook</a>&nbsp/&nbsp
                 <a href="images/my/wechat.jpg" target="_blank">WeChat</a>&nbsp/&nbsp
                 <a href="https://x.com/FengAaronZY" target="_blank">X</a>
-              </p>
-            </td>
-            <td style="padding:2.5%;width:40%;max-width:40%">
-              <a href="images/my/profile.png"><img style="width:85%;max-width:85%" alt="profile photo" src="images/my/profile.png" class="hoverZoomLink"></a>
+          </p>
               <!-- <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgengyiran.github.io&count_bg=%23E79717E9&title_bg=%23575454&icon=&icon_color=%23222121&title=hits&edge_flat=true"/></a> -->
               <!-- <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgengyiran.github.io&count_bg=%23E79717E9&title_bg=%23575454&icon=&icon_color=%23222121&title=visits&edge_flat=true"/></a> -->
-            </td>
-          </tr>
-        </tbody></table>
+        </section>
 
-        <table id="papers" class="papers" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <heading>Selected Papers</heading>
-          <br>
+        <section id="news" class="news-section" aria-labelledby="news-heading">
+          <heading id="news-heading" role="heading" aria-level="2">News</heading>
+          <ul class="news-feed">
+            <li>
+              <time class="news-date" datetime="2026-09-24">[2026-09-24]</time>
+              <a href="https://arxiv.org/abs/2605.18109" target="_blank">TaskGround</a> and <a href="https://arxiv.org/pdf/2605.10434" target="_blank">WorldReasonBench</a> have been accepted to NeurIPS 2026.
+            </li>
+            <li>
+              <time class="news-date" datetime="2026-08-20">[2026-08-20]</time>
+              Our survey, <a href="https://www.ijcai.org/proceedings/2026/0871.pdf" target="_blank">From Human Videos to Robot Manipulation</a>, was presented at IJCAI-ECAI 2026. <a href="https://2026.ijcai.org/wp-content/fullprogram/index.html" target="_blank">Program</a>.
+            </li>
+            <li>
+              <time class="news-date" datetime="2026-04-30">[2026-04-30]</time>
+              <a href="https://arxiv.org/abs/2602.07625" target="_blank">AD-MIR</a> has been accepted to ICML 2026.
+            </li>
+            <li>
+              <time class="news-date" datetime="2026-04-29">[2026-04-29]</time>
+              Our survey, <a href="https://www.techrxiv.org/doi/full/10.36227/techrxiv.177126525.54038135" target="_blank">From Human Videos to Robot Manipulation</a>, has been accepted to the IJCAI 2026 Survey Track.
+            </li>
+            <li>
+              <time class="news-date" datetime="2026-02-20">[2026-02-20]</time>
+              <a href="https://arxiv.org/pdf/2603.25411" target="_blank">HiSpatial</a> has been accepted to CVPR 2026.
+            </li>
+            <li>
+              <time class="news-date" datetime="2026-01-31">[2026-01-31]</time>
+              <a href="https://arxiv.org/abs/2510.21571" target="_blank">VITRA</a> has been accepted to ICRA 2026.
+            </li>
+            <li>
+              <time class="news-date" datetime="2026-01-25">[2026-01-25]</time>
+              <a href="https://arxiv.org/abs/2510.19400" target="_blank">MV-RoboBench</a> and <a href="https://arxiv.org/pdf/2506.03922" target="_blank">HSSBench</a> have been accepted to ICLR 2026.
+            </li>
+            <li>
+              <span class="news-date">[2026]</span>
+              <a href="https://arxiv.org/abs/2506.07584" target="_blank">MIRA</a> has been selected for an oral presentation at AI4X-AC 2026.
+            </li>
+            <li>
+              <time class="news-date" datetime="2025-09-18">[2025-09-18]</time>
+              <a href="https://arxiv.org/abs/2506.07584" target="_blank">MIRA</a> has been accepted to NeurIPS 2025.
+            </li>
+            <li>
+              <time class="news-date" datetime="2025-01-31">[2025-01-31]</time>
+              <a href="https://arxiv.org/pdf/2503.12779" target="_blank">TransDiff</a> has been accepted to ICRA 2025.
+            </li>
+          </ul>
+        </section>
 
-          <tr>
+        <section id="papers" aria-labelledby="papers-heading">
+          <heading id="papers-heading" role="heading" aria-level="2">Selected Papers</heading>
+          <div id="publication-filters" class="publication-filters" role="group" aria-label="Filter publications by research area" hidden>
+            <button type="button" data-paper-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-paper-filter="harnesses" aria-pressed="false">Agent harnesses</button>
+            <button type="button" data-paper-filter="models" aria-pressed="false">Foundation models</button>
+            <button type="button" data-paper-filter="benchmarks" aria-pressed="false">Benchmarks and evaluation</button>
+            <span id="publication-count" class="publication-count" role="status" aria-live="polite" aria-atomic="true"></span>
+          </div>
+        <table class="papers" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr class="first-author-paper" data-categories="harnesses benchmarks">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/TaskGround.png' width="220">
             </td>
@@ -118,13 +194,13 @@
               <a href="https://arxiv.org/abs/2605.18109" target="_blank">Paper</a> /
               <a href="https://aaronfengzy.github.io/TaskGround/" target="_blank">Webpage</a>
               <br>
-              <em class="venue venue-arxiv"><strong>arXiv 2026</strong></em>
+              <em class="venue venue-top"><strong>NeurIPS 2026</strong></em> 🔥🔥🔥
               <p></p>
               <p>We formalize <strong>full-scene household reasoning</strong>, where an agent must infer executable task structure from a complete household scene and a situated request. We propose <strong>TaskGround</strong>, a training-free Ground-Infer-Execute framework that grounds the scene into compact task-relevant slices before producing skill-level action sequences. On our new <strong>FullHome</strong> benchmark (400 human-validated household tasks), TaskGround substantially boosts success rates across proprietary and open-weight models, making Qwen3.5-9B competitive with GPT-5 while cutting input-token cost by up to 18×.</p>
             </td>
           </tr>
 
-          <tr>
+          <tr class="first-author-paper" data-categories="benchmarks">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/Mvrobobench.png' width="220">
             </td>
@@ -149,7 +225,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr class="first-author-paper" data-categories="models">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/fromvideo.png' width="220">
             </td>
@@ -169,7 +245,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr data-categories="harnesses">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/AD-MIR.png' width="220">
             </td>
@@ -188,7 +264,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr data-categories="models">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/discover.png' width="220">
             </td>
@@ -207,7 +283,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr data-categories="benchmarks">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/WorldReasonBench.png' width="220">
             </td>
@@ -221,13 +297,13 @@
               <a href="https://arxiv.org/pdf/2605.10434" target="_blank">Paper</a> /
               <a href="https://huggingface.co/datasets/WorldReasonBench/WorldRewardBench" target="_blank">Dataset</a>
               <br>
-              <em class="venue venue-arxiv"><strong>arXiv 2026</strong></em>
+              <em class="venue venue-top"><strong>NeurIPS 2026</strong></em> 🔥🔥🔥
               <p></p>
               <p>We introduce WorldReasonBench, a human-aligned benchmark that stress-tests video generators as future world-state predictors across four dimensions—World Knowledge, Human Centric, Logic Reasoning, and Information-Based reasoning—covering diverse tasks from physical dynamics and cultural understanding to spatial geometry and quantitative math.</p>
             </td>
           </tr>
 
-          <tr>
+          <tr data-categories="models">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/HiSpatial.png' width="220">
             </td>
@@ -248,7 +324,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr data-categories="models">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/VITRA.png' width="220">
             </td>
@@ -270,7 +346,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr data-categories="models">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/beyond.png' width="220">
             </td>
@@ -289,7 +365,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr data-categories="models">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/himoevla.png' width="220">
             </td>
@@ -309,7 +385,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr data-categories="benchmarks">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/HSSBench.png' width="220">
             </td>
@@ -329,7 +405,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr data-categories="models">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/MIRA.png' width="220">
             </td>
@@ -342,7 +418,7 @@
               <br>
               <a href="https://arxiv.org/abs/2506.07584" target="_blank">Paper</a>
               <br>
-              <em class="venue venue-top"><strong>NIPS 2025</strong></em>
+              <em class="venue venue-top"><strong>NeurIPS 2025</strong></em>
               <br>
               <em class="venue venue-oral"><strong><span style="color:#fff;">AI4X-AC 2026 Oral</span></strong></em>
               <p></p>
@@ -350,7 +426,8 @@
             </td>
           </tr>
 
-          <tr>
+          <!-- Earlier specialized model work remains available in All. -->
+          <tr data-categories="">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/TransDiff.png' width="220">
             </td>
@@ -370,7 +447,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr class="first-author-paper" data-categories="">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/DEL.png' width="220">
             </td>
@@ -383,7 +460,7 @@
               <br>
               <a href="https://www.aimspress.com/aimspress-data/era/2023/4/PDF/era-31-04-115.pdf" target="_blank">Paper</a>
               <br>
-              <em class="venue venue-workshop"><strong>CIKM 2024 Workshop</strong></em>
+              <em class="venue venue-workshop"><strong>CIKM 2022 DIT Workshop</strong></em>
               <p></p>
               <p>We integrate evidential deep learning into DCRNN to provide sampling-free uncertainty quantification for spatiotemporal traffic forecasting, achieving improved predictive intervals measured by MIS.</p>
             </td>
@@ -491,6 +568,7 @@
           </tr> -->
     
         </tbody></table>
+        </section>
 
         <table id="experience" width="100%" align="center" border="0" cellpadding="10"><tbody>
           <br>
@@ -527,11 +605,23 @@
               <heading>Research Experience</heading>
           <br>
           <tr>
+            <td style="padding-left:20px;padding-right:20px;width:20%;vertical-align:middle"><img src="images/experience/Microsoft_Logo.svg" width="100" alt="Microsoft Research Asia"></td>
+            <td class="education-entry" width="90%" valign="middle">
+              <div class="education-head">
+                <strong>Microsoft Research Asia</strong>
+                <span class="education-date">Sep 2026 - Present</span>
+              </div>
+              <div>Spatial Intelligence Group</div>
+              <div>Role: Research Intern, working on Embodied AI.</div>
+              <div>Advisor: Jianfeng Xiang, Zhenhua Liu, Sicheng Xu, and <a href="https://jlyang.org/" target="_blank">Jiaolong Yang</a>.</div>
+            </td>
+          </tr>
+          <tr>
             <td style="padding-left:20px;padding-right:20px;width:20%;vertical-align:middle"><img src="images/experience/Microsoft_Logo.svg", width="100"></td>
             <td class="education-entry" width="90%" valign="center">
               <div class="education-head">
                 <strong>Microsoft Research Asia</strong>
-                <span class="education-date">Jul 2024 - Present</span>
+                <span class="education-date">Jul 2024 - Aug 2026</span>
               </div>
               <div>Spatial Intelligence Group</div>
               <div>Role: Research Intern, working on Embodied AI.</div>
@@ -591,6 +681,52 @@
   </table>
 
   <script>
+    (function () {
+      var controls = document.getElementById('publication-filters');
+      var count = document.getElementById('publication-count');
+      if (!controls || !count) throw new Error('Publication filter controls are missing.');
+
+      var categories = ['all', 'harnesses', 'models', 'benchmarks'];
+      var buttons = controls.querySelectorAll('button[data-paper-filter]');
+      var papers = Array.from(document.querySelectorAll('#papers table.papers > tbody > tr')).map(function (row) {
+        var metadata = row.getAttribute('data-categories');
+        if (metadata === null) throw new Error('A publication is missing its research categories.');
+        var tags = metadata.trim() === '' ? [] : metadata.trim().split(/\s+/);
+        tags.forEach(function (tag) {
+          if (tag === 'all' || categories.indexOf(tag) === -1) {
+            throw new Error('Unknown publication research category: ' + tag);
+          }
+        });
+        return { row: row, categories: tags };
+      });
+
+      function selectCategory(category) {
+        if (categories.indexOf(category) === -1) {
+          throw new Error('Unknown publication filter: ' + category);
+        }
+        var visibleCount = 0;
+        papers.forEach(function (paper) {
+          var visible = category === 'all' || paper.categories.indexOf(category) !== -1;
+          paper.row.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+        buttons.forEach(function (button) {
+          button.setAttribute('aria-pressed', button.getAttribute('data-paper-filter') === category ? 'true' : 'false');
+        });
+        count.textContent = visibleCount + (visibleCount === 1 ? ' paper' : ' papers');
+      }
+
+      buttons.forEach(function (button) {
+        var category = button.getAttribute('data-paper-filter');
+        if (categories.indexOf(category) === -1) throw new Error('Invalid publication filter button.');
+        button.addEventListener('click', function () { selectCategory(category); });
+      });
+      selectCategory('all');
+      controls.hidden = false;
+    })();
+  </script>
+
+  <script>
     // Click-to-zoom lightbox for paper thumbnails
     (function () {
       var imgs = document.querySelectorAll('table.papers img');
@@ -634,12 +770,14 @@
   </script>
 
   <script>
-    // Background-color (theme) switcher
+    // Keep the day/night toggle and background presets on the same theme state.
     (function () {
       var switcher = document.getElementById('theme-switcher');
-      if (!switcher) return;
+      var toggle = document.getElementById('mode-toggle');
+      if (!switcher || !toggle) throw new Error('Theme controls are missing.');
 
       var swatches = switcher.querySelectorAll('.swatch');
+      var label = toggle.querySelector('.mode-label');
       var valid = { light: 1, sepia: 1, blue: 1, dark: 1 };
 
       function currentTheme() {
@@ -647,9 +785,25 @@
         return valid[t] ? t : 'light';
       }
 
+      var dayTheme = currentTheme() === 'dark' ? 'light' : currentTheme();
+      if (currentTheme() === 'dark') {
+        try {
+          var savedDayTheme = localStorage.getItem('dayTheme');
+          if (valid[savedDayTheme] && savedDayTheme !== 'dark') dayTheme = savedDayTheme;
+        } catch (e) {
+          if (e.name !== 'SecurityError') throw e;
+          console.warn('Saved daytime background is unavailable; daytime will use the light background.', e);
+        }
+      }
+
       function applyTheme(theme) {
-        if (!valid[theme]) theme = 'light';
+        if (!valid[theme]) throw new Error('Unknown theme: ' + theme);
+        if (theme !== 'dark') dayTheme = theme;
         document.documentElement.setAttribute('data-theme', theme);
+        var isNight = theme === 'dark';
+        toggle.setAttribute('aria-pressed', isNight ? 'true' : 'false');
+        toggle.title = isNight ? 'Switch to day mode' : 'Switch to night mode';
+        label.textContent = isNight ? 'Night' : 'Day';
         swatches.forEach(function (s) {
           var on = s.getAttribute('data-theme-value') === theme;
           s.classList.toggle('is-active', on);
@@ -657,13 +811,26 @@
         });
       }
 
+      function selectTheme(theme) {
+        applyTheme(theme);
+        try {
+          localStorage.setItem('theme', theme);
+          localStorage.setItem('dayTheme', dayTheme);
+        } catch (e) {
+          if (e.name !== 'SecurityError' && e.name !== 'QuotaExceededError') throw e;
+          console.warn('Theme changed for this visit, but the preference could not be saved.', e);
+        }
+      }
+
       applyTheme(currentTheme());
+      toggle.hidden = false;
+      toggle.addEventListener('click', function () {
+        selectTheme(currentTheme() === 'dark' ? dayTheme : 'dark');
+      });
 
       swatches.forEach(function (s) {
         s.addEventListener('click', function () {
-          var theme = s.getAttribute('data-theme-value');
-          applyTheme(theme);
-          try { localStorage.setItem('theme', theme); } catch (e) {}
+          selectTheme(s.getAttribute('data-theme-value'));
         });
       });
     })();
