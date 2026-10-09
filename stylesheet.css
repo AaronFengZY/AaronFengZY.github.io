@@ -64,7 +64,8 @@
 }
 
 a {
-  color: #b388ff;
+  color: var(--link-color);
+  font-weight: 600;
   text-decoration: none;
 }
 b {
@@ -78,7 +79,7 @@ c {
 
 a:focus,
 a:hover {
-  color: #7e57c2;
+  color: var(--link-hover-color);
   text-decoration: none;
 }
 
@@ -185,7 +186,7 @@ abs {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
   color:
-	#b388ff;
+	var(--link-color);
 }
 .one {
   width: 160px;
@@ -295,7 +296,7 @@ table.papers tr[hidden] {
 
 table.papers {
   --first-author-bg: rgba(179, 136, 255, 0.045);
-  --first-author-accent: rgba(179, 136, 255, 0.45);
+  --first-author-accent: rgba(118, 69, 179, 0.45);
 }
 table.papers tr {
   transition: background-color 0.2s ease;
@@ -401,19 +402,21 @@ table.papers a\:focus {
   line-height: 1.55;
 }
 
-/* Inline author links: keep the author color, just make it clickable */
+/* Author links share the main link palette in every theme. */
 table.papers a\:focus > a,
 table.papers .corresponding a {
-  color: inherit;
+  color: var(--link-color);
   text-decoration: none;
   transition: text-decoration-color 0.15s ease;
 }
 table.papers a\:focus > a:hover,
-table.papers .corresponding a:hover {
+table.papers a\:focus > a:focus,
+table.papers .corresponding a:hover,
+table.papers .corresponding a:focus {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
-  color: inherit;
+  color: var(--link-hover-color);
 }
 
 /* Section heading: a bit more breathing room */
@@ -446,10 +449,24 @@ ul li {
 /* Sticky top nav */
 :root {
   color-scheme: light;
+  --link-color: #7645b3;
+  --link-hover-color: #5a3aa3;
+}
+
+:root[data-theme="sepia"] {
+  --link-color: #8a5a18;
+  --link-hover-color: #b8702a;
+}
+
+:root[data-theme="blue"] {
+  --link-color: #2a5fae;
+  --link-hover-color: #1f4ea1;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
+  --link-color: #cbb2ff;
+  --link-hover-color: #fba524;
 }
 
 .topnav {
@@ -683,7 +700,7 @@ ul li {
   color: #333;
 }
 .news-body a {
-  color: #7e57c2;
+  color: var(--link-color);
 }
 .news-body strong {
   color: #2a2a2a;
@@ -819,86 +836,142 @@ table.papers a\:focus strong {
   }
 }
 
+@media (max-width: 360px) {
+  .topnav-links {
+    gap: 6px;
+  }
+}
+
 /* ===================================================== */
-/* =====        Floating theme switcher (pill)      ===== */
+/* =====             Seasonal controls              ===== */
 /* ===================================================== */
-.theme-switcher {
+.season-switcher {
   position: fixed;
   right: 18px;
   bottom: 18px;
   z-index: 1100;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
+  gap: 6px;
+  padding: 6px;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid #e5dcf3;
-  border-radius: 999px;
-  box-shadow: 0 6px 20px rgba(90, 58, 163, 0.18),
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(90, 58, 163, 0.12),
               0 1px 2px rgba(0, 0, 0, 0.05);
   backdrop-filter: saturate(180%) blur(10px);
   -webkit-backdrop-filter: saturate(180%) blur(10px);
   transition: background-color 0.25s ease, border-color 0.25s ease,
               box-shadow 0.25s ease;
 }
-.theme-switcher .swatch {
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+
+.season-switcher[hidden] {
+  display: none;
+}
+
+.season-options {
+  display: flex;
+  gap: 4px;
+}
+
+.season-button,
+.effects-toggle {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 44px;
+  min-height: 46px;
+  padding: 5px 4px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #5a3aa3;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
   cursor: pointer;
-  outline: none;
-  position: relative;
-  transition: transform 0.15s ease, box-shadow 0.15s ease,
-              border-color 0.15s ease;
-}
-.theme-switcher .swatch:hover {
-  transform: scale(1.12);
-}
-.theme-switcher .swatch:focus-visible {
-  box-shadow: 0 0 0 3px rgba(126, 87, 194, 0.45);
-}
-.theme-switcher .swatch.is-active {
-  border-color: #5a3aa3;
-  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #7e57c2;
 }
 
-/* Swatch colors (preview the actual theme background) */
-.theme-switcher .swatch-light { background: #ffffff; }
-.theme-switcher .swatch-sepia { background: #f4ecd8; }
-.theme-switcher .swatch-blue  { background: #d9e4f5; }
-.theme-switcher .swatch-dark  { background: #14151c; border-color: rgba(255,255,255,0.2); }
+.season-switcher .season-button span,
+.season-switcher .effects-toggle span {
+  color: inherit;
+}
 
-/* Pill appearance per-theme */
-[data-theme="sepia"] .theme-switcher {
-  background: rgba(252, 246, 232, 0.92);
-  border-color: #e6d8b5;
+.season-button svg,
+.effects-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
-[data-theme="blue"] .theme-switcher {
-  background: rgba(238, 244, 253, 0.92);
-  border-color: #c9d6ec;
+
+.season-button:hover,
+.effects-toggle:hover,
+.season-button[aria-checked="true"] {
+  background: #f3edff;
 }
-[data-theme="dark"] .theme-switcher {
+
+.season-button[aria-checked="true"] {
+  border-color: #7e57c2;
+}
+
+.season-button:focus-visible,
+.effects-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.effects-toggle {
+  border-left-color: #e5dcf3;
+}
+
+.effects-toggle[aria-pressed="false"] {
+  opacity: 0.6;
+}
+
+.effects-toggle[aria-pressed="false"] span {
+  text-decoration: line-through;
+}
+
+.effects-toggle:disabled {
+  cursor: default;
+}
+
+[data-theme="dark"] .season-switcher {
   background: rgba(28, 29, 40, 0.92);
-  border-color: #2a2638;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55),
-              0 1px 2px rgba(0, 0, 0, 0.4);
+  border-color: #4a3d75;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
-[data-theme="dark"] .theme-switcher .swatch.is-active {
-  box-shadow: 0 0 0 2px #14151c, 0 0 0 4px #cbb2ff;
+
+[data-theme="dark"] .season-button,
+[data-theme="dark"] .effects-toggle {
+  color: #cbb2ff;
+}
+
+[data-theme="dark"] .season-button:hover,
+[data-theme="dark"] .effects-toggle:hover,
+[data-theme="dark"] .season-button[aria-checked="true"] {
+  background: #261c46;
+}
+
+[data-theme="dark"] .season-button[aria-checked="true"] {
+  border-color: #cbb2ff;
+}
+
+[data-theme="dark"] .effects-toggle {
+  border-left-color: #4a3d75;
 }
 
 @media (max-width: 720px) {
-  .theme-switcher {
+  .season-switcher {
     right: 10px;
     bottom: 10px;
-    padding: 5px 8px;
-    gap: 6px;
-  }
-  .theme-switcher .swatch {
-    width: 18px;
-    height: 18px;
   }
 }
 
@@ -920,9 +993,9 @@ table.papers a\:focus strong {
   color: #4b3a22;
 }
 [data-theme="sepia"] name { color: #3a2c14; }
-[data-theme="sepia"] a { color: #8a5a18; }
+[data-theme="sepia"] a { color: var(--link-color); }
 [data-theme="sepia"] a:focus,
-[data-theme="sepia"] a:hover { color: #b8702a; }
+[data-theme="sepia"] a:hover { color: var(--link-hover-color); }
 [data-theme="sepia"] .corresponding { color: #a35a00; }
 
 [data-theme="sepia"] .topnav {
@@ -955,7 +1028,7 @@ table.papers a\:focus strong {
 [data-theme="sepia"] .news-body,
 [data-theme="sepia"] .news-body p { color: #4b3a22; }
 [data-theme="sepia"] .news-body strong { color: #3a2c14; }
-[data-theme="sepia"] .news-body a { color: #8a5a18; }
+[data-theme="sepia"] .news-body a { color: var(--link-color); }
 
 [data-theme="sepia"] tr:hover > .education-entry { background-color: #efe4c4; }
 
@@ -977,9 +1050,9 @@ table.papers a\:focus strong {
   color: #1f2a44;
 }
 [data-theme="blue"] name { color: #142039; }
-[data-theme="blue"] a { color: #2a5fae; }
+[data-theme="blue"] a { color: var(--link-color); }
 [data-theme="blue"] a:focus,
-[data-theme="blue"] a:hover { color: #1f4ea1; }
+[data-theme="blue"] a:hover { color: var(--link-hover-color); }
 [data-theme="blue"] .corresponding { color: #a35a00; }
 
 [data-theme="blue"] .topnav {
@@ -1012,7 +1085,7 @@ table.papers a\:focus strong {
 [data-theme="blue"] .news-body,
 [data-theme="blue"] .news-body p { color: #1f2a44; }
 [data-theme="blue"] .news-body strong { color: #142039; }
-[data-theme="blue"] .news-body a { color: #2a5fae; }
+[data-theme="blue"] .news-body a { color: var(--link-color); }
 
 [data-theme="blue"] tr:hover > .education-entry { background-color: #dde6f5; }
 
@@ -1020,7 +1093,7 @@ table.papers a\:focus strong {
 /* =====              Dark theme overrides          ===== */
 /* ===================================================== */
 [data-theme="dark"] body {
-  background-color: #14151c;
+  background-color: var(--season-night-bg);
   color: #d8d4e4;
 }
 
@@ -1040,11 +1113,11 @@ table.papers a\:focus strong {
 }
 
 [data-theme="dark"] a {
-  color: #cbb2ff;
+  color: var(--link-color);
 }
 [data-theme="dark"] a:focus,
 [data-theme="dark"] a:hover {
-  color: #fba524;
+  color: var(--link-hover-color);
 }
 
 [data-theme="dark"] b {
@@ -1165,7 +1238,7 @@ table.papers a\:focus strong {
   color: #f1ecff;
 }
 [data-theme="dark"] .news-body a {
-  color: #cbb2ff;
+  color: var(--link-color);
 }
 
 /* Event-type chips (darker, more legible) */
@@ -1206,8 +1279,9 @@ table.papers a\:focus strong {
 body,
 .news-card,
 .topnav,
-.theme-switcher,
-.theme-switcher .swatch,
+.season-switcher,
+.season-button,
+.effects-toggle,
 table.papers em strong,
 .news-tag {
   transition: background-color 0.25s ease, color 0.25s ease,
@@ -1218,15 +1292,52 @@ table.papers em strong,
 /* =====      Decorative page background layers     ===== */
 /* ===================================================== */
 
+:root {
+  --season-page-bg: #fffaf4;
+  --season-night-bg: #1d1612;
+  --season-glow-one: 232, 169, 108;
+  --season-glow-two: 217, 139, 110;
+  --season-particle-color: #a46e3c;
+  --season-particle-night-color: #d5a066;
+}
+
+[data-season="spring"] {
+  --season-page-bg: #fefbff;
+  --season-night-bg: #18131f;
+  --season-glow-one: 186, 132, 204;
+  --season-glow-two: 247, 194, 207;
+  --season-particle-color: #cd81a7;
+  --season-particle-night-color: #e4a5ca;
+}
+
+[data-season="summer"] {
+  --season-page-bg: #fffdf7;
+  --season-night-bg: #181910;
+  --season-glow-one: 249, 205, 109;
+  --season-glow-two: 168, 215, 162;
+  --season-particle-color: #b08b27;
+  --season-particle-night-color: #eacd71;
+}
+
+[data-season="winter"] {
+  --season-page-bg: #f9fbff;
+  --season-night-bg: #111823;
+  --season-glow-one: 161, 187, 225;
+  --season-glow-two: 199, 213, 242;
+  --season-particle-color: #8faacc;
+  --season-particle-night-color: #e4efff;
+}
+
 /* Body becomes its own stacking context so negative-z pseudo-elements
    sit behind the content but in front of the body's background color. */
 body {
+  background-color: var(--season-page-bg);
   position: relative;
   isolation: isolate;
   overflow-x: hidden;
 }
 
-/* Soft colored glow blobs (per-theme) */
+/* Soft seasonal glows */
 body::before {
   content: "";
   position: fixed;
@@ -1234,9 +1345,9 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(60vw 55vh at 8% -5%,  rgba(179, 136, 255, 0.28), transparent 60%),
-    radial-gradient(55vw 50vh at 100% 12%, rgba(251, 165, 36, 0.18), transparent 65%),
-    radial-gradient(70vw 65vh at 50% 110%, rgba(126, 87, 194, 0.16), transparent 65%);
+    radial-gradient(60vw 55vh at 8% -5%, rgba(var(--season-glow-one), 0.18), transparent 60%),
+    radial-gradient(55vw 50vh at 100% 12%, rgba(var(--season-glow-two), 0.14), transparent 65%),
+    radial-gradient(70vw 65vh at 50% 110%, rgba(var(--season-glow-one), 0.10), transparent 65%);
   transition: background 0.4s ease, opacity 0.4s ease;
 }
 
@@ -1247,7 +1358,7 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: radial-gradient(rgba(90, 58, 163, 0.10) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(var(--season-glow-one), 0.14) 1px, transparent 1px);
   background-size: 22px 22px;
   background-position: 0 0;
   opacity: 0.55;
@@ -1256,38 +1367,81 @@ body::after {
   transition: background-image 0.4s ease, opacity 0.4s ease;
 }
 
-/* --- Sepia background --- */
-[data-theme="sepia"] body::before {
-  background:
-    radial-gradient(60vw 55vh at 8% -5%,  rgba(193, 138, 60, 0.28), transparent 60%),
-    radial-gradient(55vw 50vh at 100% 12%, rgba(225, 178, 90, 0.22), transparent 65%),
-    radial-gradient(70vw 65vh at 50% 110%, rgba(150, 100, 40, 0.16), transparent 65%);
-}
-[data-theme="sepia"] body::after {
-  background-image: radial-gradient(rgba(120, 80, 30, 0.12) 1px, transparent 1px);
-}
-
-/* --- Blue background --- */
-[data-theme="blue"] body::before {
-  background:
-    radial-gradient(60vw 55vh at 8% -5%,  rgba(80, 130, 220, 0.26), transparent 60%),
-    radial-gradient(55vw 50vh at 100% 12%, rgba(120, 200, 255, 0.20), transparent 65%),
-    radial-gradient(70vw 65vh at 50% 110%, rgba(60, 95, 175, 0.16), transparent 65%);
-}
-[data-theme="blue"] body::after {
-  background-image: radial-gradient(rgba(40, 70, 140, 0.12) 1px, transparent 1px);
-}
-
-/* --- Dark background --- */
 [data-theme="dark"] body::before {
-  background:
-    radial-gradient(55vw 50vh at 8% -5%,  rgba(126, 87, 194, 0.35), transparent 60%),
-    radial-gradient(50vw 45vh at 100% 12%, rgba(251, 165, 36, 0.15), transparent 65%),
-    radial-gradient(65vw 60vh at 50% 110%, rgba(80, 50, 160, 0.30), transparent 65%);
+  opacity: 0.75;
 }
 [data-theme="dark"] body::after {
-  background-image: radial-gradient(rgba(200, 180, 255, 0.10) 1px, transparent 1px);
   opacity: 0.45;
+}
+
+.season-effects {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.season-effects .season-particle {
+  position: absolute;
+  top: -24px;
+  width: var(--particle-size);
+  height: var(--particle-size);
+  background: var(--season-particle-color);
+  color: var(--season-particle-color);
+  border-radius: 50%;
+  opacity: 0;
+  animation: seasonal-fall var(--particle-duration) var(--particle-delay) linear infinite;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .season-effects .season-particle {
+  background: var(--season-particle-night-color);
+  color: var(--season-particle-night-color);
+}
+
+[data-season="spring"] .season-particle {
+  height: calc(var(--particle-size) * 0.7);
+  border-radius: 80% 10% 80% 10%;
+}
+
+[data-season="autumn"] .season-particle {
+  height: calc(var(--particle-size) * 1.4);
+  border-radius: 10% 80% 10% 80%;
+}
+
+[data-season="summer"] .season-particle {
+  top: auto;
+  bottom: -24px;
+  box-shadow: 0 0 8px currentColor;
+  animation-name: seasonal-rise;
+}
+
+.season-effects .is-snowflake {
+  width: calc(var(--particle-size) * 2.8);
+  height: calc(var(--particle-size) * 2.8);
+  font-size: calc(var(--particle-size) * 2.8);
+  line-height: 1;
+}
+
+[data-season="winter"] .season-effects .is-snowflake {
+  background: none;
+}
+
+.season-effects.is-paused .season-particle {
+  animation-play-state: paused;
+}
+
+@keyframes seasonal-fall {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
+  10%, 85% { opacity: 0.4; }
+  100% { transform: translate3d(var(--particle-drift), calc(100vh + 48px), 0) rotate(var(--particle-spin)); opacity: 0; }
+}
+
+@keyframes seasonal-rise {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  20%, 80% { opacity: 0.25; }
+  100% { transform: translate3d(var(--particle-drift), calc(-100vh - 48px), 0); opacity: 0; }
 }
 
 /* On very small screens, calm the pattern down */
@@ -1300,6 +1454,9 @@ body::after {
 
 /* Respect users who prefer reduced motion / less decoration */
 @media (prefers-reduced-motion: reduce) {
+  .season-effects {
+    display: none;
+  }
   body::before,
   body::after {
     transition: none;
@@ -1407,9 +1564,11 @@ p.intro-text strong {
 }
 
 /* Contact links: a touch more refined spacing */
+p.contact-links {
+  font-weight: 500;
+}
 p.contact-links,
 p.contact-links a {
-  font-weight: 500;
   letter-spacing: 0.2px;
 }
 

@@ -27,19 +27,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&amp;text=%E5%86%AF%E5%BF%97%E8%BF%9C&amp;display=swap" rel="stylesheet">
 
   <script>
-    // Apply saved theme as early as possible to avoid a flash of the wrong theme.
+    // Apply saved mode and season before the first paint.
     (function () {
-      var valid = { light: 1, sepia: 1, blue: 1, dark: 1 };
+      var seasons = ['spring', 'summer', 'autumn', 'winter'];
       var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
       var theme = prefersDark ? 'dark' : 'light';
+      var season = 'autumn';
       try {
         var saved = localStorage.getItem('theme');
-        if (saved && valid[saved]) theme = saved;
+        var savedSeason = localStorage.getItem('season');
+        if (saved === 'light' || saved === 'dark') theme = saved;
+        else if (saved === 'sepia' || saved === 'blue') theme = 'light';
+        if (seasons.indexOf(savedSeason) !== -1) season = savedSeason;
+        else {
+          var legacyBackground = saved === 'dark' ? localStorage.getItem('dayTheme') : saved;
+          if (legacyBackground === 'sepia') season = 'autumn';
+          else if (legacyBackground === 'blue') season = 'winter';
+        }
       } catch (e) {
         if (e.name !== 'SecurityError') throw e;
-        console.warn('Saved theme preference is unavailable; using the system preference.', e);
+        console.warn('Saved appearance preferences are unavailable; using the system mode and autumn season.', e);
       }
       document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-season', season);
     })();
   </script>
   <script>
@@ -78,13 +88,31 @@
     </div>
   </nav>
 
-  <!-- Floating background-color switcher -->
-  <div id="theme-switcher" class="theme-switcher" role="radiogroup" aria-label="Background color">
-    <button type="button" class="swatch swatch-light" data-theme-value="light" role="radio" aria-label="Light background" title="Light"></button>
-    <button type="button" class="swatch swatch-sepia" data-theme-value="sepia" role="radio" aria-label="Sepia background" title="Sepia"></button>
-    <button type="button" class="swatch swatch-blue" data-theme-value="blue" role="radio" aria-label="Blue background" title="Blue"></button>
-    <button type="button" class="swatch swatch-dark" data-theme-value="dark" role="radio" aria-label="Dark background" title="Dark"></button>
+  <div id="season-switcher" class="season-switcher" hidden>
+    <div class="season-options" role="radiogroup" aria-label="Season">
+      <button type="button" class="season-button" data-season-value="spring" role="radio" aria-checked="false" tabindex="-1" title="Spring">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19C2 8 10 4 20 4c0 10-4 18-15 15Zm0 0L16 8"></path></svg>
+        <span>Spring</span>
+      </button>
+      <button type="button" class="season-button" data-season-value="summer" role="radio" aria-checked="false" tabindex="-1" title="Summer">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"></path></svg>
+        <span>Summer</span>
+      </button>
+      <button type="button" class="season-button" data-season-value="autumn" role="radio" aria-checked="true" tabindex="0" title="Autumn">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 3 5 5-1-1 6 3 2-8 3v4h-4v-4l-8-3 3-2-1-6 5 1 3-5Z"></path></svg>
+        <span>Autumn</span>
+      </button>
+      <button type="button" class="season-button" data-season-value="winter" role="radio" aria-checked="false" tabindex="-1" title="Winter">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7M9 4l3 3 3-3M9 20l3-3 3 3M4 10l4-1-1-4M17 19l-1-4 4-1M4 14l4 1-1 4M17 5l-1 4 4 1"></path></svg>
+        <span>Winter</span>
+      </button>
+    </div>
+    <button id="effects-toggle" class="effects-toggle" type="button" aria-label="Seasonal effects" aria-pressed="true" title="Pause seasonal effects">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z"></path></svg>
+      <span>FX</span>
+    </button>
   </div>
+  <div id="season-effects" class="season-effects" aria-hidden="true"></div>
   <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr style="padding:0px">
       <td style="padding:0px">
@@ -96,7 +124,7 @@
             <img alt="profile photo" src="images/my/profile.png" class="hoverZoomLink">
           </a>
           <p class="intro-text">
-              I am a third-year Ph.D. candidate in Computer Science at the <a href="https://www.ias.tsinghua.edu.cn/en/" target="_blank">Institute for Advanced Study</a>, <a href="https://www.tsinghua.edu.cn/en/" target="_blank">Tsinghua University</a>, advised by Prof. <a href="https://www.microsoft.com/en-us/research/people/bainguo/" target="_blank">Baining Guo</a>. I received my B.S. in Computer Science from the <a href="https://bjb.xjtu.edu.cn/" target="_blank">Qian Xuesen Honors College</a> at <a href="https://en.xjtu.edu.cn/" target="_blank">Xi’an Jiaotong University</a>.
+              I am a third-year Ph.D. candidate in Computer Science at the <a href="https://www.ias.tsinghua.edu.cn/en/" target="_blank">Chen-Ning Yang Institute for Advanced Study</a>, <a href="https://www.tsinghua.edu.cn/en/" target="_blank">Tsinghua University</a>, advised by Prof. <a href="https://www.microsoft.com/en-us/research/people/bainguo/" target="_blank">Baining Guo</a>. I received my B.S. in Computer Science from the <a href="https://bjb.xjtu.edu.cn/" target="_blank">Qian Xuesen Honors College</a> at <a href="https://en.xjtu.edu.cn/" target="_blank">Xi’an Jiaotong University</a>.
           </p>
           <p class="intro-text">
             My research explores three complementary directions toward embodied intelligence:
@@ -132,8 +160,20 @@
               <a href="https://arxiv.org/abs/2605.18109" target="_blank">TaskGround</a> and <a href="https://arxiv.org/pdf/2605.10434" target="_blank">WorldReasonBench</a> have been accepted to NeurIPS 2026.
             </li>
             <li>
+              <time class="news-date" datetime="2026-09">[2026-09]</time>
+              I completed my research internship at <strong>Kling AI</strong>.
+            </li>
+            <li>
               <time class="news-date" datetime="2026-08-20">[2026-08-20]</time>
               Our survey, <a href="https://www.ijcai.org/proceedings/2026/0871.pdf" target="_blank">From Human Videos to Robot Manipulation</a>, was presented at IJCAI-ECAI 2026. <a href="https://2026.ijcai.org/wp-content/fullprogram/index.html" target="_blank">Program</a>.
+            </li>
+            <li>
+              <time class="news-date" datetime="2026-06-17">[2026-06-17]</time>
+              <a href="https://arxiv.org/abs/2509.19297" target="_blank">VolSplat</a> has been accepted to ECCV 2026.
+            </li>
+            <li>
+              <time class="news-date" datetime="2026-06">[2026-06]</time>
+              I joined <strong>Kling AI</strong> as a research intern, working on agent harnesses.
             </li>
             <li>
               <time class="news-date" datetime="2026-04-30">[2026-04-30]</time>
@@ -300,6 +340,26 @@
               <em class="venue venue-top"><strong>NeurIPS 2026</strong></em> 🔥🔥🔥
               <p></p>
               <p>We introduce WorldReasonBench, a human-aligned benchmark that stress-tests video generators as future world-state predictors across four dimensions—World Knowledge, Human Centric, Logic Reasoning, and Information-Based reasoning—covering diverse tasks from physical dynamics and cultural understanding to spatial geometry and quantitative math.</p>
+            </td>
+          </tr>
+
+          <tr data-categories="">
+            <td style="padding:20px;width:30%;vertical-align:middle">
+              <img src="images/publish/VolSplat.png" width="220" alt="VolSplat voxel-aligned 3D Gaussian prediction pipeline">
+            </td>
+            <td style="padding:20px;width:70%;vertical-align:middle">
+              <a href="https://arxiv.org/abs/2509.19297" target="_blank">
+                <papertitle>VolSplat: Rethinking Feed-Forward 3D Gaussian Splatting with Voxel-Aligned Prediction</papertitle>
+              </a>
+              <br>
+              <a:focus>Weijie Wang*, Yeqing Chen*, Zeyu Zhang, Hengyu Liu, Haoxiao Wang, <strong>Zhiyuan Feng</strong>, Wenkang Qin, Feng Chen, Jia-Wang Bian, Zheng Zhu, Donny Y. Chen, Bohan Zhuang</a:focus>
+              <br>
+              <a href="https://arxiv.org/abs/2509.19297" target="_blank">Paper</a> /
+              <a href="https://github.com/ziplab/VolSplat" target="_blank">Code</a>
+              <br>
+              <em class="venue venue-top"><strong>ECCV 2026</strong></em>
+              <p></p>
+              <p>We propose VolSplat, a voxel-aligned feed-forward 3D Gaussian Splatting framework that predicts Gaussians from sparse 3D features, improving multi-view consistency and adapting Gaussian density to scene complexity for novel-view synthesis.</p>
             </td>
           </tr>
 
@@ -582,7 +642,7 @@
                 <span class="education-date">2024 - Present</span>
               </div>
               <div class="education-degree"><strong>Ph.D of Computer Science</strong></div>
-              <div>Institute for Advanced Study</div>
+              <div>Chen-Ning Yang Institute for Advanced Study</div>
               <div>Advisor: <a href="https://www.microsoft.com/en-us/research/people/bainguo/" target="_blank">Baining Guo</a> (IEEE&amp;ACM Fellow)</div>
             </td>
           </tr>
@@ -612,8 +672,22 @@
                 <span class="education-date">Sep 2026 - Present</span>
               </div>
               <div>Spatial Intelligence Group</div>
+              <div>Led by: <a href="https://www.microsoft.com/en-us/research/people/bainguo/" target="_blank">Baining Guo</a>.</div>
               <div>Role: Research Intern, working on Embodied AI.</div>
-              <div>Advisor: Jianfeng Xiang, Zhenhua Liu, Sicheng Xu, and <a href="https://jlyang.org/" target="_blank">Jiaolong Yang</a>.</div>
+              <div>Advisor: <a href="https://jeffreyxiang.github.io/" target="_blank">Jianfeng Xiang</a>, <a href="https://scholar.google.com/citations?user=bihqxP4AAAAJ&amp;hl=en" target="_blank">Zhenhua Liu</a>, <a href="https://sicxu.github.io/" target="_blank">Sicheng Xu</a>, and <a href="https://jlyang.org/" target="_blank">Jiaolong Yang</a>.</div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-left:20px;padding-right:20px;width:20%;vertical-align:middle"><img src="images/experience/keling.png" width="100" alt="Kling AI"></td>
+            <td class="education-entry" width="90%" valign="middle">
+              <div class="education-head">
+                <strong>Kling AI</strong>
+                <span class="education-date">Jun 2026 - Sep 2026</span>
+              </div>
+              <div>Foundation Models and Agent Algorithms Department</div>
+              <div>Led by: Han Li.</div>
+              <div>Role: Research Intern, working on agent harnesses.</div>
+              <div>Advisor: Zhongxia Chen and Shuo Yang.</div>
             </td>
           </tr>
           <tr>
@@ -621,9 +695,10 @@
             <td class="education-entry" width="90%" valign="center">
               <div class="education-head">
                 <strong>Microsoft Research Asia</strong>
-                <span class="education-date">Jul 2024 - Aug 2026</span>
+                <span class="education-date">Jul 2024 - Jun 2026</span>
               </div>
               <div>Spatial Intelligence Group</div>
+              <div>Led by: <a href="https://www.microsoft.com/en-us/research/people/bainguo/" target="_blank">Baining Guo</a>.</div>
               <div>Role: Research Intern, working on Embodied AI.</div>
               <div>Advisor: <a href="https://yudeng.github.io/" target="_blank">Yu Deng</a> and <a href="https://jlyang.org/" target="_blank">Jiaolong Yang</a>.</div>
             </td>
@@ -636,6 +711,7 @@
                 <span class="education-date">Dec 2023 - Jun 2024</span>
               </div>
               <div>Vision Computing Group</div>
+              <div>Led by: <a href="https://www.microsoft.com/en-us/research/people/bainguo/" target="_blank">Baining Guo</a>.</div>
               <div>Role: Research Intern, working on LLM for reasoning.</div>
               <div>Advisor: <a href="https://scholar.google.com/citations?user=nZ_PVbsAAAAJ&hl=en" target="_blank">Zheng Zhang</a>.</div>
             </td>
@@ -650,7 +726,7 @@
           <td style="padding:0px;width:100%;vertical-align:middle">
             <p><strong>Professional Service</strong></p>
             <ul style="margin-top:0">
-              <li>Conference Reviewer: NeurIPS 2026, ECCV 2026, CVPR 2026, ICLR 2026, ICRA 2026</li>
+              <li>Conference Reviewer: ICLR 2027, NeurIPS 2026, ECCV 2026, CVPR 2026, ICLR 2026, ICRA 2026, AAAI 2026</li>
               <li>Journal Reviewer: IJCV</li>
               <li>IEEE Student Member</li>
             </ul>
@@ -770,69 +846,128 @@
   </script>
 
   <script>
-    // Keep the day/night toggle and background presets on the same theme state.
+    // Season and day/night are independent; animation runs only when permitted.
     (function () {
-      var switcher = document.getElementById('theme-switcher');
+      var switcher = document.getElementById('season-switcher');
       var toggle = document.getElementById('mode-toggle');
-      if (!switcher || !toggle) throw new Error('Theme controls are missing.');
+      var effectsToggle = document.getElementById('effects-toggle');
+      var effectsLayer = document.getElementById('season-effects');
+      if (!switcher || !toggle || !effectsToggle || !effectsLayer) throw new Error('Appearance controls are missing.');
 
-      var swatches = switcher.querySelectorAll('.swatch');
+      var buttons = Array.from(switcher.querySelectorAll('[data-season-value]'));
       var label = toggle.querySelector('.mode-label');
-      var valid = { light: 1, sepia: 1, blue: 1, dark: 1 };
-
-      function currentTheme() {
-        var t = document.documentElement.getAttribute('data-theme');
-        return valid[t] ? t : 'light';
+      var seasons = ['spring', 'summer', 'autumn', 'winter'];
+      var root = document.documentElement;
+      var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var compact = window.matchMedia('(max-width: 720px)');
+      var effectsEnabled = true;
+      try {
+        effectsEnabled = localStorage.getItem('seasonEffects') !== 'off';
+      } catch (e) {
+        if (e.name !== 'SecurityError') throw e;
+        console.warn('Saved seasonal effects preference is unavailable.', e);
       }
 
-      var dayTheme = currentTheme() === 'dark' ? 'light' : currentTheme();
-      if (currentTheme() === 'dark') {
+      function savePreference(key, value) {
         try {
-          var savedDayTheme = localStorage.getItem('dayTheme');
-          if (valid[savedDayTheme] && savedDayTheme !== 'dark') dayTheme = savedDayTheme;
+          localStorage.setItem(key, value);
         } catch (e) {
-          if (e.name !== 'SecurityError') throw e;
-          console.warn('Saved daytime background is unavailable; daytime will use the light background.', e);
+          if (e.name !== 'SecurityError' && e.name !== 'QuotaExceededError') throw e;
+          console.warn('Appearance changed for this visit, but the preference could not be saved.', e);
         }
       }
 
-      function applyTheme(theme) {
-        if (!valid[theme]) throw new Error('Unknown theme: ' + theme);
-        if (theme !== 'dark') dayTheme = theme;
-        document.documentElement.setAttribute('data-theme', theme);
+      function applyMode(theme) {
+        if (theme !== 'light' && theme !== 'dark') throw new Error('Unknown day/night mode: ' + theme);
+        root.setAttribute('data-theme', theme);
         var isNight = theme === 'dark';
         toggle.setAttribute('aria-pressed', isNight ? 'true' : 'false');
         toggle.title = isNight ? 'Switch to day mode' : 'Switch to night mode';
         label.textContent = isNight ? 'Night' : 'Day';
-        swatches.forEach(function (s) {
-          var on = s.getAttribute('data-theme-value') === theme;
-          s.classList.toggle('is-active', on);
-          s.setAttribute('aria-checked', on ? 'true' : 'false');
-        });
       }
 
-      function selectTheme(theme) {
-        applyTheme(theme);
-        try {
-          localStorage.setItem('theme', theme);
-          localStorage.setItem('dayTheme', dayTheme);
-        } catch (e) {
-          if (e.name !== 'SecurityError' && e.name !== 'QuotaExceededError') throw e;
-          console.warn('Theme changed for this visit, but the preference could not be saved.', e);
+      function renderEffects() {
+        effectsLayer.replaceChildren();
+        var animate = effectsEnabled && !motion.matches;
+        effectsToggle.disabled = motion.matches;
+        effectsToggle.setAttribute('aria-pressed', animate ? 'true' : 'false');
+        effectsToggle.title = motion.matches ? 'Animations disabled by reduced-motion preference' :
+          (animate ? 'Pause seasonal effects' : 'Enable seasonal effects');
+        if (!animate) return;
+        var season = root.getAttribute('data-season');
+        var count = compact.matches ? 12 : 24;
+        var particles = document.createDocumentFragment();
+        for (var i = 0; i < count; i += 1) {
+          var particle = document.createElement('span');
+          particle.className = 'season-particle';
+          if (season === 'winter' && i % 4 === 0) {
+            particle.classList.add('is-snowflake');
+            particle.textContent = '\u2744';
+          }
+          particle.style.left = (i + Math.random()) / count * 100 + '%';
+          particle.style.setProperty('--particle-size', 4 + Math.random() * 5 + 'px');
+          particle.style.setProperty('--particle-duration', 16 + Math.random() * 16 + 's');
+          particle.style.setProperty('--particle-delay', -Math.random() * 32 + 's');
+          particle.style.setProperty('--particle-drift', Math.random() * 80 - 40 + 'px');
+          particle.style.setProperty('--particle-spin', Math.random() * 240 - 120 + 'deg');
+          particles.appendChild(particle);
         }
+        effectsLayer.appendChild(particles);
       }
 
-      applyTheme(currentTheme());
+      function applySeason(season) {
+        if (seasons.indexOf(season) === -1) throw new Error('Unknown season: ' + season);
+        root.setAttribute('data-season', season);
+        buttons.forEach(function (button) {
+          var active = button.getAttribute('data-season-value') === season;
+          button.setAttribute('aria-checked', active ? 'true' : 'false');
+          button.tabIndex = active ? 0 : -1;
+        });
+        renderEffects();
+      }
+
+      applyMode(root.getAttribute('data-theme'));
+      applySeason(root.getAttribute('data-season'));
       toggle.hidden = false;
+      switcher.hidden = false;
       toggle.addEventListener('click', function () {
-        selectTheme(currentTheme() === 'dark' ? dayTheme : 'dark');
+        var mode = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyMode(mode);
+        savePreference('theme', mode);
       });
 
-      swatches.forEach(function (s) {
-        s.addEventListener('click', function () {
-          selectTheme(s.getAttribute('data-theme-value'));
+      buttons.forEach(function (button, index) {
+        function select() {
+          var season = button.getAttribute('data-season-value');
+          applySeason(season);
+          savePreference('season', season);
+        }
+        button.addEventListener('click', select);
+        button.addEventListener('keydown', function (event) {
+          var next;
+          if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % buttons.length;
+          else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index + buttons.length - 1) % buttons.length;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = buttons.length - 1;
+          else return;
+          event.preventDefault();
+          buttons[next].click();
+          buttons[next].focus();
         });
       });
+
+      effectsToggle.addEventListener('click', function () {
+        effectsEnabled = !effectsEnabled;
+        renderEffects();
+        savePreference('seasonEffects', effectsEnabled ? 'on' : 'off');
+      });
+      motion.addEventListener('change', renderEffects);
+      compact.addEventListener('change', renderEffects);
+      function updateVisibility() {
+        effectsLayer.classList.toggle('is-paused', document.hidden);
+      }
+      document.addEventListener('visibilitychange', updateVisibility);
+      updateVisibility();
     })();
   </script>
 </body>
