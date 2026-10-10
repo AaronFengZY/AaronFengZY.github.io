@@ -2,6 +2,14 @@
 
 This is a static website. Open [index.html](./index.html) to preview it; no build step is required.
 
+## Google Search Console verification
+
+The URL-prefix property `https://aaronfengzy.github.io/` uses HTML-file ownership verification.
+Keep [google6920066431803359.html](./google6920066431803359.html) at the website root with its
+original filename and contents. After deployment, confirm the file is accessible at
+`https://aaronfengzy.github.io/google6920066431803359.html`, then click Verify in Search Console.
+Do not remove the file after verification; Google can check it again to confirm ownership.
+
 ## Seasons and day/night modes
 
 The navigation bar controls Day/Night, independently of the bottom-right Spring, Summer,
