@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="author" content="Zhiyuan (Aaron) Feng">
+  <title>Zhiyuan Feng - Curriculum Vitae</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --accent: #63368f;
+      --ink: #202127;
+      --muted: #62626d;
+      --rule: #ddd5e6;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #eeeaf2;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10pt;
+      line-height: 1.32;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    p { margin: 0; }
+    strong { font-weight: 700; }
+    .sheet {
+      position: relative;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 8mm auto;
+      padding: 15mm 18mm 17mm;
+      background: white;
+      box-shadow: 0 2px 18px rgba(40, 26, 56, 0.12);
+      break-after: page;
+    }
+    .sheet:last-child { break-after: auto; }
+    .name {
+      margin: 0;
+      color: var(--accent);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 27pt;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+    }
+    .kicker {
+      margin-bottom: 3mm;
+      color: var(--muted);
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .subtitle { margin-top: 2mm; font-size: 10.5pt; }
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2mm 4mm;
+      margin-top: 3mm;
+      font-size: 9pt;
+    }
+    .masthead { padding-bottom: 3mm; border-bottom: 2px solid var(--accent); }
+    section { margin-top: 4mm; }
+    h2 {
+      margin: 0 0 2mm;
+      padding-bottom: 1mm;
+      border-bottom: 1px solid var(--rule);
+      color: var(--accent);
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      break-after: avoid;
+    }
+    .entry { margin-bottom: 2.4mm; break-inside: avoid; }
+    .entry:last-child { margin-bottom: 0; }
+    .entry-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 4mm;
+    }
+    .date { flex: 0 0 auto; color: var(--muted); font-size: 9.2pt; white-space: nowrap; }
+    .details { margin-top: 0.7mm; }
+    .small { font-size: 9.5pt; }
+    .muted { color: var(--muted); }
+    .interests {
+      display: grid;
+      gap: 1.1mm;
+      margin: 0;
+      padding-left: 4.5mm;
+    }
+    .interests li::marker { color: var(--accent); }
+    .research-note { margin-top: 1mm; }
+    .continuation {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 3mm;
+      border-bottom: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 9pt;
+    }
+    .continuation strong { color: var(--accent); font-size: 11pt; }
+    .publication-note { margin-bottom: 2mm; font-size: 9pt; color: var(--muted); }
+    .publication {
+      position: relative;
+      margin-bottom: 2.6mm;
+      padding-left: 7mm;
+      break-inside: avoid;
+    }
+    .publication:last-child { margin-bottom: 0; }
+    .publication-number {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: var(--muted);
+      font-size: 9pt;
+    }
+    .publication-title { font-size: 10.2pt; font-weight: 700; line-height: 1.33; }
+    .authors { margin-top: 0.8mm; color: #4f4f59; font-size: 9.2pt; line-height: 1.35; }
+    .authors strong { color: var(--ink); }
+    .venue { margin-top: 0.8mm; font-size: 9.2pt; }
+    .venue strong { color: var(--accent); }
+    .first-author {
+      display: inline-block;
+      margin-left: 2mm;
+      padding: 0 1.4mm;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      color: var(--accent);
+      font-size: 7.4pt;
+      line-height: 1.5;
+      vertical-align: middle;
+    }
+    .compact .publication { margin-bottom: 2.6mm; }
+    .compact .publication-title { font-size: 9.8pt; }
+    .compact .authors { font-size: 9pt; }
+    .compact section { margin-top: 4mm; }
+    .compact h2 { margin-bottom: 2mm; }
+    .service { margin: 0; padding-left: 4.5mm; font-size: 9.5pt; }
+    .service li { margin-bottom: 1mm; }
+    .honors { display: grid; grid-template-columns: 1fr auto; gap: 1mm 4mm; font-size: 9.5pt; }
+    .footer {
+      position: absolute;
+      left: 18mm;
+      right: 18mm;
+      bottom: 10mm;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 2mm;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 8pt;
+    }
+    @page { size: A4; margin: 0; }
+    @media print {
+      body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .sheet { margin: 0; box-shadow: none; }
+      a:hover { text-decoration: none; }
+    }
+    @media screen and (max-width: 820px) {
+      body { overflow-x: auto; }
+      .sheet { margin: 0 auto 8mm; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <article class="sheet" aria-label="Curriculum vitae, page 1">
+      <header class="masthead">
+        <div class="kicker">Curriculum Vitae</div>
+        <h1 class="name">Zhiyuan (Aaron) Feng</h1>
+        <p class="subtitle">Ph.D. Candidate in Computer Science &middot; Tsinghua University</p>
+        <div class="contact">
+          <a href="mailto:fengzy24@mails.tsinghua.edu.cn">fengzy24@mails.tsinghua.edu.cn</a>
+          <a href="https://aaronfengzy.github.io/">aaronfengzy.github.io</a>
+          <a href="https://scholar.google.com/citations?user=4HaLG0oAAAAJ&amp;hl=en">Google Scholar</a>
+        </div>
+      </header>
+
+      <section aria-labelledby="education">
+        <h2 id="education">Education</h2>
+        <div class="entry">
+          <div class="entry-head">
+            <strong>Tsinghua University, Beijing, China</strong>
+            <span class="date">2024 - Present</span>
+          </div>
+          <p class="details">Ph.D. Candidate in Computer Science, currently in the third year</p>
+          <p>Chen-Ning Yang Institute for Advanced Study</p>
+          <p class="small">Advisor: <a href="https://www.microsoft.com/en-us/research/people/bainguo/">Prof. Baining Guo</a></p>
+        </div>
+        <div class="entry">
+          <div class="entry-head">
+            <strong>Xi'an Jiaotong University, Xi'an, China</strong>
+            <span class="date">2020 - 2024</span>
+          </div>
+          <p class="details">Bachelor's degree in Computer Science &middot; Qian Xuesen Honors College</p>
+          <p class="small">Advisors: Bin Shi, Hua Wei, and Qinghua Zheng</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="research-interests">
+        <h2 id="research-interests">Research Interests</h2>
+        <p class="small" style="margin-bottom:2mm">Embodied intelligence through complementary advances in systems, models, and evaluation.</p>
+        <ul class="interests small">
+          <li><strong>Agent harnesses:</strong> task-relevant context organization, grounded reasoning, planning, and executable action generation.</li>
+          <li><strong>Foundation models:</strong> multimodal and vision-language-action learning, scalable pretraining and post-training, spatial reasoning, and generalization.</li>
+          <li><strong>Benchmarks and evaluation:</strong> assessing multimodal understanding, spatial reasoning, and embodied capabilities to identify gaps and guide improvements.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="research-experience">
+        <h2 id="research-experience">Research Experience</h2>
+        <div class="entry">
+          <div class="entry-head">
+            <strong>Microsoft Research Asia &middot; Research Intern</strong>
+            <span class="date">Sep 2026 - Present</span>
+          </div>
+          <p class="details small">Spatial Intelligence Group &middot; Group lead: Baining Guo</p>
+          <p class="small">Advisors: Jianfeng Xiang, Zhenhua Liu, Sicheng Xu, and Jiaolong Yang</p>
+          <p class="research-note small">Research on embodied AI.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-head">
+            <strong>Kling AI &middot; Research Intern</strong>
+            <span class="date">Jun 2026 - Sep 2026</span>
+          </div>
+          <p class="details small">Foundation Models and Agent Algorithms Department &middot; Department lead: Han Li</p>
+          <p class="small">Advisors: Zhongxia Chen and Shuo Yang</p>
+          <p class="research-note small">Research on agent harnesses.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-head">
+            <strong>Microsoft Research Asia &middot; Research Intern</strong>
+            <span class="date">Jul 2024 - Jun 2026</span>
+          </div>
+          <p class="details small">Spatial Intelligence Group &middot; Group lead: Baining Guo</p>
+          <p class="small">Advisors: Yu Deng and Jiaolong Yang</p>
+          <p class="research-note small">Research on embodied AI.</p>
+        </div>
+        <div class="entry">
+          <div class="entry-head">
+            <strong>Microsoft Research Asia &middot; Research Intern</strong>
+            <span class="date">Dec 2023 - Jun 2024</span>
+          </div>
+          <p class="details small">Vision Computing Group &middot; Group lead: Baining Guo</p>
+          <p class="small">Advisor: Zheng Zhang</p>
+          <p class="research-note small">Research on reasoning with large language models.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="research-highlights">
+        <h2 id="research-highlights">Selected Research Highlights</h2>
+        <ul class="interests small">
+          <li><strong>TaskGround:</strong> first-author household reasoning framework; FullHome benchmark (400 tasks), with up to 18&times; lower input-token cost.</li>
+          <li><strong>MV-RoboBench:</strong> first-author benchmark for multi-view spatial reasoning in robotic scenes.</li>
+          <li><strong>VITRA:</strong> contributed to the human-video data pipeline and 3D hand-pose reconstruction with HaWoR.</li>
+        </ul>
+      </section>
+      <footer class="footer"><span>Zhiyuan (Aaron) Feng &middot; Academic CV</span><span>Updated October 2026 &middot; 1 / 3</span></footer>
+    </article>
+
+    <article class="sheet" aria-label="Curriculum vitae, page 2">
+      <header class="continuation"><strong>Zhiyuan (Aaron) Feng</strong><span>Selected Publications</span></header>
+      <section aria-labelledby="publications-2026">
+        <h2 id="publications-2026">Selected Publications &middot; 2026</h2>
+        <p class="publication-note">Full author lists are retained; my name is bold. First-author papers are marked explicitly.<br>* Equal contribution. Includes accepted papers.</p>
+
+        <div class="publication" data-paper="TaskGround">
+          <span class="publication-number">[1]</span>
+          <p class="publication-title"><a href="https://arxiv.org/abs/2605.18109">TaskGround: Ground-Infer-Execute for Full-Scene Household Reasoning</a></p>
+          <p class="authors"><strong>Zhiyuan Feng</strong>, Yu Deng, Ruichuan An, Zhenhua Liu, Qixiu Li, Keming Wu, Zhiying Du, Weijie Wang, Haoxiao Wang, Shuang Chen, Sicheng Xu, Yaobo Liang, Jiaolong Yang, Baining Guo.</p>
+          <p class="venue"><strong>NeurIPS 2026</strong><span class="first-author">First author</span></p>
+        </div>
+        <div class="publication" data-paper="MV-RoboBench">
+          <span class="publication-number">[2]</span>
+          <p class="publication-title"><a href="https://arxiv.org/abs/2510.19400">Seeing across views: Benchmarking spatial reasoning of vision-language models in robotic scenes</a></p>
+          <p class="authors"><strong>Zhiyuan Feng</strong>, Zhaolu Kang, Qijie Wang, Zhiying Du, Jiongrui Yan, Shubin Shi, Chengbo Yuan, Huizhi Liang, Yu Deng, Qixiu Li, Rushuai Yang, Arctanx An, Leqi Zheng, Weijie Wang, Shawn Chen, Sicheng Xu, Yaobo Liang, Jiaolong Yang, Baining Guo.</p>
+          <p class="venue"><strong>ICLR 2026</strong><span class="first-author">First author</span></p>
+        </div>
+        <div class="publication" data-paper="Human-video survey">
+          <span class="publication-number">[3]</span>
+          <p class="publication-title"><a href="https://www.ijcai.org/proceedings/2026/0871.pdf">From Human Videos to Robot Manipulation: A Survey on Scalable Vision-Language-Action Learning with Human-Centric Data</a></p>
+          <p class="authors"><strong>Zhiyuan Feng</strong>, Qixiu Li, Huizhi Liang, Rushuai Yang, Yichao Shen, Zhiying Du, Zhaowei Zhang, Yu Deng, Li Zhao, Hao Zhao, Zongqing Lu, Oier Mees, Marc Pollefeys, Jiaolong Yang, Baining Guo.</p>
+          <p class="venue"><strong>IJCAI 2026 Survey Track</strong><span class="first-author">First author</span></p>
+        </div>
+        <div class="publication" data-paper="AD-MIR">
+          <span class="publication-number">[4]</span>
+          <p class="publication-title"><a href="https://arxiv.org/abs/2602.07625">AD-MIR: Bridging the Gap from Perception to Persuasion in Advertising Video Understanding via Structured Reasoning</a></p>
+          <p class="authors">Binxiao Xu, Junyu Feng, Xiaopeng Lin, Haodong Li, <strong>Zhiyuan Feng</strong>, Bohan Zeng, Shaolin Lu, Ming Lu, Qi She, Wentao Zhang.</p>
+          <p class="venue"><strong>ICML 2026</strong></p>
+        </div>
+        <div class="publication" data-paper="WorldReasonBench">
+          <span class="publication-number">[5]</span>
+          <p class="publication-title"><a href="https://arxiv.org/pdf/2605.10434">WorldReasonBench: Human-Aligned Stress Testing of Video Generators as Future World-State Predictors</a></p>
+          <p class="authors">Keming Wu, Yijing Cui, Wenhan Xue, Qijie Wang, Xuan Luo, <strong>Zhiyuan Feng</strong>, Zuhao Yang, Sudong Wang, Sicong Jiang, Haowei Zhu, Zihan Wang, Ping Nie, Wenhu Chen, Bin Wang.</p>
+          <p class="venue"><strong>NeurIPS 2026</strong></p>
+        </div>
+        <div class="publication" data-paper="VolSplat">
+          <span class="publication-number">[6]</span>
+          <p class="publication-title"><a href="https://arxiv.org/abs/2509.19297">VolSplat: Rethinking Feed-Forward 3D Gaussian Splatting with Voxel-Aligned Prediction</a></p>
+          <p class="authors">Weijie Wang*, Yeqing Chen*, Zeyu Zhang, Hengyu Liu, Haoxiao Wang, <strong>Zhiyuan Feng</strong>, Wenkang Qin, Feng Chen, Jia-Wang Bian, Zheng Zhu, Donny Y. Chen, Bohan Zhuang.</p>
+          <p class="venue"><strong>ECCV 2026</strong></p>
+        </div>
+        <div class="publication" data-paper="HiSpatial">
+          <span class="publication-number">[7]</span>
+          <p class="publication-title"><a href="https://arxiv.org/pdf/2603.25411">HiSpatial: Taming Hierarchical 3D Spatial Understanding in Vision-Language Models</a></p>
+          <p class="authors">Huizhi Liang, Yichao Shen, Yu Deng, Sicheng Xu, <strong>Zhiyuan Feng</strong>, Tong Zhang, Yaobo Liang, Jiaolong Yang.</p>
+          <p class="venue"><strong>CVPR 2026</strong></p>
+        </div>
+        <div class="publication" data-paper="VITRA">
+          <span class="publication-number">[8]</span>
+          <p class="publication-title"><a href="https://arxiv.org/abs/2510.21571">VITRA: Scalable vision-language-action model pretraining for robotic manipulation with real-life human activity videos</a></p>
+          <p class="authors">Qixiu Li, Yu Deng, Yaobo Liang, Lin Luo, Lei Zhou, Chengtang Yao, Lingqi Zeng, <strong>Zhiyuan Feng</strong>, Huizhi Liang, Sicheng Xu, Yizhong Zhang, Xi Chen, Hao Chen, Lily Sun, Dong Chen, Jiaolong Yang, Baining Guo.</p>
+          <p class="venue"><strong>ICRA 2026</strong></p>
+        </div>
+        <div class="publication" data-paper="HSSBench">
+          <span class="publication-number">[9]</span>
+          <p class="publication-title"><a href="https://arxiv.org/pdf/2506.03922">HSSBench: Benchmarking Humanities and Social Sciences Ability for Multimodal Large Language Models</a></p>
+          <p class="authors">Zhaolu Kang, Junhao Gong, Jiaxu Yan, Wanke Xia, Yian Wang, Ziwen Wang, Huaxuan Ding, Zhuo Cheng, Wenhao Cao, <strong>Zhiyuan Feng</strong>, Siqi He, Shannan Yan, Junzhe Chen, Xiaomin He, Chaoya Jiang, Wei Ye, Kaidong Yu, Xuelong Li.</p>
+          <p class="venue"><strong>ICLR 2026</strong></p>
+        </div>
+      </section>
+      <footer class="footer"><span>Zhiyuan (Aaron) Feng &middot; Academic CV</span><span>Updated October 2026 &middot; 2 / 3</span></footer>
+    </article>
+
+    <article class="sheet compact" aria-label="Curriculum vitae, page 3">
+      <header class="continuation"><strong>Zhiyuan (Aaron) Feng</strong><span>Publications, Service &amp; Honors</span></header>
+      <section aria-labelledby="earlier-publications">
+        <h2 id="earlier-publications">Selected Publications &middot; Earlier Work</h2>
+        <div class="publication" data-paper="MIRA">
+          <span class="publication-number">[10]</span>
+          <p class="publication-title"><a href="https://arxiv.org/abs/2506.07584">MIRA: Medical Time Series Foundation Model for Real-World Health Data</a></p>
+          <p class="authors">Hao Li, Bowen Deng, Chang Xu, <strong>Zhiyuan Feng</strong>, Viktor Schlegel, Yu-Hao Huang, Yizheng Sun, Jingyuan Sun, Kailai Yang, Yiyao Yu, Jiang Bian.</p>
+          <p class="venue"><strong>NeurIPS 2025</strong> &middot; Oral presentation at AI4X-AC 2026</p>
+        </div>
+        <div class="publication" data-paper="TransDiff">
+          <span class="publication-number">[11]</span>
+          <p class="publication-title"><a href="https://arxiv.org/pdf/2503.12779">TransDiff: Diffusion-Based Method for Manipulating Transparent Objects Using a Single RGB-D Image</a></p>
+          <p class="authors">Haoxiao Wang, Kaichen Zhou, Binrui Gu, <strong>Zhiyuan Feng</strong>, Weijie Wang, Peilin Sun, Yicheng Xiao, Jianhua Zhang, Hao Dong.</p>
+          <p class="venue"><strong>ICRA 2025</strong></p>
+        </div>
+        <div class="publication" data-paper="DCRNN">
+          <span class="publication-number">[12]</span>
+          <p class="publication-title"><a href="https://www.aimspress.com/aimspress-data/era/2023/4/PDF/era-31-04-115.pdf">Deep evidential learning in diffusion convolutional recurrent neural network</a></p>
+          <p class="authors"><strong>Zhiyuan Feng</strong>, Kai Qi, Bin Shi, Hao Mei, Qinghua Zheng, Hua Wei.</p>
+          <p class="venue"><strong>DIT Workshop at CIKM 2022</strong><span class="first-author">First author</span></p>
+        </div>
+      </section>
+
+      <section aria-labelledby="preprints">
+        <h2 id="preprints">Selected Preprints</h2>
+        <div class="publication" data-paper="DLR">
+          <span class="publication-number">[13]</span>
+          <p class="publication-title"><a href="https://arxiv.org/abs/2511.19528">Discover, Learn, and Reinforce: Scaling Vision-Language-Action Pretraining with Diverse RL-Generated Trajectories</a></p>
+          <p class="authors">Rushuai Yang, <strong>Zhiyuan Feng</strong>, Tianxiang Zhang, Kaixin Wang, Chuheng Zhang, Li Zhao, Xiu Su, Yi Chen, Jiang Bian.</p>
+          <p class="venue">arXiv:2511.19528, 2025</p>
+        </div>
+        <div class="publication" data-paper="HiMoE-VLA">
+          <span class="publication-number">[14]</span>
+          <p class="publication-title"><a href="https://arxiv.org/pdf/2512.05693">HiMoE-VLA: Hierarchical Mixture-of-Experts for Generalist Vision-Language-Action Policies</a></p>
+          <p class="authors">Zhiying Du, Bei Liu, Yaobo Liang, Yichao Shen, Haidong Cao, Xiangyu Zheng, <strong>Zhiyuan Feng</strong>, Zuxuan Wu, Jiaolong Yang, Yu-Gang Jiang.</p>
+          <p class="venue">arXiv:2512.05693, 2025</p>
+        </div>
+        <div class="publication" data-paper="Beyond human demonstrations">
+          <span class="publication-number">[15]</span>
+          <p class="publication-title"><a href="https://arxiv.org/abs/2509.19752">Beyond human demonstrations: Diffusion-based reinforcement learning to generate data for vla training</a></p>
+          <p class="authors">Rushuai Yang, Hangxing Wei, Ran Zhang, <strong>Zhiyuan Feng</strong>, Xiaoyu Chen, Tong Li, Chuheng Zhang, Li Zhao, Jiang Bian, Xiu Su, Yi Chen.</p>
+          <p class="venue">arXiv:2509.19752, 2025</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="presentations">
+        <h2 id="presentations">Selected Paper Presentations</h2>
+        <p class="small"><strong>From Human Videos to Robot Manipulation</strong> &middot; IJCAI-ECAI 2026, Robotics session, Bremen, Germany &middot; August 20, 2026.</p>
+        <p class="small" style="margin-top:1mm"><strong>MIRA</strong> &middot; Oral presentation at AI4X-AC 2026.</p>
+      </section>
+
+      <section aria-labelledby="service">
+        <h2 id="service">Professional Service</h2>
+        <ul class="service">
+          <li><strong>Conference reviewer:</strong> ICLR 2027; NeurIPS, ECCV, CVPR, ICLR, ICRA, and AAAI 2026.</li>
+          <li><strong>Journal reviewer:</strong> International Journal of Computer Vision (IJCV).</li>
+          <li>IEEE Student Member.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="honors">
+        <h2 id="honors">Awards &amp; Honors</h2>
+        <div class="honors">
+          <span>Microsoft "Stars of Tomorrow" Internship</span><span>2024</span>
+          <span>Outstanding Bachelor Graduate</span><span>2024</span>
+          <span>China Mobile Outstanding Scholarship</span><span>2023</span>
+          <span>National Scholarship</span><span>2021, 2022</span>
+          <span>Asia and Pacific Informatics Olympiad (APIO), Gold Medal</span><span>2018</span>
+          <span>National Olympiad in Informatics in Provinces (NOIP), First Prize</span><span>2017, 2018</span>
+        </div>
+      </section>
+      <footer class="footer"><span>Zhiyuan (Aaron) Feng &middot; Academic CV</span><span>Updated October 2026 &middot; 3 / 3</span></footer>
+    </article>
+  </main>
+</body>
+</html>

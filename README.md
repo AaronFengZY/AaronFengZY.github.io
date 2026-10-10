@@ -2,6 +2,21 @@
 
 This is a static website. Open [index.html](./index.html) to preview it; no build step is required.
 
+## English academic CV
+
+[cv/Zhiyuan_Feng_CV.html](./cv/Zhiyuan_Feng_CV.html) is the editable, self-contained
+three-page English CV. [cv/Zhiyuan_Feng_CV.pdf](./cv/Zhiyuan_Feng_CV.pdf) is the printable
+PDF version, linked directly from the homepage's contact row. The CV uses the homepage's
+verified content as of October 2026, retains full
+author lists for 15 selected publications, marks first authorship, and separates preprints.
+The undergraduate degree is written without a B.S./B.E. abbreviation because the homepage
+currently uses both; confirm the official degree type before changing it.
+
+To update the PDF, edit the HTML and print from a Chromium browser using A4 paper,
+100% scale, no browser headers/footers, no extra margins, and background graphics enabled.
+The page padding and page numbers are part of the document. Keep the CV synchronized with
+the homepage after changes to publications, experience, or service.
+
 ## Google Search Console verification
 
 The URL-prefix property `https://aaronfengzy.github.io/` uses HTML-file ownership verification.
