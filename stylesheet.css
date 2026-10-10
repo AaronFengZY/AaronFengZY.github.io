@@ -616,10 +616,10 @@ ul li {
   scroll-margin-top: 70px;
 }
 
-/* News section — card timeline */
+/* News: aligned dates and a quiet timeline, without heavy cards. */
 .news-section {
   box-sizing: border-box;
-  max-width: 100vw;
+  max-width: calc(100vw - 16px);
   padding: 8px 24px 8px;
   margin: 18px 0 8px;
 }
@@ -627,17 +627,113 @@ ul li {
   margin-bottom: 6px;
 }
 .news-feed {
+  --news-date-width: 96px;
+  --news-date-color: #716579;
+  --news-line-color: rgba(118, 69, 179, 0.18);
+  --news-dot-color: #c5b4d8;
   list-style: none;
   padding-left: 0;
-  margin: 6px 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  margin: 10px 0 0;
 }
-.news-date {
-  margin-right: 8px;
+
+.news-feed > li {
+  display: grid;
+  grid-template-columns: var(--news-date-width) minmax(0, 1fr);
+  column-gap: 28px;
+  position: relative;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.news-feed > li::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--news-date-width) + 10px);
+  top: 18px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--news-dot-color);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.news-feed > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--news-date-width) + 13px);
+  top: 21px;
+  bottom: -21px;
+  width: 1px;
+  background: var(--news-line-color);
+  pointer-events: none;
+}
+
+.news-feed > .news-acceptance::before {
+  background: var(--link-color);
+}
+
+.news-feed .news-date {
+  margin: 0;
+  padding-top: 2px;
+  color: var(--news-date-color);
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  line-height: 1.7;
   white-space: nowrap;
 }
+
+.news-message {
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.news-message .news-celebration {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .news-feed {
+  --news-date-color: #b8afc8;
+  --news-line-color: rgba(203, 178, 255, 0.22);
+  --news-dot-color: #69597f;
+}
+
+@media (max-width: 480px) {
+  .news-section {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .news-feed > li {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 4px;
+    padding: 10px 0 14px 18px;
+  }
+
+  .news-feed > li::before {
+    left: 0;
+    top: 17px;
+  }
+
+  .news-feed > li:not(:last-child)::after {
+    left: 3px;
+    top: 20px;
+    bottom: -20px;
+  }
+
+  .news-feed .news-date {
+    padding-top: 0;
+    text-align: left;
+  }
+}
+
 .news-card {
   display: flex;
   align-items: stretch;

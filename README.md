@@ -39,6 +39,12 @@ Homepage, advisor, and publication-author links share `--link-color` and
 defines its own shades; dark mode keeps a brighter link color for readability.
 Text links use a semibold weight of 600, while publication titles retain their existing bold weight.
 
+## News
+
+News uses a lightweight timeline with aligned dates; narrow screens place each date above its
+message. Acceptance announcements have three decorative celebration icons before the message,
+hidden from screen readers. Dates, message text, and links are unchanged by the layout.
+
 ## Publication filters
 
 Selected Papers supports All, Agent harnesses, Foundation models, and Benchmarks and evaluation.
