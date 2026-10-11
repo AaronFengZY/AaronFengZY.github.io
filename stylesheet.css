@@ -1496,9 +1496,42 @@ body::after {
   color: var(--season-particle-night-color);
 }
 
-[data-season="spring"] .season-particle {
-  height: calc(var(--particle-size) * 0.7);
-  border-radius: 80% 10% 80% 10%;
+[data-season="spring"] .season-effects .is-sakura {
+  height: calc(var(--particle-size) * 1.2);
+  background: none;
+  border-radius: 0;
+  perspective: 160px;
+  animation-name: sakura-fall;
+}
+
+[data-season="spring"] .season-effects .is-pale {
+  color: #eec1d3;
+}
+
+[data-theme="dark"][data-season="spring"] .season-effects .is-pale {
+  color: #fff0f6;
+}
+
+.sakura-petal {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: currentColor;
+  animation: sakura-sway var(--petal-sway-duration) var(--particle-delay) ease-in-out infinite alternate;
+}
+
+.sakura-shape {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sakura-tumble var(--petal-tumble-duration) var(--particle-delay) linear infinite;
+}
+
+.sakura-vein {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 0.7;
+  opacity: 0.45;
 }
 
 [data-season="autumn"] .season-particle {
@@ -1524,8 +1557,26 @@ body::after {
   background: none;
 }
 
-.season-effects.is-paused .season-particle {
+.season-effects.is-paused .season-particle,
+.season-effects.is-paused .sakura-petal,
+.season-effects.is-paused .sakura-shape {
   animation-play-state: paused;
+}
+
+@keyframes sakura-fall {
+  0% { transform: translate3d(0, 0, 0) rotate(-20deg); opacity: 0; }
+  10%, 85% { opacity: 0.55; }
+  100% { transform: translate3d(var(--particle-drift), calc(100vh + 48px), 0) rotate(var(--particle-spin)); opacity: 0; }
+}
+
+@keyframes sakura-sway {
+  from { transform: translateX(calc(-1 * var(--petal-sway))) rotate(-18deg); }
+  to { transform: translateX(var(--petal-sway)) rotate(18deg); }
+}
+
+@keyframes sakura-tumble {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
 }
 
 @keyframes seasonal-fall {

@@ -937,6 +937,18 @@
           particle.style.setProperty('--particle-delay', -Math.random() * 32 + 's');
           particle.style.setProperty('--particle-drift', Math.random() * 80 - 40 + 'px');
           particle.style.setProperty('--particle-spin', Math.random() * 240 - 120 + 'deg');
+          if (season === 'spring') {
+            particle.classList.add('is-sakura');
+            if (i % 3 === 0) particle.classList.add('is-pale');
+            particle.innerHTML = '<svg class="sakura-petal" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g class="sakura-shape"><path d="M12 22C7 19 2 12 3 6C4 1 9 1 12 4C15 1 20 1 21 6C22 12 17 19 12 22Z"></path><path class="sakura-vein" d="M12 19Q10 13 12 7"></path></g></svg>';
+            particle.style.setProperty('--particle-size', 10 + Math.random() * 8 + 'px');
+            particle.style.setProperty('--particle-duration', 20 + Math.random() * 16 + 's');
+            particle.style.setProperty('--particle-delay', -Math.random() * 36 + 's');
+            particle.style.setProperty('--particle-drift', 100 + Math.random() * 120 + 'px');
+            particle.style.setProperty('--petal-sway', 10 + Math.random() * 12 + 'px');
+            particle.style.setProperty('--petal-sway-duration', 4 + Math.random() * 3 + 's');
+            particle.style.setProperty('--petal-tumble-duration', 7 + Math.random() * 5 + 's');
+          }
           particles.appendChild(particle);
         }
         effectsLayer.appendChild(particles);
