@@ -25,6 +25,16 @@ original filename and contents. After deployment, confirm the file is accessible
 `https://aaronfengzy.github.io/google6920066431803359.html`, then click Verify in Search Console.
 Do not remove the file after verification; Google can check it again to confirm ownership.
 
+## News milestone accents
+
+News keeps a lightweight date timeline with one decorative `.news-icon` per entry.
+Use a small mix of celebration icons for paper acceptances, a book for surveys, a robot
+for robotics papers, a microphone for presentations, and launch/completion accents for
+internships. Keep the icons fixed rather than random, and mark each `aria-hidden="true"`;
+the message itself must communicate the milestone. A shared icon gutter aligns wrapped
+text on both desktop and mobile. Retain `.news-acceptance` on accepted-paper entries
+for their stronger timeline dot. Do not imply awards where none were received.
+
 ## Academic / Cyber styles and day/night modes
 
 The bottom-right FX and Cyber buttons control animation and visual style. Academic

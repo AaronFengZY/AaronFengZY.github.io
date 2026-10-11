@@ -686,17 +686,23 @@ ul li {
 }
 
 .news-message {
+  position: relative;
   min-width: 0;
+  padding-left: 28px;
   font-size: 14px;
   line-height: 1.65;
 }
 
-.news-message .news-celebration {
-  display: inline-block;
-  margin-right: 6px;
-  font-size: 12px;
-  line-height: 1;
+.news-message .news-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  font-size: 15px;
+  line-height: 1.54;
+  text-align: center;
   white-space: nowrap;
+  pointer-events: none;
 }
 
 [data-theme="dark"] .news-feed {
