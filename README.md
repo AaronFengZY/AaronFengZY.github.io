@@ -28,8 +28,9 @@ Do not remove the file after verification; Google can check it again to confirm 
 ## Academic / Cyber styles and day/night modes
 
 The bottom-right Cyber button switches between the default academic appearance and an
-optional cyberpunk style with cyan/magenta accents, angular panels, a perspective grid,
-and a subtle scanning line. There are no blossoms or seasonal controls.
+optional cyberpunk style with cyan/magenta accents, angular panels, a continuously flowing
+perspective grid, projected star trails, rotating radar rings, and an energy scanning line.
+Desktop pointer movement adds gentle parallax. There are no blossoms or seasonal controls.
 The navigation bar's Day/Night toggle works independently in both styles. Choose
 Cyber and Night for the dark neon appearance, or Cyber and Day for a light HUD palette.
 
@@ -38,9 +39,13 @@ the first paint. New visitors use the system's light/dark preference and academi
 Old `season`, `seasonEffects`, and `dayTheme` preferences are no longer used.
 If storage is unavailable, switches still work for the visit and a warning is logged.
 
-Cyber's two decorative layers are behind content, do not capture clicks, and use slow
-CSS transform/opacity animations without strobing or glitch flashes. They pause when
-the page is hidden, stop when Cyber is off, and become static with reduced motion.
+The background renderer in [cyber-scene.js](./cyber-scene.js) is isolated from content
+and uses Canvas without animation libraries. Rendering is capped at 30 frames per second,
+100 stars (50 on narrow screens), 1.5 device-pixel ratio, and 2.5 million backing pixels.
+Radar rings are omitted on narrow screens. The scene and scanning line do not capture clicks
+or use strobing/glitch flashes. They pause when the page is hidden, stop when Cyber is off
+or printing, and become static with reduced motion; mode changes repaint the static scene.
+The canvas is attenuated behind the central reading column so trails stay brightest in the margins.
 Both buttons support Enter/Space and visible keyboard focus. CV PDF styling is independent.
 
 Homepage, advisor, and publication-author links share `--link-color` and
