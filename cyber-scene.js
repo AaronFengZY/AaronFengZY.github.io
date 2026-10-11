@@ -41,7 +41,7 @@
     canvas.width = Math.floor(width * ratio);
     canvas.height = Math.floor(height * ratio);
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    var count = width <= 720 ? 50 : 100;
+    var count = width <= 720 ? 70 : 160;
     if (stars.length !== count) {
       stars = [];
       for (var i = 0; i < count; i += 1) {
@@ -60,47 +60,64 @@
     };
   }
 
-  function drawGrid() {
-    var horizon = height * 0.57 + camera.y * 0.4;
-    var center = width * 0.5 + camera.x;
-    var phase = (time * 0.42) % 1;
+  function drawFlightGates() {
+    var centerX = width * 0.5 + camera.x;
+    var centerY = height * 0.42 + camera.y;
+    var phase = (time * 0.28) % 1;
+    var gates = [];
+    for (var i = 0; i < 7; i += 1) {
+      gates.push({ depth: 0.24 + ((i / 7 - phase + 1) % 1) * 1.5, pink: i % 3 === 0 });
+    }
+    gates.sort(function (a, b) { return b.depth - a.depth; });
+    gates.forEach(function (gate) {
+      var radiusX = width * 0.24 / gate.depth;
+      var radiusY = height * 0.24 / gate.depth;
+      var fade = Math.min((gate.depth - 0.24) / 0.16, (1.74 - gate.depth) / 0.2, 1);
+      context.strokeStyle = gate.pink ? palette.pink : palette.cyan;
+      context.fillStyle = context.strokeStyle;
+      context.globalAlpha = Math.max(0, fade) * (0.12 + 0.24 / gate.depth);
+      context.lineWidth = Math.min(2.5, 0.8 + 0.5 / gate.depth);
+      context.beginPath();
+      for (var corner = 0; corner < 8; corner += 1) {
+        var angle = Math.PI / 8 + corner * Math.PI / 4;
+        var x = centerX + Math.cos(angle) * radiusX;
+        var y = centerY + Math.sin(angle) * radiusY;
+        if (corner === 0) context.moveTo(x, y);
+        else context.lineTo(x, y);
+      }
+      context.closePath();
+      context.stroke();
+      for (var marker = 0; marker < 8; marker += 1) {
+        var direction = Math.PI / 8 + marker * Math.PI / 4;
+        var markX = centerX + Math.cos(direction) * radiusX;
+        var markY = centerY + Math.sin(direction) * radiusY;
+        context.fillRect(markX - 2, markY - 2, 4, 4);
+      }
+    });
     context.strokeStyle = palette.cyan;
     context.lineWidth = 0.8;
-    context.globalAlpha = 0.15;
-    for (var i = -10; i <= 10; i += 1) {
+    context.globalAlpha = 0.1;
+    for (var lane = 0; lane < 8; lane += 1) {
+      var laneAngle = Math.PI / 8 + lane * Math.PI / 4;
       context.beginPath();
-      context.moveTo(center + i * 6, horizon);
-      context.lineTo(center + i * width * 0.22, height);
+      context.moveTo(centerX + Math.cos(laneAngle) * 40, centerY + Math.sin(laneAngle) * 30);
+      context.lineTo(centerX + Math.cos(laneAngle) * width, centerY + Math.sin(laneAngle) * height);
       context.stroke();
     }
-    for (var row = 0; row < 16; row += 1) {
-      var depth = Math.pow((row + phase) / 16, 2);
-      var y = horizon + depth * (height - horizon);
-      context.globalAlpha = 0.07 + depth * 0.28;
-      context.beginPath();
-      context.moveTo(0, y);
-      context.lineTo(width, y);
-      context.stroke();
-    }
-    context.globalAlpha = 0.35;
-    context.lineWidth = 1.5;
-    context.beginPath();
-    context.moveTo(0, horizon);
-    context.lineTo(width, horizon);
-    context.stroke();
   }
 
   function drawStars(delta) {
     stars.forEach(function (star) {
-      star.z -= delta * 0.23;
+      star.z -= delta * 0.34;
       if (star.z < 0.16) resetStar(star, false);
       var point = project(star, star.z);
       if (point.x < -50 || point.x > width + 50 || point.y < -50 || point.y > height + 50) return;
-      var tail = project(star, star.z + 0.025 + (1 - star.z) * 0.045);
+      var tail = project(star, star.z + 0.035 + (1 - star.z) * 0.09);
       var length = Math.hypot(point.x - tail.x, point.y - tail.y);
-      if (length > 65) {
-        tail.x = point.x + (tail.x - point.x) * 65 / length;
-        tail.y = point.y + (tail.y - point.y) * 65 / length;
+      var maxTrail = width <= 720 ? 65 : 110;
+      if (length > maxTrail) {
+        tail.x = point.x + (tail.x - point.x) * maxTrail / length;
+        tail.y = point.y + (tail.y - point.y) * maxTrail / length;
       }
       context.strokeStyle = star.pink ? palette.pink : palette.cyan;
       context.fillStyle = context.strokeStyle;
@@ -116,59 +133,103 @@
     });
   }
 
-  function drawRadar(x, y, radius, direction) {
-    var angle = time * 0.6 * direction;
-    context.save();
-    context.translate(x + camera.x * 0.15, y + camera.y * 0.15);
+  function drawCockpit() {
+    var inset = width <= 720 ? 6 : 18;
+    var top = height <= 600 ? 72 : 112;
+    var lower = height - 24;
+    var bevel = Math.min(72, width * 0.06);
+    var left = inset + camera.x * 0.08;
+    var right = width - inset + camera.x * 0.08;
+    context.strokeStyle = palette.rail;
+    context.globalAlpha = 0.5;
+    context.lineWidth = width <= 720 ? 5 : 10;
+    context.beginPath();
+    context.moveTo(left + bevel, top);
+    context.lineTo(left, top + bevel);
+    context.lineTo(left, lower - bevel);
+    context.lineTo(left + bevel, lower);
+    context.moveTo(right - bevel, top);
+    context.lineTo(right, top + bevel);
+    context.lineTo(right, lower - bevel);
+    context.lineTo(right - bevel, lower);
+    context.stroke();
     context.strokeStyle = palette.cyan;
-    context.fillStyle = palette.cyan;
-    context.globalAlpha = 0.28;
+    context.globalAlpha = 0.55;
+    context.lineWidth = 1.5;
+    context.beginPath();
+    context.moveTo(left + bevel, top + 7);
+    context.lineTo(left + 8, top + bevel);
+    context.lineTo(left + 8, lower - bevel);
+    context.lineTo(left + bevel, lower - 7);
+    context.moveTo(right - bevel, top + 7);
+    context.lineTo(right - 8, top + bevel);
+    context.lineTo(right - 8, lower - bevel);
+    context.lineTo(right - bevel, lower - 7);
+    context.stroke();
+  }
+
+  function drawFlightHUD(x, y, panelWidth, engine) {
+    context.save();
+    context.translate(x, y);
+    context.fillStyle = palette.panel;
+    context.globalAlpha = 0.85;
+    context.fillRect(0, 0, panelWidth, 142);
+    context.strokeStyle = palette.cyan;
+    context.globalAlpha = 0.65;
     context.lineWidth = 1;
-    for (var ring = 1; ring <= 3; ring += 1) {
-      context.beginPath();
-      context.arc(0, 0, radius * ring / 3, 0, Math.PI * 2);
-      context.stroke();
-    }
-    context.beginPath();
-    context.moveTo(-radius - 12, 0);
-    context.lineTo(radius + 12, 0);
-    context.moveTo(0, -radius - 12);
-    context.lineTo(0, radius + 12);
-    context.stroke();
-    context.rotate(angle);
-    context.globalAlpha = 0.14;
-    context.beginPath();
-    context.moveTo(0, 0);
-    context.arc(0, 0, radius, 0, 0.55);
-    context.closePath();
-    context.fill();
-    context.globalAlpha = 0.7;
-    context.setLineDash([5, 8]);
-    context.beginPath();
-    context.arc(0, 0, radius + 6, 0, Math.PI * 1.6);
-    context.stroke();
-    context.setLineDash([]);
-    context.strokeStyle = palette.pink;
-    context.beginPath();
-    context.arc(0, 0, radius * 0.7, 0.7, 2.8);
-    context.stroke();
+    context.strokeRect(0, 0, panelWidth, 142);
+    context.font = '10px monospace';
+    context.fillStyle = palette.cyan;
+    context.globalAlpha = 0.8;
+    context.fillText(engine ? 'PROPULSION // CRUISE' : 'NAV // STAR CORRIDOR', 10, 18);
     context.fillStyle = palette.pink;
+    context.fillText(engine ? 'ION DRIVE' : 'VECTOR LOCK', 10, 35);
+    if (engine) {
+      for (var bar = 0; bar < 12; bar += 1) {
+        var level = 14 + (Math.sin(time * 1.5 + bar * 0.6) + 1) * 21;
+        context.fillStyle = bar > 8 ? palette.pink : palette.cyan;
+        context.globalAlpha = 0.45 + (bar % 3) * 0.12;
+        context.fillRect(10 + bar * (panelWidth - 20) / 12, 101 - level, (panelWidth - 20) / 12 - 3, level);
+      }
+    } else {
+      var centerX = panelWidth / 2;
+      context.globalAlpha = 0.5;
+      context.strokeStyle = palette.cyan;
+      context.beginPath();
+      context.arc(centerX, 80, 27, 0, Math.PI * 2);
+      context.moveTo(centerX - 38, 80);
+      context.lineTo(centerX + 38, 80);
+      context.moveTo(centerX, 44);
+      context.lineTo(centerX, 116);
+      context.stroke();
+      context.fillStyle = palette.pink;
+      context.globalAlpha = 0.85;
+      context.beginPath();
+      context.arc(centerX + camera.x * 0.3, 80 + camera.y * 0.3, 3, 0, Math.PI * 2);
+      context.fill();
+    }
+    context.strokeStyle = palette.pink;
+    context.globalAlpha = 0.6;
     context.beginPath();
-    context.arc(radius, 0, 3, 0, Math.PI * 2);
-    context.fill();
+    context.moveTo(10, 121);
+    context.lineTo(panelWidth - 10, 121);
+    context.stroke();
+    context.fillStyle = palette.cyan;
+    context.fillText('FLIGHT VISUAL // ZF', 10, 134);
     context.restore();
   }
 
   function draw(delta) {
-    camera.x += (pointer.x * 30 - camera.x) * Math.min(delta * 5, 1);
-    camera.y += (pointer.y * 20 - camera.y) * Math.min(delta * 5, 1);
+    camera.x += (pointer.x * 45 - camera.x) * Math.min(delta * 4, 1);
+    camera.y += (pointer.y * 28 - camera.y) * Math.min(delta * 4, 1);
     context.clearRect(0, 0, width, height);
-    drawGrid();
+    drawFlightGates();
     drawStars(delta);
-    if (width > 720) {
-      var radius = Math.min(72, width * 0.055);
-      drawRadar(width * 0.085, height * 0.3, radius, 1);
-      drawRadar(width * 0.915, height * 0.68, radius * 0.85, -1);
+    drawCockpit();
+    if (width >= 1200 && height >= 500) {
+      var panelWidth = Math.min(180, (width - 860) / 2 - 36);
+      drawFlightHUD(36, height * 0.3, panelWidth, false);
+      drawFlightHUD(width - panelWidth - 36, height * 0.64, panelWidth, true);
     }
     context.globalAlpha = 1;
   }
@@ -198,7 +259,9 @@
     var style = getComputedStyle(root);
     palette = {
       cyan: style.getPropertyValue('--cyber-cyan').trim(),
-      pink: style.getPropertyValue('--cyber-pink').trim()
+      pink: style.getPropertyValue('--cyber-pink').trim(),
+      rail: style.getPropertyValue('--cyber-border').trim(),
+      panel: style.getPropertyValue('--cyber-bg').trim()
     };
     draw(0);
     if (canAnimate()) frameId = requestAnimationFrame(animate);

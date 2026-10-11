@@ -30,9 +30,11 @@ Do not remove the file after verification; Google can check it again to confirm 
 The bottom-right FX and Cyber buttons control animation and visual style. Academic
 appearance retains the pink/white cherry-blossom petals with the corrected asymmetrical
 shape, drifting, swaying and tumbling; the Cyber button switches to an
-optional cyberpunk style with cyan/magenta accents, angular panels, a continuously flowing
-perspective grid, projected star trails, rotating radar rings, and an energy scanning line.
-Desktop pointer movement adds gentle parallax. The two effects do not run together, and
+optional spaceship-cockpit style with cyan/magenta accents, an angular canopy,
+approaching octagonal navigation gates, forward star trails, and an energy scanning line.
+Wide screens have decorative navigation and propulsion HUDs; they are fictional scene
+graphics, not measured site or device telemetry. Desktop pointer movement adds smooth
+steering parallax. The two effects do not run together, and
 there are no seasonal controls. Entering Cyber automatically selects Night. Returning to
 academic style restores its previous day/night choice. The top Day/Night button remains
 usable in either style, including manually choosing Cyber's light HUD palette.
@@ -46,8 +48,9 @@ If storage is unavailable, switches still work for the visit and a warning is lo
 
 The background renderer in [cyber-scene.js](./cyber-scene.js) is isolated from content
 and uses Canvas without animation libraries. Rendering is capped at 30 frames per second,
-100 stars (50 on narrow screens), 1.5 device-pixel ratio, and 2.5 million backing pixels.
-Radar rings are omitted on narrow screens. The scene and scanning line do not capture clicks
+160 stars (70 on narrow screens), seven navigation gates, 1.5 device-pixel ratio,
+and 2.5 million backing pixels. Detailed HUDs are omitted below 1200px or on short screens.
+The scene and scanning line do not capture clicks
 or use strobing/glitch flashes. They pause when the page is hidden, stop when Cyber is off
 or printing, and become static with reduced motion; mode changes repaint the static scene.
 The canvas is attenuated behind the central reading column so trails stay brightest in the margins.

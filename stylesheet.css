@@ -1893,13 +1893,17 @@ table.papers em.venue strong,
 }
 
 [data-style="cyber"] #about .profile-heading::before {
-  content: "RESEARCH PROFILE // ZF";
+  content: "ZF // EXPLORER INTERFACE";
   display: block;
   margin-bottom: 10px;
   font-family: var(--cyber-font);
   color: var(--cyber-muted);
   font-size: 10px;
   letter-spacing: 0.2em;
+}
+
+[data-style="cyber"] .research-direction strong {
+  color: var(--cyber-cyan);
 }
 
 [data-style="cyber"] #about name {
