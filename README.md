@@ -25,33 +25,24 @@ original filename and contents. After deployment, confirm the file is accessible
 `https://aaronfengzy.github.io/google6920066431803359.html`, then click Verify in Search Console.
 Do not remove the file after verification; Google can check it again to confirm ownership.
 
-## Seasons and day/night modes
+## Cherry blossoms and day/night modes
 
-The navigation bar controls Day/Night, independently of the bottom-right Spring, Summer,
-Autumn, and Winter controls. Every season works in both modes. Purple link accents remain
-consistent while seasonal backgrounds and decorative effects change:
+The navigation bar controls Day/Night. A compact bottom-right FX button independently
+controls the cherry-blossom animation. There is no seasonal selector: pink/white petals
+with a notched silhouette drift, sway, and tumble against a soft pink/purple background
+in both modes.
 
-- Spring: soft pink/purple tones and pink/white cherry-blossom petals with a notched
-  silhouette, slow diagonal drifting, gentle side-to-side swaying, and 3D tumbling.
-- Summer: warm light/green tones and floating glimmers.
-- Autumn: warm amber tones and falling leaves.
-- Winter: cool blue tones and falling snow, including snowflake shapes.
+The current mode (`theme`) and animation preference (`seasonEffects`, retained for
+compatibility) are saved in local storage. The first visit follows the system's light/dark
+preference and enables blossoms unless reduced motion is requested. Previously saved
+FX-off choices remain respected; old `season` and `dayTheme` choices are no longer used.
+Mode is applied before the first paint. If storage is unavailable, controls still work
+for the current visit and a warning is logged.
 
-The current mode (`theme`), season (`season`), and animation preference (`seasonEffects`)
-are saved in local storage and restored on reload. The first visit uses the system's
-light/dark preference and defaults to Autumn. Old sepia/blue preferences migrate to
-Autumn/Winter; the old `dayTheme` value is used only for this migration.
-Mode and season are applied before the first paint. If storage is unavailable,
-controls still work for the current visit and a warning is logged.
-
-The FX button can disable or re-enable animations without changing the season or mode.
-Effects are noninteractive background decoration, use only CSS transform/opacity animation,
-and are limited to 24 particles (12 on narrow screens). Animations pause when the page is
-hidden and are removed when the system requests reduced motion. Arrow keys and Home/End
-select seasons; Enter/Space work on the mode and FX buttons.
-Spring uses inline SVG petal shapes with nested transform animations; all layers pause
-with page visibility and disappear together when FX is off. No external image assets
-or animation libraries are required.
+The SVG petals use only nested CSS transform/opacity animations and are limited to
+24 particles (12 on narrow screens). Every animation layer pauses when the page is hidden.
+FX-off and reduced motion remove the complete particle tree. Enter/Space work on both
+buttons; no external images or animation libraries are required.
 
 Homepage, advisor, and publication-author links share `--link-color` and
 `--link-hover-color` in [stylesheet.css](./stylesheet.css). Each background theme
@@ -81,4 +72,4 @@ TaskGround belongs to both harnesses and benchmarks; specialized work such as Vo
 TransDiff, and DCRNN currently remains in All.
 
 The controls appear only after JavaScript initializes. Without JavaScript, the complete publication list remains visible.
-Filter styles in [stylesheet.css](./stylesheet.css) follow day/night mode across all four seasons.
+Filter styles in [stylesheet.css](./stylesheet.css) follow day/night mode.

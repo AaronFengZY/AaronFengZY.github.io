@@ -939,20 +939,30 @@ table.papers a\:focus strong {
 }
 
 /* ===================================================== */
-/* =====             Seasonal controls              ===== */
+/* =====          Cherry-blossom FX control          ===== */
 /* ===================================================== */
-.season-switcher {
+.effects-toggle {
   position: fixed;
   right: 18px;
   bottom: 18px;
   z-index: 1100;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 6px;
+  justify-content: center;
+  gap: 4px;
+  box-sizing: border-box;
+  min-width: 46px;
+  min-height: 48px;
+  padding: 6px 8px;
+  color: #5a3aa3;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid #e5dcf3;
-  border-radius: 16px;
+  border-radius: 12px;
   box-shadow: 0 6px 20px rgba(90, 58, 163, 0.12),
               0 1px 2px rgba(0, 0, 0, 0.05);
   backdrop-filter: saturate(180%) blur(10px);
@@ -961,42 +971,14 @@ table.papers a\:focus strong {
               box-shadow 0.25s ease;
 }
 
-.season-switcher[hidden] {
+.effects-toggle[hidden] {
   display: none;
 }
 
-.season-options {
-  display: flex;
-  gap: 4px;
-}
-
-.season-button,
-.effects-toggle {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  min-width: 44px;
-  min-height: 46px;
-  padding: 5px 4px;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  background: transparent;
-  color: #5a3aa3;
-  font-size: 10px;
-  font-weight: 600;
-  line-height: 1.2;
-  cursor: pointer;
-}
-
-.season-switcher .season-button span,
-.season-switcher .effects-toggle span {
+.effects-toggle .effects-label {
   color: inherit;
 }
 
-.season-button svg,
 .effects-toggle svg {
   width: 18px;
   height: 18px;
@@ -1007,24 +989,13 @@ table.papers a\:focus strong {
   stroke-linejoin: round;
 }
 
-.season-button:hover,
-.effects-toggle:hover,
-.season-button[aria-checked="true"] {
+.effects-toggle:hover {
   background: #f3edff;
 }
 
-.season-button[aria-checked="true"] {
-  border-color: #7e57c2;
-}
-
-.season-button:focus-visible,
 .effects-toggle:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
-}
-
-.effects-toggle {
-  border-left-color: #e5dcf3;
 }
 
 .effects-toggle[aria-pressed="false"] {
@@ -1039,33 +1010,19 @@ table.papers a\:focus strong {
   cursor: default;
 }
 
-[data-theme="dark"] .season-switcher {
+[data-theme="dark"] .effects-toggle {
+  color: #cbb2ff;
   background: rgba(28, 29, 40, 0.92);
   border-color: #4a3d75;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
-[data-theme="dark"] .season-button,
-[data-theme="dark"] .effects-toggle {
-  color: #cbb2ff;
-}
-
-[data-theme="dark"] .season-button:hover,
-[data-theme="dark"] .effects-toggle:hover,
-[data-theme="dark"] .season-button[aria-checked="true"] {
+[data-theme="dark"] .effects-toggle:hover {
   background: #261c46;
 }
 
-[data-theme="dark"] .season-button[aria-checked="true"] {
-  border-color: #cbb2ff;
-}
-
-[data-theme="dark"] .effects-toggle {
-  border-left-color: #4a3d75;
-}
-
 @media (max-width: 720px) {
-  .season-switcher {
+  .effects-toggle {
     right: 10px;
     bottom: 10px;
   }
@@ -1189,7 +1146,7 @@ table.papers a\:focus strong {
 /* =====              Dark theme overrides          ===== */
 /* ===================================================== */
 [data-theme="dark"] body {
-  background-color: var(--season-night-bg);
+  background-color: var(--sakura-night-bg);
   color: #d8d4e4;
 }
 
@@ -1375,8 +1332,6 @@ table.papers a\:focus strong {
 body,
 .news-card,
 .topnav,
-.season-switcher,
-.season-button,
 .effects-toggle,
 table.papers em strong,
 .news-tag {
@@ -1389,51 +1344,24 @@ table.papers em strong,
 /* ===================================================== */
 
 :root {
-  --season-page-bg: #fffaf4;
-  --season-night-bg: #1d1612;
-  --season-glow-one: 232, 169, 108;
-  --season-glow-two: 217, 139, 110;
-  --season-particle-color: #a46e3c;
-  --season-particle-night-color: #d5a066;
-}
-
-[data-season="spring"] {
-  --season-page-bg: #fefbff;
-  --season-night-bg: #18131f;
-  --season-glow-one: 186, 132, 204;
-  --season-glow-two: 247, 194, 207;
-  --season-particle-color: #cd81a7;
-  --season-particle-night-color: #e4a5ca;
-}
-
-[data-season="summer"] {
-  --season-page-bg: #fffdf7;
-  --season-night-bg: #181910;
-  --season-glow-one: 249, 205, 109;
-  --season-glow-two: 168, 215, 162;
-  --season-particle-color: #b08b27;
-  --season-particle-night-color: #eacd71;
-}
-
-[data-season="winter"] {
-  --season-page-bg: #f9fbff;
-  --season-night-bg: #111823;
-  --season-glow-one: 161, 187, 225;
-  --season-glow-two: 199, 213, 242;
-  --season-particle-color: #8faacc;
-  --season-particle-night-color: #e4efff;
+  --sakura-page-bg: #fefbff;
+  --sakura-night-bg: #18131f;
+  --sakura-glow-one: 186, 132, 204;
+  --sakura-glow-two: 247, 194, 207;
+  --sakura-particle-color: #cd81a7;
+  --sakura-particle-night-color: #e4a5ca;
 }
 
 /* Body becomes its own stacking context so negative-z pseudo-elements
    sit behind the content but in front of the body's background color. */
 body {
-  background-color: var(--season-page-bg);
+  background-color: var(--sakura-page-bg);
   position: relative;
   isolation: isolate;
   overflow-x: hidden;
 }
 
-/* Soft seasonal glows */
+/* Soft pink/purple glows */
 body::before {
   content: "";
   position: fixed;
@@ -1441,9 +1369,9 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(60vw 55vh at 8% -5%, rgba(var(--season-glow-one), 0.18), transparent 60%),
-    radial-gradient(55vw 50vh at 100% 12%, rgba(var(--season-glow-two), 0.14), transparent 65%),
-    radial-gradient(70vw 65vh at 50% 110%, rgba(var(--season-glow-one), 0.10), transparent 65%);
+    radial-gradient(60vw 55vh at 8% -5%, rgba(var(--sakura-glow-one), 0.18), transparent 60%),
+    radial-gradient(55vw 50vh at 100% 12%, rgba(var(--sakura-glow-two), 0.14), transparent 65%),
+    radial-gradient(70vw 65vh at 50% 110%, rgba(var(--sakura-glow-one), 0.10), transparent 65%);
   transition: background 0.4s ease, opacity 0.4s ease;
 }
 
@@ -1454,7 +1382,7 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: radial-gradient(rgba(var(--season-glow-one), 0.14) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(var(--sakura-glow-one), 0.14) 1px, transparent 1px);
   background-size: 22px 22px;
   background-position: 0 0;
   opacity: 0.55;
@@ -1470,7 +1398,7 @@ body::after {
   opacity: 0.45;
 }
 
-.season-effects {
+.sakura-effects {
   position: fixed;
   inset: 0;
   z-index: -1;
@@ -1478,37 +1406,27 @@ body::after {
   pointer-events: none;
 }
 
-.season-effects .season-particle {
+.sakura-effects .sakura-particle {
   position: absolute;
   top: -24px;
   width: var(--particle-size);
-  height: var(--particle-size);
-  background: var(--season-particle-color);
-  color: var(--season-particle-color);
-  border-radius: 50%;
+  height: calc(var(--particle-size) * 1.2);
+  color: var(--sakura-particle-color);
+  perspective: 160px;
   opacity: 0;
-  animation: seasonal-fall var(--particle-duration) var(--particle-delay) linear infinite;
+  animation: sakura-fall var(--particle-duration) var(--particle-delay) linear infinite;
   pointer-events: none;
 }
 
-[data-theme="dark"] .season-effects .season-particle {
-  background: var(--season-particle-night-color);
-  color: var(--season-particle-night-color);
+[data-theme="dark"] .sakura-effects .sakura-particle {
+  color: var(--sakura-particle-night-color);
 }
 
-[data-season="spring"] .season-effects .is-sakura {
-  height: calc(var(--particle-size) * 1.2);
-  background: none;
-  border-radius: 0;
-  perspective: 160px;
-  animation-name: sakura-fall;
-}
-
-[data-season="spring"] .season-effects .is-pale {
+.sakura-effects .is-pale {
   color: #eec1d3;
 }
 
-[data-theme="dark"][data-season="spring"] .season-effects .is-pale {
+[data-theme="dark"] .sakura-effects .is-pale {
   color: #fff0f6;
 }
 
@@ -1534,32 +1452,9 @@ body::after {
   opacity: 0.45;
 }
 
-[data-season="autumn"] .season-particle {
-  height: calc(var(--particle-size) * 1.4);
-  border-radius: 10% 80% 10% 80%;
-}
-
-[data-season="summer"] .season-particle {
-  top: auto;
-  bottom: -24px;
-  box-shadow: 0 0 8px currentColor;
-  animation-name: seasonal-rise;
-}
-
-.season-effects .is-snowflake {
-  width: calc(var(--particle-size) * 2.8);
-  height: calc(var(--particle-size) * 2.8);
-  font-size: calc(var(--particle-size) * 2.8);
-  line-height: 1;
-}
-
-[data-season="winter"] .season-effects .is-snowflake {
-  background: none;
-}
-
-.season-effects.is-paused .season-particle,
-.season-effects.is-paused .sakura-petal,
-.season-effects.is-paused .sakura-shape {
+.sakura-effects.is-paused .sakura-particle,
+.sakura-effects.is-paused .sakura-petal,
+.sakura-effects.is-paused .sakura-shape {
   animation-play-state: paused;
 }
 
@@ -1579,18 +1474,6 @@ body::after {
   to { transform: rotateY(360deg); }
 }
 
-@keyframes seasonal-fall {
-  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
-  10%, 85% { opacity: 0.4; }
-  100% { transform: translate3d(var(--particle-drift), calc(100vh + 48px), 0) rotate(var(--particle-spin)); opacity: 0; }
-}
-
-@keyframes seasonal-rise {
-  0% { transform: translate3d(0, 0, 0); opacity: 0; }
-  20%, 80% { opacity: 0.25; }
-  100% { transform: translate3d(var(--particle-drift), calc(-100vh - 48px), 0); opacity: 0; }
-}
-
 /* On very small screens, calm the pattern down */
 @media (max-width: 720px) {
   body::after {
@@ -1601,7 +1484,7 @@ body::after {
 
 /* Respect users who prefer reduced motion / less decoration */
 @media (prefers-reduced-motion: reduce) {
-  .season-effects {
+  .sakura-effects {
     display: none;
   }
   body::before,
