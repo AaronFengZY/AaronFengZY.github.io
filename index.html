@@ -894,7 +894,7 @@
           var particle = document.createElement('span');
           particle.className = 'sakura-particle';
           if (i % 3 === 0) particle.classList.add('is-pale');
-          particle.innerHTML = '<svg class="sakura-petal" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g class="sakura-shape"><path d="M12 22C7 19 2 12 3 6C4 1 9 1 12 4C15 1 20 1 21 6C22 12 17 19 12 22Z"></path><path class="sakura-vein" d="M12 19Q10 13 12 7"></path></g></svg>';
+          particle.innerHTML = '<svg class="sakura-petal" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g class="sakura-shape"><path d="M7.5 22.5C7.8 18.2 3.6 14.5 4.2 9.8C4.8 5.2 8.8 2.1 13.9 1.6L14.9 3.4L16.4 1.9C20.5 4.2 21.1 8.8 18.5 13.1C15.9 17.5 11.3 20.7 7.5 22.5Z"></path><path class="sakura-vein" d="M9 19C11 15 13 10 14.8 5.5"></path></g></svg>';
           particle.style.left = (i + Math.random()) / count * 100 + '%';
           particle.style.setProperty('--particle-size', 10 + Math.random() * 8 + 'px');
           particle.style.setProperty('--particle-duration', 20 + Math.random() * 16 + 's');

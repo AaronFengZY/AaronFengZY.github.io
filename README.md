@@ -29,8 +29,8 @@ Do not remove the file after verification; Google can check it again to confirm 
 
 The navigation bar controls Day/Night. A compact bottom-right FX button independently
 controls the cherry-blossom animation. There is no seasonal selector: pink/white petals
-with a notched silhouette drift, sway, and tumble against a soft pink/purple background
-in both modes.
+with a slender, asymmetrical outline and a shallow tip notch drift, sway, and tumble
+against a soft pink/purple background in both modes.
 
 The current mode (`theme`) and animation preference (`seasonEffects`, retained for
 compatibility) are saved in local storage. The first visit follows the system's light/dark
