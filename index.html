@@ -28,28 +28,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&amp;text=%E5%86%AF%E5%BF%97%E8%BF%9C&amp;display=swap" rel="stylesheet">
 
   <script>
+    function getUtcTheme() {
+      var hour = new Date().getUTCHours();
+      return hour >= 6 && hour < 18 ? 'light' : 'dark';
+    }
+
     // Apply saved appearance before the first paint.
     (function () {
-      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      var theme = prefersDark ? 'dark' : 'light';
+      var theme = getUtcTheme();
       var style = 'academic';
+      var academicMode = 'auto';
       var effects = 'on';
       try {
+        var savedAcademicMode = localStorage.getItem('academicMode');
+        if (savedAcademicMode === 'light' || savedAcademicMode === 'dark') {
+          academicMode = savedAcademicMode;
+          theme = academicMode;
+        }
         var saved = localStorage.getItem('theme');
-        if (saved === 'light' || saved === 'dark') theme = saved;
-        else if (saved === 'sepia' || saved === 'blue') theme = 'light';
         if (localStorage.getItem('visualStyle') === 'cyber') {
           style = 'cyber';
-          if (saved !== 'light' && saved !== 'dark') theme = 'dark';
+          theme = saved === 'light' || saved === 'dark' ? saved : 'dark';
         }
         if (localStorage.getItem('seasonEffects') === 'off') effects = 'off';
       } catch (e) {
         if (e.name !== 'SecurityError') throw e;
-        console.warn('Saved appearance preferences are unavailable; using the system mode.', e);
+        console.warn('Saved appearance preferences are unavailable; using the UTC day/night mode.', e);
       }
       document.documentElement.setAttribute('data-theme', theme);
       document.documentElement.setAttribute('data-style', style);
       document.documentElement.setAttribute('data-effects', effects);
+      document.documentElement.setAttribute('data-academic-mode', academicMode);
     })();
   </script>
   <script>
@@ -863,7 +872,7 @@
   </script>
 
   <script>
-    // Cyber starts at night; academic mode and the shared FX preference are remembered.
+    // Academic defaults follow UTC; Cyber starts at night and preserves explicit overrides.
     (function () {
       var toggle = document.getElementById('mode-toggle');
       var styleToggle = document.getElementById('style-toggle');
@@ -877,15 +886,14 @@
       var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
       var compact = window.matchMedia('(max-width: 720px)');
       var effectsEnabled = root.getAttribute('data-effects') !== 'off';
-      var academicTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      try {
-        var savedAcademicTheme = localStorage.getItem('academicTheme');
-        if (savedAcademicTheme === 'light' || savedAcademicTheme === 'dark') academicTheme = savedAcademicTheme;
-      } catch (e) {
-        if (e.name !== 'SecurityError') throw e;
-        console.warn('Saved academic mode is unavailable; using the system mode when returning from Cyber.', e);
+      var academicMode = root.getAttribute('data-academic-mode');
+      if (academicMode !== 'auto' && academicMode !== 'light' && academicMode !== 'dark') {
+        throw new Error('Unknown academic mode preference: ' + academicMode);
       }
-      if (root.getAttribute('data-style') === 'academic') academicTheme = root.getAttribute('data-theme');
+
+      function academicTheme() {
+        return academicMode === 'auto' ? getUtcTheme() : academicMode;
+      }
 
       function savePreference(key, value) {
         try {
@@ -954,19 +962,16 @@
         applyMode(mode);
         savePreference('theme', mode);
         if (root.getAttribute('data-style') === 'academic') {
-          academicTheme = mode;
-          savePreference('academicTheme', mode);
+          academicMode = mode;
+          root.setAttribute('data-academic-mode', academicMode);
+          savePreference('academicMode', academicMode);
         }
       });
 
       styleToggle.addEventListener('click', function () {
         var enteringCyber = root.getAttribute('data-style') !== 'cyber';
         var style = enteringCyber ? 'cyber' : 'academic';
-        if (enteringCyber) {
-          academicTheme = root.getAttribute('data-theme');
-          savePreference('academicTheme', academicTheme);
-        }
-        var mode = enteringCyber ? 'dark' : academicTheme;
+        var mode = enteringCyber ? 'dark' : academicTheme();
         applyMode(mode);
         applyStyle(style);
         savePreference('theme', mode);
@@ -979,9 +984,16 @@
       });
       motion.addEventListener('change', renderEffects);
       compact.addEventListener('change', renderEffects);
+      function updateUtcMode() {
+        if (document.hidden || root.getAttribute('data-style') !== 'academic' || academicMode !== 'auto') return;
+        var mode = getUtcTheme();
+        if (root.getAttribute('data-theme') !== mode) applyMode(mode);
+      }
+      setInterval(updateUtcMode, 60000);
       function updateVisibility() {
         scene.classList.toggle('is-paused', document.hidden);
         blossoms.classList.toggle('is-paused', document.hidden);
+        updateUtcMode();
       }
       document.addEventListener('visibilitychange', updateVisibility);
       updateVisibility();

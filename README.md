@@ -36,14 +36,22 @@ Wide screens have decorative navigation and propulsion HUDs; they are fictional 
 graphics, not measured site or device telemetry. Desktop pointer movement adds smooth
 steering parallax. The two effects do not run together, and
 there are no seasonal controls. Entering Cyber automatically selects Night. Returning to
-academic style restores its previous day/night choice. The top Day/Night button remains
-usable in either style, including manually choosing Cyber's light HUD palette.
+academic style restores a manual mode choice or the current UTC-based mode. The top
+Day/Night button remains usable in either style, including manually choosing Cyber's light HUD palette.
 
 Mode (`theme`) and visual style (`visualStyle`) are saved separately and applied before
-the first paint. `academicTheme` remembers the mode to restore when leaving Cyber.
-New visitors use the system's light/dark preference, academic style and enabled effects.
+the first paint. New visitors get academic style with cherry blossoms and enabled effects.
+Automatic academic mode uses **UTC 06:00 (inclusive) to 18:00 (exclusive) for Day** and
+Night otherwise, independent of local time or the operating system's color scheme.
+It updates at most one minute after a boundary and immediately when the page becomes visible.
+The shared `getUtcTheme()` helper is used for both initialization and later updates.
+Clicking Day/Night in academic style saves an explicit `academicMode` override
+(`light` or `dark`); otherwise this preference is `auto`. An explicit choice remains
+active across reloads and Cyber visits. Remove the `academicMode` storage key and reload
+to return to automatic UTC scheduling. Saved Cyber mode may still be manually set to Day.
 `seasonEffects` is retained for the shared FX preference; saved off choices are respected.
-Old `season` and `dayTheme` choices are no longer used.
+Old `season`, `dayTheme`, and `academicTheme` choices are no longer used; legacy cached
+academic `theme` values do not override the new automatic UTC default.
 If storage is unavailable, switches still work for the visit and a warning is logged.
 
 The background renderer in [cyber-scene.js](./cyber-scene.js) is isolated from content
