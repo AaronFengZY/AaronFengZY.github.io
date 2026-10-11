@@ -25,24 +25,23 @@ original filename and contents. After deployment, confirm the file is accessible
 `https://aaronfengzy.github.io/google6920066431803359.html`, then click Verify in Search Console.
 Do not remove the file after verification; Google can check it again to confirm ownership.
 
-## Cherry blossoms and day/night modes
+## Academic / Cyber styles and day/night modes
 
-The navigation bar controls Day/Night. A compact bottom-right FX button independently
-controls the cherry-blossom animation. There is no seasonal selector: pink/white petals
-with a slender, asymmetrical outline and a shallow tip notch drift, sway, and tumble
-against a soft pink/purple background in both modes.
+The bottom-right Cyber button switches between the default academic appearance and an
+optional cyberpunk style with cyan/magenta accents, angular panels, a perspective grid,
+and a subtle scanning line. There are no blossoms or seasonal controls.
+The navigation bar's Day/Night toggle works independently in both styles. Choose
+Cyber and Night for the dark neon appearance, or Cyber and Day for a light HUD palette.
 
-The current mode (`theme`) and animation preference (`seasonEffects`, retained for
-compatibility) are saved in local storage. The first visit follows the system's light/dark
-preference and enables blossoms unless reduced motion is requested. Previously saved
-FX-off choices remain respected; old `season` and `dayTheme` choices are no longer used.
-Mode is applied before the first paint. If storage is unavailable, controls still work
-for the current visit and a warning is logged.
+Mode (`theme`) and visual style (`visualStyle`) are saved separately and applied before
+the first paint. New visitors use the system's light/dark preference and academic style.
+Old `season`, `seasonEffects`, and `dayTheme` preferences are no longer used.
+If storage is unavailable, switches still work for the visit and a warning is logged.
 
-The SVG petals use only nested CSS transform/opacity animations and are limited to
-24 particles (12 on narrow screens). Every animation layer pauses when the page is hidden.
-FX-off and reduced motion remove the complete particle tree. Enter/Space work on both
-buttons; no external images or animation libraries are required.
+Cyber's two decorative layers are behind content, do not capture clicks, and use slow
+CSS transform/opacity animations without strobing or glitch flashes. They pause when
+the page is hidden, stop when Cyber is off, and become static with reduced motion.
+Both buttons support Enter/Space and visible keyboard focus. CV PDF styling is independent.
 
 Homepage, advisor, and publication-author links share `--link-color` and
 `--link-hover-color` in [stylesheet.css](./stylesheet.css). Each background theme

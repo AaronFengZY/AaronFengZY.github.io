@@ -17,7 +17,7 @@
   <meta name="twitter:description" content="Ph.D. candidate at Tsinghua University. Embodied AI · Vision-Language-Action · Spatial Reasoning.">
   <meta name="twitter:image" content="images/my/profile.png">
 
-  <link rel="stylesheet" type="text/css" href="stylesheet.css?v=sakura-only-1">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css?v=cyber-1">
 	<link rel="icon" type="image/svg+xml" href="images/experience/thu_logo.svg">
 
   <!-- Modern font stack: Inter (body) + Fraunces (display) + Noto Sans SC (Chinese body) + Ma Shan Zheng (Chinese name) -->
@@ -27,19 +27,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&amp;text=%E5%86%AF%E5%BF%97%E8%BF%9C&amp;display=swap" rel="stylesheet">
 
   <script>
-    // Apply the saved day/night mode before the first paint.
+    // Apply saved appearance before the first paint.
     (function () {
       var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
       var theme = prefersDark ? 'dark' : 'light';
+      var style = 'academic';
       try {
         var saved = localStorage.getItem('theme');
         if (saved === 'light' || saved === 'dark') theme = saved;
         else if (saved === 'sepia' || saved === 'blue') theme = 'light';
+        if (localStorage.getItem('visualStyle') === 'cyber') style = 'cyber';
       } catch (e) {
         if (e.name !== 'SecurityError') throw e;
         console.warn('Saved appearance preferences are unavailable; using the system mode.', e);
       }
       document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-style', style);
     })();
   </script>
   <script>
@@ -78,11 +81,14 @@
     </div>
   </nav>
 
-  <button id="effects-toggle" class="effects-toggle" type="button" aria-label="Cherry-blossom effects" aria-pressed="true" title="Pause cherry-blossom effects" hidden>
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z"></path></svg>
-    <span class="effects-label">FX</span>
+  <button id="style-toggle" class="style-toggle" type="button" aria-label="Cyberpunk style" aria-pressed="false" title="Enable cyberpunk style" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5h8v14H8zM11 9h2v6h-2zM5 8H2m3 4H2m3 4H2m20-8h-3m3 4h-3m3 4h-3M10 2v3m4-3v3m-4 14v3m4-3v3"></path></svg>
+    <span class="style-label">Cyber</span>
   </button>
-  <div id="sakura-effects" class="sakura-effects" aria-hidden="true"></div>
+  <div id="cyber-scene" class="cyber-scene" aria-hidden="true">
+    <div class="cyber-grid"></div>
+    <div class="cyber-scan"></div>
+  </div>
   <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr style="padding:0px">
       <td style="padding:0px">
@@ -843,24 +849,15 @@
   </script>
 
   <script>
-    // Cherry blossoms and day/night are independent; animation runs only when permitted.
+    // Visual style and day/night are independent.
     (function () {
       var toggle = document.getElementById('mode-toggle');
-      var effectsToggle = document.getElementById('effects-toggle');
-      var effectsLayer = document.getElementById('sakura-effects');
-      if (!toggle || !effectsToggle || !effectsLayer) throw new Error('Appearance controls are missing.');
+      var styleToggle = document.getElementById('style-toggle');
+      var scene = document.getElementById('cyber-scene');
+      if (!toggle || !styleToggle || !scene) throw new Error('Appearance controls are missing.');
 
       var label = toggle.querySelector('.mode-label');
       var root = document.documentElement;
-      var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-      var compact = window.matchMedia('(max-width: 720px)');
-      var effectsEnabled = true;
-      try {
-        effectsEnabled = localStorage.getItem('seasonEffects') !== 'off';
-      } catch (e) {
-        if (e.name !== 'SecurityError') throw e;
-        console.warn('Saved cherry-blossom effects preference is unavailable.', e);
-      }
 
       function savePreference(key, value) {
         try {
@@ -880,54 +877,31 @@
         label.textContent = isNight ? 'Night' : 'Day';
       }
 
-      function renderEffects() {
-        effectsLayer.replaceChildren();
-        var animate = effectsEnabled && !motion.matches;
-        effectsToggle.disabled = motion.matches;
-        effectsToggle.setAttribute('aria-pressed', animate ? 'true' : 'false');
-        effectsToggle.title = motion.matches ? 'Animations disabled by reduced-motion preference' :
-          (animate ? 'Pause cherry-blossom effects' : 'Enable cherry-blossom effects');
-        if (!animate) return;
-        var count = compact.matches ? 12 : 24;
-        var particles = document.createDocumentFragment();
-        for (var i = 0; i < count; i += 1) {
-          var particle = document.createElement('span');
-          particle.className = 'sakura-particle';
-          if (i % 3 === 0) particle.classList.add('is-pale');
-          particle.innerHTML = '<svg class="sakura-petal" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g class="sakura-shape"><path d="M7.5 22.5C7.8 18.2 3.6 14.5 4.2 9.8C4.8 5.2 8.8 2.1 13.9 1.6L14.9 3.4L16.4 1.9C20.5 4.2 21.1 8.8 18.5 13.1C15.9 17.5 11.3 20.7 7.5 22.5Z"></path><path class="sakura-vein" d="M9 19C11 15 13 10 14.8 5.5"></path></g></svg>';
-          particle.style.left = (i + Math.random()) / count * 100 + '%';
-          particle.style.setProperty('--particle-size', 10 + Math.random() * 8 + 'px');
-          particle.style.setProperty('--particle-duration', 20 + Math.random() * 16 + 's');
-          particle.style.setProperty('--particle-delay', -Math.random() * 36 + 's');
-          particle.style.setProperty('--particle-drift', 100 + Math.random() * 120 + 'px');
-          particle.style.setProperty('--particle-spin', Math.random() * 240 - 120 + 'deg');
-          particle.style.setProperty('--petal-sway', 10 + Math.random() * 12 + 'px');
-          particle.style.setProperty('--petal-sway-duration', 4 + Math.random() * 3 + 's');
-          particle.style.setProperty('--petal-tumble-duration', 7 + Math.random() * 5 + 's');
-          particles.appendChild(particle);
-        }
-        effectsLayer.appendChild(particles);
+      function applyStyle(style) {
+        if (style !== 'academic' && style !== 'cyber') throw new Error('Unknown visual style: ' + style);
+        root.setAttribute('data-style', style);
+        var isCyber = style === 'cyber';
+        styleToggle.setAttribute('aria-pressed', isCyber ? 'true' : 'false');
+        styleToggle.title = isCyber ? 'Return to academic style' : 'Enable cyberpunk style';
       }
 
       applyMode(root.getAttribute('data-theme'));
-      renderEffects();
+      applyStyle(root.getAttribute('data-style'));
       toggle.hidden = false;
-      effectsToggle.hidden = false;
+      styleToggle.hidden = false;
       toggle.addEventListener('click', function () {
         var mode = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         applyMode(mode);
         savePreference('theme', mode);
       });
 
-      effectsToggle.addEventListener('click', function () {
-        effectsEnabled = !effectsEnabled;
-        renderEffects();
-        savePreference('seasonEffects', effectsEnabled ? 'on' : 'off');
+      styleToggle.addEventListener('click', function () {
+        var style = root.getAttribute('data-style') === 'cyber' ? 'academic' : 'cyber';
+        applyStyle(style);
+        savePreference('visualStyle', style);
       });
-      motion.addEventListener('change', renderEffects);
-      compact.addEventListener('change', renderEffects);
       function updateVisibility() {
-        effectsLayer.classList.toggle('is-paused', document.hidden);
+        scene.classList.toggle('is-paused', document.hidden);
       }
       document.addEventListener('visibilitychange', updateVisibility);
       updateVisibility();
