@@ -27,16 +27,21 @@ Do not remove the file after verification; Google can check it again to confirm 
 
 ## Academic / Cyber styles and day/night modes
 
-The bottom-right Cyber button switches between the default academic appearance and an
+The bottom-right FX and Cyber buttons control animation and visual style. Academic
+appearance retains the pink/white cherry-blossom petals with the corrected asymmetrical
+shape, drifting, swaying and tumbling; the Cyber button switches to an
 optional cyberpunk style with cyan/magenta accents, angular panels, a continuously flowing
 perspective grid, projected star trails, rotating radar rings, and an energy scanning line.
-Desktop pointer movement adds gentle parallax. There are no blossoms or seasonal controls.
-The navigation bar's Day/Night toggle works independently in both styles. Choose
-Cyber and Night for the dark neon appearance, or Cyber and Day for a light HUD palette.
+Desktop pointer movement adds gentle parallax. The two effects do not run together, and
+there are no seasonal controls. Entering Cyber automatically selects Night. Returning to
+academic style restores its previous day/night choice. The top Day/Night button remains
+usable in either style, including manually choosing Cyber's light HUD palette.
 
 Mode (`theme`) and visual style (`visualStyle`) are saved separately and applied before
-the first paint. New visitors use the system's light/dark preference and academic style.
-Old `season`, `seasonEffects`, and `dayTheme` preferences are no longer used.
+the first paint. `academicTheme` remembers the mode to restore when leaving Cyber.
+New visitors use the system's light/dark preference, academic style and enabled effects.
+`seasonEffects` is retained for the shared FX preference; saved off choices are respected.
+Old `season` and `dayTheme` choices are no longer used.
 If storage is unavailable, switches still work for the visit and a warning is logged.
 
 The background renderer in [cyber-scene.js](./cyber-scene.js) is isolated from content
@@ -46,7 +51,10 @@ Radar rings are omitted on narrow screens. The scene and scanning line do not ca
 or use strobing/glitch flashes. They pause when the page is hidden, stop when Cyber is off
 or printing, and become static with reduced motion; mode changes repaint the static scene.
 The canvas is attenuated behind the central reading column so trails stay brightest in the margins.
-Both buttons support Enter/Space and visible keyboard focus. CV PDF styling is independent.
+FX-off removes blossoms in academic style and freezes the background animation in Cyber.
+Reduced motion disables FX and leaves a static Cyber scene. Blossoms remain limited to
+24 particles (12 on narrow screens); all nested animations pause when the page is hidden.
+All controls support Enter/Space and visible keyboard focus. CV PDF styling is independent.
 
 Homepage, advisor, and publication-author links share `--link-color` and
 `--link-hover-color` in [stylesheet.css](./stylesheet.css). Each background theme

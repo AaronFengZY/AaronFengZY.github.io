@@ -25,7 +25,7 @@
   }
 
   function canAnimate() {
-    return isActive() && !document.hidden && !reducedMotion.matches;
+    return isActive() && root.getAttribute('data-effects') === 'on' && !document.hidden && !reducedMotion.matches;
   }
 
   function resetStar(star, initial) {
@@ -204,7 +204,7 @@
     if (canAnimate()) frameId = requestAnimationFrame(animate);
   }
 
-  new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['data-style', 'data-theme'] });
+  new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['data-style', 'data-theme', 'data-effects'] });
   reducedMotion.addEventListener('change', sync);
   printing.addEventListener('change', sync);
   document.addEventListener('visibilitychange', sync);

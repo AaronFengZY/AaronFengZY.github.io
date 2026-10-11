@@ -941,11 +941,18 @@ table.papers a\:focus strong {
 /* ===================================================== */
 /* =====              Visual style switch           ===== */
 /* ===================================================== */
-.style-toggle {
+.appearance-controls {
   position: fixed;
   right: 18px;
   bottom: 18px;
   z-index: 1100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.style-toggle,
+.effects-toggle {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -971,15 +978,18 @@ table.papers a\:focus strong {
               box-shadow 0.25s ease;
 }
 
-.style-toggle[hidden] {
+.style-toggle[hidden],
+.effects-toggle[hidden] {
   display: none;
 }
 
-.style-toggle .style-label {
+.style-toggle .style-label,
+.effects-toggle .effects-label {
   color: inherit;
 }
 
-.style-toggle svg {
+.style-toggle svg,
+.effects-toggle svg {
   width: 18px;
   height: 18px;
   fill: none;
@@ -989,11 +999,13 @@ table.papers a\:focus strong {
   stroke-linejoin: round;
 }
 
-.style-toggle:hover {
+.style-toggle:hover,
+.effects-toggle:hover {
   background: #f3edff;
 }
 
-.style-toggle:focus-visible {
+.style-toggle:focus-visible,
+.effects-toggle:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
@@ -1002,19 +1014,33 @@ table.papers a\:focus strong {
   border-color: currentColor;
 }
 
-[data-theme="dark"] .style-toggle {
+.effects-toggle[aria-pressed="false"] {
+  opacity: 0.6;
+}
+
+.effects-toggle[aria-pressed="false"] .effects-label {
+  text-decoration: line-through;
+}
+
+.effects-toggle:disabled {
+  cursor: default;
+}
+
+[data-theme="dark"] .style-toggle,
+[data-theme="dark"] .effects-toggle {
   color: #cbb2ff;
   background: rgba(28, 29, 40, 0.92);
   border-color: #4a3d75;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
-[data-theme="dark"] .style-toggle:hover {
+[data-theme="dark"] .style-toggle:hover,
+[data-theme="dark"] .effects-toggle:hover {
   background: #261c46;
 }
 
 @media (max-width: 720px) {
-  .style-toggle {
+  .appearance-controls {
     right: 10px;
     bottom: 10px;
   }
@@ -1325,6 +1351,7 @@ body,
 .news-card,
 .topnav,
 .style-toggle,
+.effects-toggle,
 table.papers em strong,
 .news-tag {
   transition: background-color 0.25s ease, color 0.25s ease,
@@ -1340,6 +1367,8 @@ table.papers em strong,
   --page-night-bg: #18131f;
   --page-glow-one: 186, 132, 204;
   --page-glow-two: 247, 194, 207;
+  --petal-color: #cd81a7;
+  --petal-night-color: #e4a5ca;
 }
 
 /* Body becomes its own stacking context so negative-z pseudo-elements
@@ -1388,7 +1417,8 @@ body::after {
   opacity: 0.45;
 }
 
-.cyber-scene {
+.cyber-scene,
+.sakura-effects {
   display: none;
   position: fixed;
   inset: 0;
@@ -1396,6 +1426,80 @@ body::after {
   overflow: hidden;
   perspective: 600px;
   pointer-events: none;
+}
+
+.sakura-effects {
+  display: block;
+}
+
+.sakura-particle {
+  position: absolute;
+  top: -24px;
+  width: var(--particle-size);
+  height: calc(var(--particle-size) * 1.2);
+  perspective: 160px;
+  opacity: 0;
+  animation: sakura-fall var(--particle-duration) var(--particle-delay) linear infinite;
+}
+
+.sakura-effects .sakura-particle {
+  color: var(--petal-color);
+}
+
+[data-theme="dark"] .sakura-effects .sakura-particle {
+  color: var(--petal-night-color);
+}
+
+.sakura-effects .is-pale {
+  color: #eec1d3;
+}
+
+[data-theme="dark"] .sakura-effects .is-pale {
+  color: #fff0f6;
+}
+
+.sakura-petal {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: currentColor;
+  animation: sakura-sway var(--petal-sway-duration) var(--particle-delay) ease-in-out infinite alternate;
+}
+
+.sakura-shape {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sakura-tumble var(--petal-tumble-duration) var(--particle-delay) linear infinite;
+}
+
+.sakura-vein {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 0.7;
+  opacity: 0.45;
+}
+
+.sakura-effects.is-paused .sakura-particle,
+.sakura-effects.is-paused .sakura-petal,
+.sakura-effects.is-paused .sakura-shape {
+  animation-play-state: paused;
+}
+
+@keyframes sakura-fall {
+  0% { transform: translate3d(0, 0, 0) rotate(-20deg); opacity: 0; }
+  10%, 85% { opacity: 0.55; }
+  100% { transform: translate3d(var(--particle-drift), calc(100vh + 48px), 0) rotate(var(--particle-spin)); opacity: 0; }
+}
+
+@keyframes sakura-sway {
+  from { transform: translateX(calc(-1 * var(--petal-sway))) rotate(-18deg); }
+  to { transform: translateX(var(--petal-sway)) rotate(18deg); }
+}
+
+@keyframes sakura-tumble {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
 }
 
 .cyber-scene.is-paused .cyber-scan {
@@ -1412,6 +1516,9 @@ body::after {
 
 /* Respect users who prefer reduced motion / less decoration */
 @media (prefers-reduced-motion: reduce) {
+  .sakura-effects {
+    display: none;
+  }
   body::before,
   body::after {
     transition: none;
@@ -1674,6 +1781,10 @@ table.papers em.venue strong,
   display: block;
 }
 
+[data-style="cyber"] .sakura-effects {
+  display: none;
+}
+
 .cyber-canvas {
   display: block;
   position: absolute;
@@ -1706,6 +1817,10 @@ table.papers em.venue strong,
 
 [data-style="cyber"] .cyber-scan {
   animation: cyber-scan 8s linear infinite;
+}
+
+[data-effects="off"] .cyber-scan {
+  animation: none;
 }
 
 @keyframes cyber-scan {
@@ -1746,18 +1861,21 @@ table.papers em.venue strong,
 }
 
 [data-style="cyber"] .mode-toggle .mode-label,
-[data-style="cyber"] .style-toggle .style-label {
+[data-style="cyber"] .style-toggle .style-label,
+[data-style="cyber"] .effects-toggle .effects-label {
   color: inherit;
 }
 
-[data-style="cyber"] .style-toggle {
+[data-style="cyber"] .style-toggle,
+[data-style="cyber"] .effects-toggle {
   background: var(--cyber-panel);
   color: var(--cyber-cyan);
   border-radius: 4px;
   box-shadow: 0 0 18px rgba(var(--cyber-glow), 0.18);
 }
 
-[data-style="cyber"] .style-toggle:hover {
+[data-style="cyber"] .style-toggle:hover,
+[data-style="cyber"] .effects-toggle:hover {
   background: var(--cyber-hover);
 }
 
@@ -1907,14 +2025,16 @@ table.papers em.venue strong,
     animation: none;
   }
   .mode-toggle,
-  .style-toggle {
+  .style-toggle,
+  .effects-toggle {
     transition: none;
   }
 }
 
 @media print {
   .cyber-scene,
-  .style-toggle {
+  .sakura-effects,
+  .appearance-controls {
     display: none !important;
   }
 }
