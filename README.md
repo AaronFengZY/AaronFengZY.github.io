@@ -8,7 +8,11 @@ This is a static website. Open [index.html](./index.html) to preview it; no buil
 three-page English CV. [cv/Zhiyuan_Feng_CV.pdf](./cv/Zhiyuan_Feng_CV.pdf) is the printable
 PDF version, linked directly from the homepage's contact row. The CV uses the homepage's
 verified content as of October 2026, retains full
-author lists for 15 selected publications, marks first authorship, and separates preprints.
+author lists for 17 selected publications, marks first/co-first authorship, and separates preprints.
+Use `First author` when Zhiyuan is listed first, even with equal contribution; use
+`Co-first author` for shared first authorship when listed later. Omit equal-contribution
+asterisks on the CV's `First author` entries; retain them on `Co-first author` entries.
+The homepage retains the papers' original contribution markers.
 The undergraduate degree is written without a B.S./B.E. abbreviation because the homepage
 currently uses both; confirm the official degree type before changing it.
 
@@ -101,8 +105,16 @@ Each active paper row in [index.html](./index.html) needs a `data-categories` at
 
 Separate multiple categories with spaces, for example `data-categories="harnesses benchmarks"`.
 Use `data-categories=""` for work outside the current research areas, shown only in All.
+HarnessPro and EnactOpt belong to harnesses and are listed as arXiv 2026 preprints.
 TaskGround belongs to both harnesses and benchmarks; specialized work such as VolSplat,
 TransDiff, and DCRNN currently remains in All.
 
 The controls appear only after JavaScript initializes. Without JavaScript, the complete publication list remains visible.
 Filter styles in [stylesheet.css](./stylesheet.css) follow day/night mode.
+
+## Publication previews
+
+HarnessPro and EnactOpt use `*-preview.png` thumbnails in [images/publish/](./images/publish/).
+Each preview stacks the original overview above its corresponding `*2.png` results panel,
+matching their widths while preserving aspect ratios and leaving a small white gap.
+Keep both source panels when regenerating previews. Clicking a thumbnail opens the full combined image.

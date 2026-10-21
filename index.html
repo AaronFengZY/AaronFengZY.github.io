@@ -155,6 +155,12 @@
         <section id="news" class="news-section" aria-labelledby="news-heading">
           <heading id="news-heading" role="heading" aria-level="2">News</heading>
           <ul class="news-feed">
+            <li>
+              <time class="news-date" datetime="2026-10">[2026-10]</time>
+              <div class="news-message">
+                <span class="news-icon" aria-hidden="true">🚀</span><a href="https://arxiv.org/pdf/2610.26770" target="_blank" rel="noopener">HarnessPro</a> and <a href="https://arxiv.org/abs/2610.14977" target="_blank" rel="noopener">EnactOpt</a>, developed during my research internship at <strong>Kling AI</strong>, are now available on arXiv.
+              </div>
+            </li>
             <li class="news-acceptance">
               <time class="news-date" datetime="2026-09-24">[2026-09-24]</time>
               <div class="news-message">
@@ -246,6 +252,49 @@
             <span id="publication-count" class="publication-count" role="status" aria-live="polite" aria-atomic="true"></span>
           </div>
         <table class="papers" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr class="first-author-paper" data-categories="harnesses">
+            <td style="padding:20px;width:30%;vertical-align:middle">
+              <img src="images/publish/HarnessPro-preview.png" width="220" alt="HarnessPro trajectory diagnosis, harness editing, and performance-cost selection, with benchmark performance and efficiency results">
+            </td>
+            <td style="padding:20px;width:70%;vertical-align:middle">
+              <a href="https://arxiv.org/abs/2610.26770" target="_blank" rel="noopener">
+                <papertitle>HarnessPro: Recursive Harness Self-Improvement with Pareto Optimization for Performance-Cost Trade-offs</papertitle>
+              </a>
+              <br>
+              <a:focus>Zhuoshi Pan*, <strong>Zhiyuan Feng*</strong>, Yukuo Cen, Honglin Lin, Junru Lu, Zhongxia Chen, Shuo Yang, <span class="corresponding">H. Vicky Zhao<sup>✉</sup></span>, <span class="corresponding">Jie Tang<sup>✉</sup></span></a:focus>
+              <br>
+              <small>* Equal contribution.</small>
+              <br>
+              <a href="https://arxiv.org/pdf/2610.26770" target="_blank" rel="noopener">Paper</a> /
+              <a href="https://github.com/pzs19/HarnessPro" target="_blank" rel="noopener">Code</a>
+              <br>
+              <em class="venue venue-arxiv"><strong>arXiv 2026</strong></em>
+              <p></p>
+              <p>We propose <strong>HarnessPro</strong>, a label-free framework that recursively improves agent harnesses through trajectory diagnosis, candidate editing, and <strong>Pareto-aware performance-cost optimization</strong>. It produces lite, medium, and heavy variants for different deployment budgets. On Terminal-Bench 2, SWE-Bench Pro, and ProgramBench with GPT-5.5/Codex, its heavy mode improves average pass rate by 2.0 percentage points while reducing per-task cost by 26.1% relative to RHO.</p>
+            </td>
+          </tr>
+
+          <tr class="first-author-paper" data-categories="harnesses">
+            <td style="padding:20px;width:30%;vertical-align:middle">
+              <img src="images/publish/EnactOpt-preview.png" width="220" alt="EnactOpt rollout diagnosis and harness evolution, with task success rates on VLABench, ALFWorld, and EAI">
+            </td>
+            <td style="padding:20px;width:70%;vertical-align:middle">
+              <a href="https://arxiv.org/abs/2610.14977" target="_blank" rel="noopener">
+                <papertitle>EnactOpt: Diagnosis-Guided Harness Evolution for Embodied Agents</papertitle>
+              </a>
+              <br>
+              <a:focus><strong>Zhiyuan Feng*</strong>, Zhuoshi Pan*, Zhaolu Kang*, Zhongxia Chen<sup>‡</sup>, Shuo Yang<sup>‡</sup>, Sen Ye, Heng Wang, Han Li</a:focus>
+              <br>
+              <small>* Equal contribution. ‡ Project leads.</small>
+              <br>
+              <a href="https://arxiv.org/pdf/2610.14977" target="_blank" rel="noopener">Paper</a>
+              <br>
+              <em class="venue venue-arxiv"><strong>arXiv 2026</strong></em>
+              <p></p>
+              <p>We propose <strong>EnactOpt</strong>, a diagnosis-guided framework that jointly evolves <strong>textual skills and context-construction code</strong> from limited execution feedback, without changing the underlying models or runtime. By distinguishing missing evidence from evidence that was not effectively used, it turns rollout diagnoses into reusable harness improvements. Across VLABench, ALFWorld, and EAI, EnactOpt improves task success by approximately 10-27 percentage points over initial harnesses and generalizes to unseen task conditions.</p>
+            </td>
+          </tr>
+
           <tr class="first-author-paper" data-categories="harnesses benchmarks">
             <td style="padding:20px;width:30%;vertical-align:middle">
               <img src='images/publish/TaskGround.png' width="220">
