@@ -17,8 +17,10 @@
   <meta name="twitter:description" content="Ph.D. candidate at Tsinghua University. Embodied AI · Vision-Language-Action · Spatial Reasoning.">
   <meta name="twitter:image" content="images/my/profile.png">
 
-  <link rel="stylesheet" type="text/css" href="stylesheet.css?v=news-milestones-1">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css?v=memories-1">
+  <link rel="stylesheet" href="image-viewer.css?v=memories-1">
   <script src="cyber-scene.js?v=spaceship-1" defer></script>
+  <script src="image-viewer.js?v=memories-1" defer></script>
 	<link rel="icon" type="image/svg+xml" href="images/experience/thu_logo.svg">
 
   <!-- Modern font stack: Inter (body) + Fraunces (display) + Noto Sans SC (Chinese body) + Ma Shan Zheng (Chinese name) -->
@@ -27,40 +29,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&amp;text=%E5%86%AF%E5%BF%97%E8%BF%9C&amp;display=swap" rel="stylesheet">
 
-  <script>
-    function getUtcTheme() {
-      var hour = new Date().getUTCHours();
-      return hour >= 6 && hour < 18 ? 'light' : 'dark';
-    }
-
-    // Apply saved appearance before the first paint.
-    (function () {
-      var theme = getUtcTheme();
-      var style = 'academic';
-      var academicMode = 'auto';
-      var effects = 'on';
-      try {
-        var savedAcademicMode = localStorage.getItem('academicMode');
-        if (savedAcademicMode === 'light' || savedAcademicMode === 'dark') {
-          academicMode = savedAcademicMode;
-          theme = academicMode;
-        }
-        var saved = localStorage.getItem('theme');
-        if (localStorage.getItem('visualStyle') === 'cyber') {
-          style = 'cyber';
-          theme = saved === 'light' || saved === 'dark' ? saved : 'dark';
-        }
-        if (localStorage.getItem('seasonEffects') === 'off') effects = 'off';
-      } catch (e) {
-        if (e.name !== 'SecurityError') throw e;
-        console.warn('Saved appearance preferences are unavailable; using the UTC day/night mode.', e);
-      }
-      document.documentElement.setAttribute('data-theme', theme);
-      document.documentElement.setAttribute('data-style', style);
-      document.documentElement.setAttribute('data-effects', effects);
-      document.documentElement.setAttribute('data-academic-mode', academicMode);
-    })();
-  </script>
+  <script src="appearance-init.js?v=memories-1"></script>
   <script>
     var _hmt = _hmt || [];
     (function() {
@@ -82,6 +51,7 @@
           <a href="#papers">Papers</a>
           <a href="#experience">Experience</a>
           <a href="#honors">Honors</a>
+          <a href="life/index.html">Life</a>
         </div>
         <button id="mode-toggle" class="mode-toggle" type="button" aria-label="Night mode" aria-pressed="false" title="Switch to night mode" hidden>
           <svg class="mode-icon mode-icon-day" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -801,7 +771,7 @@
           <td style="padding:0px;width:100%;vertical-align:middle">
             <p><strong>Professional Service</strong></p>
             <ul style="margin-top:0">
-              <li>Conference Reviewer: ICLR 2027, NeurIPS 2026, ECCV 2026, CVPR 2026, ICLR 2026, ICRA 2026, AAAI 2026</li>
+              <li>Conference Reviewer: ICLR, NeurIPS, ECCV, CVPR, ICRA, AAAI</li>
               <li>Journal Reviewer: IJCV</li>
               <li>IEEE Student Member</li>
             </ul>
@@ -817,6 +787,7 @@
           </td>
         </tr>
         </tbody></table>
+
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:0px">
@@ -874,49 +845,6 @@
       });
       selectCategory('all');
       controls.hidden = false;
-    })();
-  </script>
-
-  <script>
-    // Click-to-zoom lightbox for paper thumbnails
-    (function () {
-      var imgs = document.querySelectorAll('table.papers img');
-      if (!imgs.length) return;
-
-      var overlay = document.createElement('div');
-      overlay.className = 'lightbox-overlay';
-      overlay.innerHTML = '<span class="lightbox-close" aria-label="Close">&times;</span><img alt="">';
-      document.body.appendChild(overlay);
-
-      var bigImg = overlay.querySelector('img');
-
-      function open(src) {
-        bigImg.src = src;
-        overlay.style.display = 'flex';
-        requestAnimationFrame(function () { overlay.classList.add('visible'); });
-        document.body.style.overflow = 'hidden';
-      }
-      function close() {
-        overlay.classList.remove('visible');
-        document.body.style.overflow = '';
-        setTimeout(function () {
-          overlay.style.display = 'none';
-          bigImg.src = '';
-        }, 200);
-      }
-
-      overlay.style.display = 'none';
-      overlay.addEventListener('click', close);
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') close();
-      });
-
-      imgs.forEach(function (img) {
-        img.addEventListener('click', function (e) {
-          e.preventDefault();
-          open(img.getAttribute('src'));
-        });
-      });
     })();
   </script>
 

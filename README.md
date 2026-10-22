@@ -118,3 +118,40 @@ HarnessPro and EnactOpt use `*-preview.png` thumbnails in [images/publish/](./im
 Each preview stacks the original overview above its corresponding `*2.png` results panel,
 matching their widths while preserving aspect ratios and leaving a small white gap.
 Keep both source panels when regenerating previews. Clicking a thumbnail opens the full combined image.
+
+## Personal photo gallery
+
+The homepage's Life link opens the standalone [Beyond Research gallery](./life/index.html).
+The homepage no longer embeds the personal photos. The gallery uses a newest-first year timeline:
+
+- **2026-09-04:** Kuaishou / Kling AI internship (`1_20260904.jpg`).
+- **2025-05-17:** Microsoft 2025 Family Day (`2_20250517.jpg`).
+- **2025-05-17:** Beijing Laffitte Chateau, with both photos in one entry
+  (`3_20250517.jpg` and `4_20250517.jpg`). No within-day ordering is implied.
+
+[images/life/](./images/life/) contains dated, full-frame `*-thumb.jpg` previews and larger JPEGs,
+re-encoded without source EXIF metadata. Full photos are capped at 1600px on the long edge,
+and user originals are untouched. The opening portrait loads immediately; later previews are
+lazy-loaded. Full photos load only when opened. Screens up to 720px use a single-column album.
+
+[appearance-init.js](./appearance-init.js) applies the same saved/UTC day-night appearance
+on both pages before the first paint. The gallery has its own warm paper palette and gentle
+ambient light rather than the homepage's blossom/Cyber effects. Its layout is isolated in
+[life/gallery.css](./life/gallery.css).
+
+[life/gallery.js](./life/gallery.js) controls the Motion button, two drifting background
+lights, six floating warm light points (four on narrow screens), and one-time card entrances.
+On shows the ambient layer; Off fades it out instead of merely freezing an almost identical
+background. The light points stay in the margins or behind opaque photo cards, never over the
+photos. Hover-capable devices also get a slight lift on photo frames.
+Motion uses the existing `seasonEffects` FX preference, so a
+saved off choice is respected on both pages. Reduced motion always disables these effects
+without overwriting that preference; animations pause while the page is hidden. Background
+lights never receive pointer events, and photos remain visible if JavaScript or scroll
+observation is unavailable. Without JavaScript, the warm palette remains static.
+
+Photo links and year navigation work without JavaScript. With JavaScript, the gallery and paper
+figures share [image-viewer.js](./image-viewer.js) and [image-viewer.css](./image-viewer.css), with
+descriptive alternative text, a keyboard-accessible close button, Escape support, and native focus
+management. New memories should retain semantic dates, meaningful alt text, image dimensions,
+and links to the uncropped photos; keep the timeline and displayed counts synchronized.
