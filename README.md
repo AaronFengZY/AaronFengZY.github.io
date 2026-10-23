@@ -19,7 +19,7 @@ currently uses both; confirm the official degree type before changing it.
 To update the PDF, edit the HTML and print from a Chromium browser using A4 paper,
 100% scale, no browser headers/footers, no extra margins, and background graphics enabled.
 The page padding and page numbers are part of the document. Keep the CV synchronized with
-the homepage after changes to publications, experience, or service.
+the homepage after changes to publications, experience, service, or awards.
 
 ## Google Search Console verification
 
